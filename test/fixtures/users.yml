@@ -1,0 +1,14 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+<% SALT = "NaCl" unless defined?(SALT) %>
+
+dmitry:
+  id: 1
+  login: dmitry
+  salt: <%=SALT%>
+  hashed_password: <%= User.encrypted_password("dmitry1234", SALT)%>
+  email: dmitry@custommode.com
+
+nikita:    
+  id: 2
+  login: nikita
+  email: nikita@custommode.com

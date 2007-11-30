@@ -1,0 +1,99 @@
+<%= error_messages_for 'user' %>
+
+<fieldset>
+	<legend>User Details:</legend>
+
+	<% form_for :user, :url => {:action => "index", :id => @user} do |form| %>
+	<table>
+		<tr>
+			<td>
+				<label for="user_login">Login:</label>
+			</td>
+			<td>
+				<%= @user.login %>
+			</td>
+		</tr>
+		<tr>
+			<td>    
+				<label for="user_password">Password:</label>
+			</td>
+			<td>
+				<%= form.password_field :password, :size => 40 %>
+			</td>
+		</tr>
+		<tr>
+			<td>   
+				<label for="user_password_confirmation">Confirm:</label>
+			</td>
+			<td> 
+				<%= form.password_field :password_confirmation, :size => 40 %>
+			</td>
+		</tr>
+		<tr>
+			<td>   
+				<label for="user_first_name">First Name:</label>
+			</td>
+			<td> 
+				<%= form.text_field :first_name, :size => 40 %>
+			</td>
+		</tr>
+		<tr>
+			<td>   
+				<label for="user_last_name">Last Name:</label>
+			</td>
+			<td> 
+				<%= form.text_field :last_name, :size => 40 %>
+			</td>
+		</tr>
+		<tr>
+			<td> 
+				<label for="user_email">Email:</label>
+			</td>
+			<td>
+				<%= form.text_field :email, :size => 40 %>
+			</td>
+		</tr>
+		<tr>
+			<td>				
+			</td>
+			<td>    
+				<%= submit_tag "Update User Info", :class => "submit" %>
+			</td>
+		</tr>
+	</table>
+	<% end %>  
+</fieldset>
+<fieldset>
+	<legend>
+		Statistics:
+	</legend>
+	<table>
+		<tr>
+			<td>
+				<label>Created:</label>
+			</td>
+			<td>
+				<%= @user.created_at.to_s(:long)%>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Updated:</label>
+			</td>
+			<td>
+				<%= @user.updated_at.to_s(:long)%>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<label>Total Collected:</label>
+			</td>
+			<td>
+				<%= pluralize @user.collected, 'pound'%> in <%= pluralize @user.number_of_events, 'event'%>.
+			</td>
+		</tr>
+
+	</table>
+</fieldset>
+
+</div>

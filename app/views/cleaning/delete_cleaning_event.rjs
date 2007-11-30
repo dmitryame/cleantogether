@@ -1,0 +1,1 @@
+page["cleaning-event-#{@removed_cleaning_event_id}"].visual_effect :slide_up

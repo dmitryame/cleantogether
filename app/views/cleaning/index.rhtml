@@ -1,0 +1,15 @@
+<%= GMap.header %> 
+<table>
+	<tr>
+		<td>
+			<div id='add_cleaning_event'>
+				Add New Event <%= link_to_remote image_tag ("add.gif", :border => 0), :url => {:action => :add_new_cleaning_event} %>
+			</div>
+		</td>
+	</tr>
+</table>
+
+<div id="cleaning-event-first"></div>
+<%= render :partial => "cleaning_event", :collection => @cleaning_events %>
+<%= will_paginate @cleaning_events %>
+

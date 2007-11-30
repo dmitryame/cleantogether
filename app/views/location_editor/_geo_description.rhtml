@@ -1,0 +1,8 @@
+<div id="geo_description">
+	<%if(@geo_location != nil)%>
+		<fieldset>
+			<legend><label>Location Description:</label></legend>	
+			<%= in_place_editor_field :geo_location, :description, {}, {:rows => 25, :cols => 50, :click_to_edit_text => "Click to Edit", :external_control => 'description'} %>			
+		</fieldset>
+	<%end%>
+</div>

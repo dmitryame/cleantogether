@@ -1,0 +1,3 @@
+page.insert_html :after, "cleaning-event-first", :partial => 'cleaning_event'
+page.hide "cleaning-event-#{@cleaning_event.id}"
+page["cleaning-event-#{@cleaning_event.id}"].visual_effect :grow
