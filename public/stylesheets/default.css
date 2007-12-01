@@ -27,6 +27,9 @@ body {
 DIV.center {
 	text-align: center;
 }
+DIV.right {
+	text-align: right;
+}
 .menu {
 	display: block;
 	background: #84D02E;

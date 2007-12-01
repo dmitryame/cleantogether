@@ -14,18 +14,19 @@
 <div id="container">
 	<div id="header">
 		<div class="headerText">CleanTogether</div>
-		<div class="center">
+		<div class="right">
 			<b class="menu">
 				<%= link_to 'home', :controller => "home", :action => :index  %> 
 				| 
 				<%= link_to 'cleaning', :controller => "cleaning", :action => :index  %>
 				|
-				<%= link_to 'personal', :controller => "user", :action => :index  %>
+				<%= link_to 'profile', :controller => "user", :action => :index  %>
 			
 				<%if session[:user_id]%>
 					|
-					<%= link_to 'logout', :controller => "user", :action => :logout  %>&nbsp;<%=session[:user_login]%>
+					<%= link_to 'logout', :controller => "user", :action => :logout  %>&nbsp;<%=session[:user_login]%>					
 				<%end%>
+				| <a href="http://cleantogether.googlecode.com/">for developers</a>				
 			</b>
 		</div>
 	</div>	
