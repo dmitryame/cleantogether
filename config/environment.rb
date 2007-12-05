@@ -47,8 +47,8 @@ Rails::Initializer.run do |config|
   # If you change this key, all existing sessions 
   # will become invalid! 
   config.action_controller.session = { 
-     :session_key => '', 
-     :secret      => '' 
+     :session_key => '_myapp_session', 
+     :secret      => '_cleantogether_secretkey' 
   } 
   
 end
