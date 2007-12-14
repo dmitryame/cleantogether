@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '1.2.3' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.0.1' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -48,7 +48,7 @@ Rails::Initializer.run do |config|
   # will become invalid! 
   config.action_controller.session = { 
      :session_key => '_myapp_demo-session', 
-     :secret      => '_cleantogether_demo_secretkey' 
+     :secret      => 'ojweoijwoeioiu3oi5u6oi7oi46oi7oi567io5io67j5o8i6joi9oo7i8io0io0oi97io07oio97io090' 
   } 
   
 end
