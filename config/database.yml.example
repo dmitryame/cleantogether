@@ -35,8 +35,8 @@ test:
 production:
   adapter: mysql
   database: cleantogether_production
-  username: cleantogether
-  password: cleantogether
+  username: 
+  password: 
 # this line had to be added manually on ubuntu to work 
   socket: /var/run/mysqld/mysqld.sock
 # added explicit encoding
