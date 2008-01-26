@@ -1,6 +1,4 @@
 <div id="cleaning-event-picture-<%=@cleaning_event.id%>">
-	<label>How it Looks:</label>
-	<br>
 	<%if @cleaning_event.picture == nil%>
 		<%form_for(
 				:picture,
@@ -15,6 +13,6 @@
 		<% end %>									
 		<iframe id="upload_frame_<%=@cleaning_event.id%>" name="upload_frame_<%=@cleaning_event.id%>" style="width:0px;height:0px;border:0px" src="about:blank"></iframe>							
 	<% else %>
-		<img src="<%=url_for(:controller => "home" , :action => :picture, :id => @cleaning_event.picture.id)%>"/>
+		<img src="<%=url_for(:controller => "home" , :action => :picture, :id => @cleaning_event.picture.id)%>" height="230"/>
 	<% end %>
 </div>

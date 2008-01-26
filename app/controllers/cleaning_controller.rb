@@ -11,23 +11,24 @@ class CleaningController < ApplicationController
     value = ERB::Util.h(params[:value])
    
     s = StringScanner.new(value)
-    final_line = ""
-    count = 0
-    while !s.eos?  
-      next_char = s.getch()   
-      if(count <= 80)
-        if(next_char == "\n")
-          count = 0
-        else
-          count += 1
-        end
-        final_line += next_char 
-      else
-        count = 0
-        final_line += "\n" 
-        final_line += next_char if next_char != "\n"
-      end      
-    end
+    final_line = value
+    # final_line = ""
+    # count = 0
+    # while !s.eos?  
+    #   next_char = s.getch()   
+    #   if(count <= 80)
+    #     if(next_char == "\n")
+    #       count = 0
+    #     else
+    #       count += 1
+    #     end
+    #     final_line += next_char 
+    #   else
+    #     count = 0
+    #     final_line += "\n" 
+    #     final_line += next_char if next_char != "\n"
+    #   end      
+    # end
     final_line = '[Enter Description]' if final_line == nil || final_line.strip == ''
     @cleaning_event.blog = final_line    
     @cleaning_event.save

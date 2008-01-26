@@ -1,28 +1,71 @@
 body {
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	background: #000;
+	font-family : Arial, Helvetica;
+	background: url(/images/new/main_background.png) repeat-x;
+    background-attachment: fixed;
 	margin: 0;
 	padding:0;
-	font-size : 12px;
 	color : #fff;
 }
 
 #header {
-	background: url(/images/b_bg.jpg) repeat-x;
-	width: 1000px;
-	height: 90px;
-	color: #fff;
+	background: url(/images/new/header.png);
+	background-repeat: no-repeat;
+	width: 876px;
+    height: 115px;
+}
+#logout {
+	position: relative;
+    left: 750px;
+    bottom: 110px;        
 }
 .headerText {
-	background: none;
-	font-size: 40px;
-	text-align: center;
-	padding-top: 25px;
-	padding-right: 25px;
-	padding-left: 25px;
-	padding-bottom: 25px;
-	color: #fff;
-	font-weight: bold;
+    position:relative;
+    left:15px;
+    bottom:-60px;
+}
+
+#trashBags {
+	background: url(/images/new/trash_bags.png);
+	background-repeat: no-repeat;
+    height: 115px;
+    color: #000;
+    size: +1;
+    width: 23em;
+    float: left;
+}
+#togetherCollected {
+	position: relative;
+    left: 65px;
+    width: 150px;    
+	text-align: right;
+    white-space: nowrap;
+}
+#totalCollected {
+	position: relative;
+    left: 130px;    
+    top: 30px;    
+    color: #bc4700;
+    font-size : 40px;
+}
+
+#add_cleaning_event {
+    color: #bc4700;
+    font-size : 15px;
+	font-weight: bold;	
+    height: 20px;
+    display: inline;
+}
+#add_cleaning_event a {
+    color: #bc4700;
+    font-size : 15px;
+	font-weight: bold;	
+    height: 20px;
+    display: inline;
+    text-decoration: none;	
+}
+
+.description {
+    color: #bc4700;    
 }
 DIV.center {
 	text-align: center;
@@ -31,54 +74,39 @@ DIV.right {
 	text-align: right;
 }
 .menu {
-	display: block;
-	background: #84D02E;
-	width: 1000px;
-	color: #fff;
-	font-weight: bold;
-	padding-top: 8px;
-	border-top: 2px dotted #fff;
+	position: relative;
+    left: 360px;
+    top: 34px;    
 }
-.menu a {
-	background: #84D02E;
-	color: #fff;
-	padding-left: 3px;
-	padding-right: 3px;
-	font-weight: bold;
+
+.menuItem {
+	background: url(/images/new/post_your_story_tab.png);
+	background-repeat: no-repeat;    
+	text-decoration: none;
+	float:left;
+	width: 123px;
+	height: 26px;	
+    text-align: center;	
+    vertical-align: middle;
+}
+.menuItem a {
 	text-decoration: none;
 }
-.menu a:active {
-	background: #84D02E;
-	color: #fff;
-	padding: 3px;
-	font-weight: bold;
-	text-decoration: none;
-}
+
 .menu a:hover {
-	background: #fff;
-	color: #84D02E;
-	padding-top: 3px;
-	padding-bottom: 13px;
-	padding-left: 3px;		
-	padding-right: 3px;
 	font-weight: bold;
-	text-decoration: underline;
 }
 #container {
-	background: #fff;
-	color : #000;
-	width: 1000px;
+	width: 876px;
 	margin-right : auto;
 	margin-left : auto;
 	text-align : left;
 }
 #content {
-	background: #84D02E;
-	color: #000;
-	padding-top: 5px;
-	padding-right: 25px;
-	padding-left: 25px;
-	padding-bottom: 25px;
+	padding-top: 1px;
+	padding-right: 5px;
+	padding-left: 5px;
+	padding-bottom: 5px;
 }	
 #columnR {
 	float: right;
@@ -102,66 +130,32 @@ h2.headline {
 h1.title {
 	font-weight: bold;
 }
-#bodytext {
-	background: #fff;
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	padding-left : 0px;
-	padding-right : 0px;
-	text-align : left;
-	color: #000;
-	padding-top : 0px;
-	padding-bottom : 0px;
-	margin-bottom: 0;
-}
 .text {
-	background: #fff;
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	padding-left : 10px;
-	padding-right : 10px;
+	font-family : Arial, Helvetica;
 	text-align : left;
 	color: #000;
-	padding-top : 10px;
-	padding-bottom : 10px;
-	margin-bottom: 0;
 }
 
-.footer {
-	background: url(/images/b_bg2.jpg) repeat-x;
-	height: 100px;
-	width: 1000px;
-	margin-right : auto;
-	margin-left : auto;
-	color : #fff;
-	padding-top : 5px;
-	font-size: 9px;
-	text-align : center;
+#footer {
+	background: url(/images/new/footer.png);
+	background-repeat: no-repeat;
+	width: 876px;
+    height: 115px;
+	text-align: center;
 }
-.footer a {
-	background: none;
-	color : #fff;
-	padding-left: 5px;
-	padding-right: 5px;	
-}
-
 
 body, p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size:   13px;
-  line-height: 18px;
-}
-
-pre {
-  padding: 10px;
-  font-size: 11px;
+  font-family : Arial, Helvetica;
 }
 
 a { color: #000; }
-a:visited { color: #666; }
+a:visited { color: #888; }
 #a:hover { color: #fff; background-color:#000; }
 
 label {
     font-size: 8px;
     font-weight: bold;    
+    color: #bc4700;        
 }
 
 .fieldWithErrors {
@@ -297,10 +291,65 @@ span.in_place_editor_field {
 }
 
 
-.bl {background: url(/images/bl.gif) 0 100% no-repeat #84D02E; width: 100%}
-.br {background: url(/images/br.gif) 100% 100% no-repeat}
-.tl {background: url(/images/tl.gif) 0 0 no-repeat}
-.tr {background: url(/images/tr.gif) 100% 0 no-repeat; padding:10px}
+.cleaning-event {
+    width: 876px;
+    height: 500px;
+    background: url(/images/new/entry_background.png);
+    background-repeat: no-repeat;
+}
+
+.event-image {
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    width: 300px;
+    height: 200px;	
+}
+
+.event-map {
+    text-align: center;
+    padding: 28px 10px 10px 10px;
+    width: 300px;
+    height: 200px;
+}
+.event-location {
+    color: #bc4700;
+    font-size : 15px;
+	font-weight: bold;	
+    height: 20px;
+    display: inline;
+}
+.event-location a {
+	text-decoration: none;
+    color: #bc4700;
+}
+
+.event-weight {
+    white-space: nowrap;
+    display: inline;
+}
+
+.event-date {
+    color: #bc4700;
+    font-size : 15px;
+    height: 20px;
+    text-align: right;
+    display: inline;
+}
+.event-story {
+    position:relative;
+    left:330px;
+    top:-440px;
+    width: 535px;
+	color : #555;
+}
+
+.event-blog {
+    font-family: Verdana; 
+    font-size: 85%;
+    overflow: auto;
+    height: 400px;
+}
+
 
 fieldset { border:0px solid #84D02E }
 
@@ -310,19 +359,4 @@ legend {
   color:green;
   font-size:90%;
   text-align:right;
-}
-
-.cleaning-event {
-    width: 900px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 25px;
-    padding-right: 10px;
-}
-.clear {
-    width: 900px;
-    font-size: 20px; 
-    height: 20px; 
-    background: #fff;
-    
 }

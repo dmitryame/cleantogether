@@ -3,7 +3,8 @@
 	<tr>
 		<td>
 			<div id='add_cleaning_event'>
-				Add New Event <%= link_to_remote image_tag ("add.gif", :border => 0), :url => {:action => :add_new_cleaning_event} %>
+				<%= link_to_remote "Add New Event", :url => {:action => :add_new_cleaning_event} %>
+				<%= link_to_remote image_tag ("add.gif", :border => 0), :url => {:action => :add_new_cleaning_event} %>
 			</div>
 		</td>
 	</tr>

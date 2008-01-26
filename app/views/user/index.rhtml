@@ -9,7 +9,7 @@
 			<td>
 				<label for="user_login">Login:</label>
 			</td>
-			<td>
+			<td class="description">
 				<%= @user.login %>
 			</td>
 		</tr>
@@ -72,7 +72,7 @@
 			<td>
 				<label>Created:</label>
 			</td>
-			<td>
+			<td class="description">
 				<%= @user.created_at.to_s(:long)%>
 			</td>
 		</tr>
@@ -80,7 +80,7 @@
 			<td>
 				<label>Updated:</label>
 			</td>
-			<td>
+			<td class="description">
 				<%= @user.updated_at.to_s(:long)%>
 			</td>
 		</tr>
@@ -88,12 +88,10 @@
 			<td>
 				<label>Total Collected:</label>
 			</td>
-			<td>
+			<td class="description">
 				<%= pluralize @user.collected, 'pound'%> in <%= pluralize @user.number_of_events, 'event'%>.
 			</td>
 		</tr>
 
 	</table>
 </fieldset>
-
-</div>
