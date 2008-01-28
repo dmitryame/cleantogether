@@ -1,6 +1,5 @@
 <%= GMap.header %> 
 
-<div class="text">
 	<div id="trashBags">		
 		<div id="togetherCollected">
 			<font size="3">Together, we have collected</font>
@@ -9,16 +8,25 @@
 			<%= CleaningEvent.collected-%>&nbsp;lbs
 		</div>
 	</div>				
-	<p>We all love to spend time outdoors -- we go hiking, to a picnic party,to a beach. We all know the importance of "what we bring with us -- we take back home". But why not go a little farther and collect the garbage left by other people. After all, not all of us take the trash back home.</p>
 
-			<p>Everybody these days talks about the importance of protecting the environment. There are some <a href="http://www.npr.org/templates/story/story.php?storyId=15503719">exotic ways</a> of doing it, where some times <a href="http://www.npr.org/templates/story/story.php?storyId=15367660">high tech solutions</a> are involved. And some are as simple as to get <b>together</b> and <b>clean</b>. Here is a quote from the high tech solutions article: <i><a href="http://www.npr.org/templates/story/story.php?storyId=15367660">"Guests gather to take part in the monthly reef cleaning. Led by staff divers, they swim around the island, picking up garbage and removing predators."</a></i>
-			</p>
+	<div class="steps" id="step1">
+		1. Go out to the nature -- beach, forest, mountains.
+	</div>
+	<div class="steps" id="step2">
+		2. Have fun swimming, hiking, rock climbing, picnicking, relaxing.
+	</div>
+	<div class="steps" id="step3">
+		3. On a way home, collect trash you see around and bring it back with you.
+	</div>
+	<div class="steps" id="step4">
+		4. Post your story on our web site.
+	</div>
+	<div class="steps" id="step5">
+		5. Make the world a cleaner place, spread the word, let other people know...		
+	</div>
 
 
-			<p>Some other enthusiasts make efforts to <a href="http://www.worldwatch.org/node/5074">clean up mount Everest</a>. Do we have to go that far to contribute? The answer is "no!" Go to the <a href="/cleaning">cleaning</a> section on this web site, register/login, and start writing reports about your cleaning expeditions. In each cleaning even provide <b>weight</b> in pound of the garbage that was carried away, a <b>picture</b> that can serve well as a proof of the event (and the amount of the garbage), a <b>location</b> where it took place and a little BLOG <b>story</b> to make it more fun to share with friends. 
-			</p>
-
+<div class="cleaning-events">
+	<%= render :partial => "cleaning_event", :collection => @cleaning_events %>
+	<%= will_paginate @cleaning_events %>
 </div>
-
-<%= render :partial => "cleaning_event", :collection => @cleaning_events %>
-<%= will_paginate @cleaning_events %>

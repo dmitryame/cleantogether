@@ -30,8 +30,10 @@ body {
     height: 115px;
     color: #000;
     size: +1;
-    width: 23em;
-    float: left;
+    width: 12em;
+    position:relative;
+    left:1px;
+    top: 40px;
 }
 #togetherCollected {
 	position: relative;
@@ -67,6 +69,41 @@ body {
 .description {
     color: #bc4700;    
 }
+
+.steps {
+	text-align: left;
+    color: #bc4700;
+    height: 60px;
+    width: 150px;
+}
+
+#step1 {
+	position: relative;
+    left: 300px;
+    bottom: 100px;    
+}
+#step2 {
+	position: relative;
+    left: 400px;
+    bottom: 90px;    
+}
+#step3 {
+	position: relative;
+    left: 510px;
+    bottom: 230px;    
+}
+#step4 {
+	position: relative;
+    left: 630px;
+    bottom: 180px;    
+}
+#step5 {
+	position: relative;
+    left: 700px;
+    bottom: 330px;    
+}
+
+
 DIV.center {
 	text-align: center;
 }
@@ -290,6 +327,10 @@ span.in_place_editor_field {
   color: #ddd;
 }
 
+.cleaning-events {
+    position:relative;
+    top: -200px;
+}
 
 .cleaning-event {
     width: 876px;
