@@ -20,6 +20,8 @@ body {
 #content {
     position:relative;
     left:100px;
+    width: 876px;
+	
 }
 
 #footer {
@@ -37,12 +39,15 @@ body {
 #logout {
 	position: relative;
     left: 750px;
-    bottom: 110px;        
+    top: -60px;        
+    display: block;
+    width: 100px;
 }
 .headerText {
     position:relative;
     left:15px;
     bottom:-60px;
+    width: 300px;
 }
 
 #trashBags {
@@ -75,6 +80,7 @@ body {
     margin-top: 20px;
     margin-bottom: -280px;
     display: block;
+    width: 500px;
 }
 
 .steps {
@@ -145,6 +151,8 @@ DIV.right {
 	position: relative;
     left: 360px;
     top: 34px;    
+    display: block;
+    width: 500px;
 }
 
 .menuItem {
@@ -159,6 +167,8 @@ DIV.right {
 }
 .menuItem a {
 	text-decoration: none;
+    position: relative;
+    top: 5px;
 }
 
 .menu a:hover {
@@ -166,6 +176,8 @@ DIV.right {
 }
 #container {
 	text-align : left;
+	width: 876px;
+	display: block;
 }
 #columnR {
 	float: right;
