@@ -12,7 +12,28 @@ body {
 	background-repeat: no-repeat;
 	width: 876px;
     height: 115px;
+    position: relative;
+    left: 100px;
+    top: 0px;    	
 }
+
+#content {
+    position:relative;
+    left:100px;
+}
+
+#footer {
+    font-size: 8px;
+	background: url(/images/new/footer.png);
+	background-repeat: no-repeat;
+	width: 876px;
+    height: 115px;
+	text-align: center;
+    position: relative;
+    left: 100px;
+}
+
+
 #logout {
 	position: relative;
     left: 750px;
@@ -31,10 +52,10 @@ body {
     color: #000;
     size: +1;
     width: 12em;
-    position:relative;
-    left:1px;
-    top: 40px;
+    display: block;
+    margin-top: 30px;
 }
+
 #togetherCollected {
 	position: relative;
     left: 65px;
@@ -49,6 +70,48 @@ body {
     color: #bc4700;
     font-size : 40px;
 }
+
+#what-to-do {
+    margin-top: 20px;
+    margin-bottom: -280px;
+    display: block;
+}
+
+.steps {
+	text-align: left;
+    color: #bc4700;
+    height: 60px;
+    width: 150px;
+    display: block;
+}
+
+#step1 {
+	position: relative;
+    left: 300px;
+    bottom: 150px;    
+}
+#step2 {
+	position: relative;
+    left: 400px;
+    bottom: 140px;    
+}
+#step3 {
+	position: relative;
+    left: 510px;
+    bottom: 280px;    
+}
+#step4 {
+	position: relative;
+    left: 630px;
+    bottom: 230px;    
+}
+#step5 {
+	position: relative;
+    left: 700px;
+    bottom: 380px;    
+}
+
+
 
 #add_cleaning_event {
     color: #bc4700;
@@ -70,38 +133,6 @@ body {
     color: #bc4700;    
 }
 
-.steps {
-	text-align: left;
-    color: #bc4700;
-    height: 60px;
-    width: 150px;
-}
-
-#step1 {
-	position: relative;
-    left: 300px;
-    bottom: 100px;    
-}
-#step2 {
-	position: relative;
-    left: 400px;
-    bottom: 90px;    
-}
-#step3 {
-	position: relative;
-    left: 510px;
-    bottom: 230px;    
-}
-#step4 {
-	position: relative;
-    left: 630px;
-    bottom: 180px;    
-}
-#step5 {
-	position: relative;
-    left: 700px;
-    bottom: 330px;    
-}
 
 
 DIV.center {
@@ -134,17 +165,8 @@ DIV.right {
 	font-weight: bold;
 }
 #container {
-	width: 876px;
-	margin-right : auto;
-	margin-left : auto;
 	text-align : left;
 }
-#content {
-	padding-top: 1px;
-	padding-right: 5px;
-	padding-left: 5px;
-	padding-bottom: 5px;
-}	
 #columnR {
 	float: right;
 	width: 100px;
@@ -173,13 +195,6 @@ h1.title {
 	color: #000;
 }
 
-#footer {
-	background: url(/images/new/footer.png);
-	background-repeat: no-repeat;
-	width: 876px;
-    height: 115px;
-	text-align: center;
-}
 
 body, p, ol, ul, td {
   font-family : Arial, Helvetica;
@@ -254,10 +269,6 @@ div.banner {
      font-size: 8px;
      text-align: right;
 }
-div.footer {
-     font-size: 8px;
-     text-align: right;
-}
 
 li.list_item {
     border: 1px dotted grey;
@@ -328,8 +339,9 @@ span.in_place_editor_field {
 }
 
 .cleaning-events {
-    position:relative;
-    top: -200px;
+    position: relative;
+    left: 100px;
+    top: 300px;    	
 }
 
 .cleaning-event {

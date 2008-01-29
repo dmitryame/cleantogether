@@ -39,13 +39,16 @@
 						</tr>					
 					</table>
 				</div>
+				<div id="logout">
+					<%if session[:user_id]%>
+							<%= link_to 'logout', :controller => "user", :action => :logout  %>&nbsp;<%=session[:user_login]%>					
+					<%end%>
+				</div>
+			</div>
 		</div>
-		<div id="logout">
-			<%if session[:user_id]%>
-					<%= link_to 'logout', :controller => "user", :action => :logout  %>&nbsp;<%=session[:user_login]%>					
-			<%end%>
+		<div id="content">
+			<%= yield :layout %>
 		</div>
-		<%= yield :layout %>
 		<div id="footer">
 			<div>&nbsp;</div>
 			<div>&nbsp;</div>

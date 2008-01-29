@@ -1,14 +1,15 @@
 <%= GMap.header %> 
 
-	<div id="trashBags">		
-		<div id="togetherCollected">
-			<font size="3">Together, we have collected</font>
-		</div>
-		<div id="totalCollected">
-			<%= CleaningEvent.collected-%>&nbsp;lbs
-		</div>
-	</div>				
+<div id="trashBags">		
+	<div id="togetherCollected">
+		<font size="3">Together, we have collected</font>
+	</div>
+	<div id="totalCollected">
+		<%= CleaningEvent.collected-%>&nbsp;lbs
+	</div>
+</div>				
 
+<div id="what-to-do">
 	<div class="steps" id="step1">
 		1. Go out to the nature -- beach, forest, mountains.
 	</div>
@@ -24,9 +25,7 @@
 	<div class="steps" id="step5">
 		5. Make the world a cleaner place, spread the word, let other people know...		
 	</div>
-
-
-<div class="cleaning-events">
-	<%= render :partial => "cleaning_event", :collection => @cleaning_events %>
-	<%= will_paginate @cleaning_events %>
 </div>
+
+<%= render :partial => "cleaning_event", :collection => @cleaning_events %>
+<%= will_paginate @cleaning_events %>
