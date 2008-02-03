@@ -9,14 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 6) do
+ActiveRecord::Schema.define(:version => 7) do
 
   create_table "cleaning_events", :force => true do |t|
     t.integer  "user_id",                        :null => false
     t.text     "blog"
     t.integer  "geo_location_id"
     t.integer  "weight",          :default => 0, :null => false
-    t.date     "cleaning_at",                    :null => false
+    t.datetime "cleaning_at",                    :null => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
   end
