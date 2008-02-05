@@ -47,7 +47,7 @@
 				</td>
 				<td width=40% align="right">
 					<div class="event-date">
-						<%= calendar_date_select_tag 'cleaning_at', cleaning_event.cleaning_at.to_s(:long), :embedded => false, :time => false, :buttons => false %>
+						<%= calendar_date_select_tag 'cleaning_at', cleaning_event.cleaning_at.to_s(:pretty), :embedded => false, :time => false, :buttons => false %>
 						<%= observe_field 'cleaning_at', :frequency => 0.5, :url =>{ :action => :update_cleaning_at, :id => cleaning_event.id }, :with => "'cleaning_at=' + escape(value)" %>
 					</div>
 				</td>
