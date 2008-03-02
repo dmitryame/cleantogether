@@ -1,12 +1,12 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'cleaning_controller'
+require 'cleaning_events_controller'
 
 # Re-raise errors caught by the controller.
-class CleaningController; def rescue_action(e) raise e end; end
+class CleaningEventsController; def rescue_action(e) raise e end; end
 
-class CleaningControllerTest < Test::Unit::TestCase
+class CleaningEventsControllerTest < Test::Unit::TestCase
   def setup
-    @controller = CleaningController.new
+    @controller = CleaningEventsController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end
