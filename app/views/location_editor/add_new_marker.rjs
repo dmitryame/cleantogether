@@ -1,15 +1,8 @@
 page << @map.clear_overlays
-@markers.each { |marker| page << @map.add_overlay(marker)}
 
-page.replace "geo_name", :partial => 'geo_name', :object => @geo_location
-page.hide "geo_name"
-page.visual_effect :appear, "geo_name"
-
-page.replace "geo_description", :partial => 'geo_description', :object => @geo_location
-page.hide "geo_description"
-page.visual_effect :slide_down, "geo_description"
-
-page << @map.set_center(GLatLng.new([@geo_location.lat, @geo_location.lng],15))
+page << @map.set_center(GLatLng.new([@lat, @lng],15))
 page << @map.add_overlay(@marker)
+page["geo_location_lat"].value = @lat
+page["geo_location_lng"].value = @lng
 
 
