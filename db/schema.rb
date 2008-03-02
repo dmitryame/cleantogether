@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 7) do
+ActiveRecord::Schema.define(:version => 9) do
 
   create_table "cleaning_events", :force => true do |t|
     t.integer  "user_id",                        :null => false
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(:version => 7) do
     t.datetime "updated_at",                                                  :null => false
   end
 
-  add_index "geo_locations", ["lat", "lng"], :name => "index_geo_locations_on_lat_and_lng", :unique => true
   add_index "geo_locations", ["lat"], :name => "index_geo_locations_on_lat"
   add_index "geo_locations", ["lng"], :name => "index_geo_locations_on_lng"
 
@@ -52,6 +51,7 @@ ActiveRecord::Schema.define(:version => 7) do
     t.integer "width"
     t.integer "height"
     t.integer "db_file_id"
+    t.integer "user_id"
   end
 
   add_index "pictures", ["cleaning_event_id"], :name => "index_pictures_on_cleaning_event_id"

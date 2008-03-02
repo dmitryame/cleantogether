@@ -5,4 +5,5 @@ class Picture < ActiveRecord::Base
                      :thumbnails => { :normal => '400>', :thumb => '100>' }
   validates_as_attachment
   belongs_to :cleaning_event
+  belongs_to :user
 end

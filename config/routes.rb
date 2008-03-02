@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :cleaning_events do |cleaning_event|
+  end
+  map.resources :geo_locations do |geo_location|
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   
   # Sample of regular route:

@@ -1,9 +1,12 @@
 class CleaningEvent < ActiveRecord::Base
-  has_one :picture
+  has_many :pictures
   belongs_to :user
   belongs_to :geo_location
+  validates_presence_of :geo_location, :on => :create
+  validates_presence_of :weight, :on => :create
+  validates_presence_of :cleaning_at, :on => :create
   validates_numericality_of :weight
-  validates_inclusion_of :weight, :in =>0..199
+  validates_inclusion_of :weight, :in =>1..200, :message => "out of range 1-200"
   
   def self.collected
     CleaningEvent.sum :weight

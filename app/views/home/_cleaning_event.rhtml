@@ -3,10 +3,11 @@
 	@cleaning_event = cleaning_event
 	%>
 	<div class="event-image">
-		<%if @cleaning_event.picture == nil%>
+		<%puts @cleaning_event.pictures.size%>
+		<%if @cleaning_event.pictures[0] == nil%>
 			No Picture Provided
 		<% else %>
-			<img src="<%=url_for(:controller => "home" , :action => :picture, :id => @cleaning_event.picture)%>" height="230"/>
+			<img src="<%=url_for(:controller => "home" , :action => :picture, :id => @cleaning_event.pictures[0])%>" height="230"/>
 		<% end %>
 	</div>
 		

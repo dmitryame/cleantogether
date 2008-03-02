@@ -11,8 +11,9 @@
 	<!--[if lt IE 7.]>
 		<script defer type="text/javascript" src="/javascripts/pngfix.js"></script>
 	<![endif]-->
+	
 </head>
-<body>
+<body>		
 	<div id="container">
 		<div id="header">
 			<div class="headerText"><img src="/images/new/logo.png"/></div>		
@@ -26,7 +27,7 @@
 							</td>
 							<td>
 								<div class="menuItem">
-									<%= link_to 'Post Your Story', :controller => "cleaning", :action => :index  %>
+									<%= link_to 'Post Your Story', :controller => "cleaning_events", :action => :index  %>
 								</div>
 							</td>
 							<td>
@@ -50,6 +51,7 @@
 			</div>
 		</div>
 		<div id="content">
+			<p style="color: green"><%= flash[:notice] %></p>
 			<%= yield :layout %>
 		</div>
 		<div id="footer">

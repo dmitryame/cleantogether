@@ -1,0 +1,1 @@
+page["cleaning-event-#{@cleaning_event.id}"].visual_effect :highlight,:startcolor => "#ffffff", :endcolor => "#00af00"

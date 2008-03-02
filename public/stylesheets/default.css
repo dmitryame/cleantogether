@@ -147,6 +147,10 @@ DIV.center {
 DIV.right {
 	text-align: right;
 }
+DIV.nowrap {
+    white-space: nowrap;
+    display: inline;    
+}
 .menu {
 	position: relative;
     left: 360px;
@@ -197,6 +201,9 @@ h2.headline {
 	background: #fff;
 	text-decoration: underline;
 	color: #84D02E;
+}
+h1 {
+	color: #bc4700;                
 }
 h1.title {
 	font-weight: bold;
@@ -376,6 +383,8 @@ span.in_place_editor_field {
     width: 300px;
     height: 200px;
 }
+
+
 .event-location {
     color: #bc4700;
     font-size : 15px;
@@ -425,3 +434,76 @@ legend {
   font-size:90%;
   text-align:right;
 }
+
+.event-step {
+	text-align: left;
+    color: #bc4700;
+    display: block;
+}
+
+.error_box {
+    display:inline;
+    border:3px solid red;
+    color:red;
+}
+
+.formError {
+    padding: 2px;
+    spacing: 2px;
+    display:inline;
+    color:red;
+}
+.fieldWithErrors {
+    display:inline;
+}
+
+
+
+/* Subsection Tabs
+--------------------*/
+#main ul.subsection_tabs {
+	list-style:none;
+	margin:0;
+	padding:0;
+	clear:both;
+	border-bottom:1px solid #ccc;
+	height:20px;
+	clear:both;    
+}
+
+#main ul.subsection_tabs li {
+	float:left;
+	margin-right:7px;
+	text-align:center;
+}
+
+#main ul.subsection_tabs li a {
+	display:block;
+	height:20px;
+	padding:0 6px 0 6px;
+	background-color:#fff;
+	color:#666;
+	width:80px;
+}
+
+#main ul.subsection_tabs li a:hover {
+	color:#666;
+}
+
+#main ul.subsection_tabs li a.active {
+	background-color:#ddd;
+}
+
+#main ul.register_tabs {
+	border-bottom:none;
+}
+
+#main ul.register_tabs li a.active {
+	background-color:#6d7a81;
+	color:#fff;
+}
+/* Subsection Tabs end
+--------------------*/
+
+
+

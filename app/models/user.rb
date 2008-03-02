@@ -2,6 +2,9 @@ require 'digest/sha1'
 
 
 class User < ActiveRecord::Base
+  has_many :pictures
+  
+  
   validates_presence_of     :login, :email
   validates_uniqueness_of   :login
  
