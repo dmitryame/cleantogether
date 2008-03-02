@@ -1,1 +1,0 @@
-page[:geo_name].reload  :object => @geo_location
