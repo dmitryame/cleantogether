@@ -1,0 +1,6 @@
+# page << @map.clear_overlays
+if @latlon != nil
+  page << @map.set_center(GLatLng.new(@latlon),15)
+else
+  page.alert("Location not found, provide more information and try again!")
+end

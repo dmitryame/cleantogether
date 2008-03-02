@@ -1,0 +1,8 @@
+page << @map.clear_overlays
+
+page << @map.set_center(GLatLng.new([@lat, @lng],15))
+page << @map.add_overlay(@marker)
+page["geo_location_lat"].value = @lat
+page["geo_location_lng"].value = @lng
+
+

@@ -1,0 +1,18 @@
+<div id="cleaning-event-picture-<%=@cleaning_event.id%>">
+	<%if @cleaning_event.pictures[0] == nil%>
+		<%form_for(
+				:picture,
+				:url => {:action => "upload_picture"},
+				:html => {
+					:multipart => true, :target => "upload_frame_#{@cleaning_event.id}"
+				}
+			) do |form| %>
+			<%= form.file_field :uploaded_data %><br>
+			<%= hidden_field_tag :cleaning_event_id, "#{@cleaning_event.id}"%>
+			<%= submit_tag("Upload a Picture")%>
+		<% end %>									
+		<iframe id="upload_frame_<%=@cleaning_event.id%>" name="upload_frame_<%=@cleaning_event.id%>" style="width:0px;height:0px;border:0px" src="about:blank"></iframe>							
+	<% else %>
+		<img src="<%=url_for(:controller => "home" , :action => :picture, :id => @cleaning_event.pictures[0].id)%>" height="230"/>
+	<% end %>
+</div>
