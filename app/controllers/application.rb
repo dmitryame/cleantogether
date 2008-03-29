@@ -10,9 +10,10 @@ require 'net/https'
 
 class ApplicationController < ActionController::Base  
   before_filter :check_authorization
-
+  
   BASE_URI = "https://www.preallowed.com/clients/2"
-  SUBJECT  = "4"
+  #has to be dynamic subject based on the user logged in
+  SUBJECT  = "9"
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_cleantogether_session_id'
   
@@ -26,14 +27,14 @@ class ApplicationController < ActionController::Base
     end
   end    
   
+  
   def check_authorization
      puts "???????????????????? authorization ???????????????????????? " + request.request_uri
      url = URI.parse(BASE_URI + "/subjects/" + SUBJECT + "/has_access/")
       
-      
      req = Net::HTTP::Post.new(url.path)
-     req.basic_auth 'preallowed_admin', 'preallowed_admin'
-     req.set_form_data({'reseource'=> request.request_uri}, ';')
+     req.basic_auth 'cleantogether_rest', 'cleantogether_rest'
+     req.set_form_data({'resource'=> request.request_uri}, ';')
      # breakpoint
      
      http = Net::HTTP.new(url.host, url.port)
@@ -50,7 +51,6 @@ class ApplicationController < ActionController::Base
      end
 
   end
-
 
 end
 
