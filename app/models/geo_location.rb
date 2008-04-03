@@ -2,7 +2,7 @@ require "bigdecimal"
 require "bigdecimal/math"
 class GeoLocation < ActiveRecord::Base
   has_many :cleaning_events
-  validates_presence_of     :name, :description, :lat, :lng
+  validates_presence_of     :name, :lat, :lng
   validates_uniqueness_of   :name
 
   def self.recent_geo_locations(p_user_id)
