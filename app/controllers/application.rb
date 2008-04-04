@@ -11,20 +11,11 @@ require 'net/https'
 class ApplicationController < ActionController::Base  
   before_filter :check_authorization
   
-  PREALLOWED_LOGIN = 'cleantogether_rest'
-  PREALLOWED_PASSWORD = 'cleantogether_rest'
-  
-  CLIENT_ID = "2"
-  BASE_URI = "https://www.preallowed.com/clients/" + CLIENT_ID
-  #has to be dynamic subject based on the user logged in
-  GUEST_SUBJECT_ID = "12"
-  
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_cleantogether_session_id'
   
   def check_authentication
     logger.debug "!!!!!!!!!!!!!!!!!!!! authentication !!!!!!!!!!!!!!!!!!!!!!! --> " + request.request_uri
-    
     unless session[:user_id]
       session[:return_to] = request.request_uri
       flash[:notice] =    "Please log in"      

@@ -70,3 +70,9 @@ $KCODE = 'u'
 
 
 # Include your application configuration below
+PREALLOWED_LOGIN = 'cleantogether'
+PREALLOWED_PASSWORD = 'cleantogether'
+
+CLIENT_ID = "2"
+GUEST_SUBJECT_ID = "12"
+BASE_URI = "https://www.preallowed.com/clients/" + CLIENT_ID

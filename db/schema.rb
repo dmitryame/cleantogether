@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 10) do
+ActiveRecord::Schema.define(:version => 9) do
 
   create_table "cleaning_events", :force => true do |t|
     t.integer  "user_id",                        :null => false
@@ -30,12 +30,12 @@ ActiveRecord::Schema.define(:version => 10) do
   end
 
   create_table "geo_locations", :force => true do |t|
-    t.string   "name",                                        :null => false
+    t.string   "name",                                        :default => "", :null => false
     t.text     "description"
-    t.decimal  "lat",         :precision => 20, :scale => 15, :null => false
-    t.decimal  "lng",         :precision => 20, :scale => 15, :null => false
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.decimal  "lat",         :precision => 20, :scale => 15,                 :null => false
+    t.decimal  "lng",         :precision => 20, :scale => 15,                 :null => false
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
   end
 
   add_index "geo_locations", ["lat"], :name => "index_geo_locations_on_lat"
@@ -60,13 +60,12 @@ ActiveRecord::Schema.define(:version => 10) do
     t.string   "login"
     t.string   "hashed_password"
     t.string   "salt"
-    t.string   "email",           :null => false
+    t.string   "email",           :default => "", :null => false
     t.string   "first_name"
     t.string   "last_name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.integer  "geo_location_id"
-    t.integer  "preallowed_id"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login"
