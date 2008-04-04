@@ -3,7 +3,6 @@
 	@cleaning_event = cleaning_event
 	%>
 	<div class="event-image">
-		<%puts @cleaning_event.pictures.size%>
 		<%if @cleaning_event.pictures[0] == nil%>
 			No Picture Provided
 		<% else %>

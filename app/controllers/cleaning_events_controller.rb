@@ -150,7 +150,6 @@ class CleaningEventsController < ApplicationController
 
 
   def upload_picture
-    puts "in controller"
     @picture = Picture.create! params[:picture]
       
     @cleaning_event = CleaningEvent.find(params[:cleaning_event_id])

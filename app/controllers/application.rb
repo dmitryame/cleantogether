@@ -11,14 +11,19 @@ require 'net/https'
 class ApplicationController < ActionController::Base  
   before_filter :check_authorization
   
-  BASE_URI = "https://www.preallowed.com/clients/2"
+  PREALLOWED_LOGIN = 'cleantogether_rest'
+  PREALLOWED_PASSWORD = 'cleantogether_rest'
+  
+  CLIENT_ID = "2"
+  BASE_URI = "https://www.preallowed.com/clients/" + CLIENT_ID
   #has to be dynamic subject based on the user logged in
-  SUBJECT  = "9"
+  GUEST_SUBJECT_ID = "12"
+  
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_cleantogether_session_id'
   
   def check_authentication
-    puts "!!!!!!!!!!!!!!!!!!!! authentication !!!!!!!!!!!!!!!!!!!!!!! " + request.request_uri
+    logger.debug "!!!!!!!!!!!!!!!!!!!! authentication !!!!!!!!!!!!!!!!!!!!!!! --> " + request.request_uri
     
     unless session[:user_id]
       session[:return_to] = request.request_uri
@@ -29,26 +34,32 @@ class ApplicationController < ActionController::Base
   
   
   def check_authorization
-     puts "???????????????????? authorization ???????????????????????? " + request.request_uri
-     url = URI.parse(BASE_URI + "/subjects/" + SUBJECT + "/has_access/")
-      
-     req = Net::HTTP::Post.new(url.path)
-     req.basic_auth 'cleantogether_rest', 'cleantogether_rest'
-     req.set_form_data({'resource'=> request.request_uri}, ';')
-     # breakpoint
-     
-     http = Net::HTTP.new(url.host, url.port)
-     http.use_ssl = true
-     
-     res = http.start {|http| http.request(req) }
-     
-     case res
-     when Net::HTTPSuccess, Net::HTTPRedirection
-       puts "succsess!!!!!!!!!!!!!!!!!!!!!"
-       puts res.body
-     else
-       res.error!
-     end
+    session[:preallowed_id] = GUEST_SUBJECT_ID if session[:preallowed_id] == nil
+    logger.debug "preallowed_subject_id:" + session[:preallowed_id]
+    logger.debug "???????????????????? authorization ???????????????????????? --> " + request.request_uri
+    
+    
+    url = URI.parse(BASE_URI + "/subjects/" + session[:preallowed_id] + "/has_access/")
+
+    req = Net::HTTP::Post.new(url.path)
+    req.basic_auth PREALLOWED_LOGIN, PREALLOWED_PASSWORD
+    req.set_form_data({'resource'=> request.request_uri}, ';')
+    logger.debug("url: " + url.to_s )
+    logger.debug('resource: ' + request.request_uri)
+
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+
+    res = http.start {|http| http.request(req) }
+
+    case res
+    when Net::HTTPSuccess, Net::HTTPRedirection
+      logger.debug "succsess!!!!!!!!!!!!!!!!!!!!!"
+      logger.debug res.body
+    else
+      flash[:notice] =    "Insufficient privileges"      
+      redirect_to :controller => "user", :action => "signin"
+    end
 
   end
 
