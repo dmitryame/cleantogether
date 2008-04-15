@@ -70,9 +70,11 @@ $KCODE = 'u'
 
 
 # Include your application configuration below
+# these credentials are not real, ask a preallowed admin for the login/password to use in local configuration
 PREALLOWED_LOGIN = 'cleantogether'
 PREALLOWED_PASSWORD = 'cleantogether'
 
 CLIENT_ID = "2"
 GUEST_SUBJECT_ID = "12"
+GUEST_ROLE_ID = "11"
 BASE_URI = "https://www.preallowed.com/clients/" + CLIENT_ID

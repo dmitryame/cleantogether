@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 9) do
+ActiveRecord::Schema.define(:version => 11) do
 
   create_table "cleaning_events", :force => true do |t|
     t.integer  "user_id",                        :null => false
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 9) do
     t.string   "last_name"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
-    t.integer  "geo_location_id"
+    t.integer  "preallowed_id"
   end
 
   add_index "users", ["login"], :name => "index_users_on_login"
