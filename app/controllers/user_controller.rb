@@ -14,16 +14,16 @@ class UserController < ApplicationController
   
   def signin
     if request.post?
-      user = User.authenticate(params[:login], params[:password])      
+      @user = User.authenticate(params[:login], params[:password])      
       answer = params[:captcha]
       answer  = answer.gsub(/\W/, '')
       openUrl = open("http://captchator.com/captcha/check_answer/ctgthr_#{params[:session_id].to_i}/#{answer}").read.to_i
       
-      if user.blank? || openUrl == 0
+      if @user.blank? || openUrl == 0
         session[:user_id] = nil
         flash[:notice] = "try again";
       else
-        post_login(user)
+        post_login(@user)
       end
     else
       session[:user_id] = nil
@@ -52,18 +52,30 @@ class UserController < ApplicationController
       end
     end
   end
+
+  def toggle_team_captain
+    @user = User.find(params[:id])
+    if @user.team_captain
+      User.remove_user_from_role(@user, TEAM_CAPTAIN_ROLE_ID)
+    else
+      User.add_user_to_role(@user, TEAM_CAPTAIN_ROLE_ID)
+    end
+  end
   
   private
   
+  # post login is called at the end of registration process or the and of login, it will figure out the preallowed_id if necessery and will stick the 
+  # necessery id's into session for future reference
   def post_login(user)
     if user.preallowed_id == nil
       user.add_to_preallowed 
     end  
-
-    
     session[:user_id] = user.id
     session[:user_login] = user.login
     session[:return_to] ? redirect_to(session[:return_to]) : redirect_to(default)
     session[:redirect_to] = nil        
   end     
+
+
+
 end

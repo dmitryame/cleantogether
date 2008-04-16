@@ -44,10 +44,10 @@ class ApplicationController < ActionController::Base
 
     case res
     when Net::HTTPSuccess, Net::HTTPRedirection
-      logger.debug "succsess!!!!!!!!!!!!!!!!!!!!!"
       logger.debug res.body
     else
       flash[:notice] =    "Insufficient privileges"      
+      logger.error "failed check authorization -- connection problem!!!!"
       redirect_to :controller => "user", :action => "signin"
     end
 
