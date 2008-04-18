@@ -9,6 +9,16 @@ require 'net/https'
 #require 'uri'
 
 class ApplicationController < ActionController::Base  
+  include SslRequirement
+
+  def ssl_required?
+   if RAILS_ENV == 'development'
+     false
+   else
+     super
+   end
+  end
+
   before_filter :check_authorization
   
   # Pick a unique cookie name to distinguish our session data from others'

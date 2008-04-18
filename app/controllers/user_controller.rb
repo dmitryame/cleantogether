@@ -2,6 +2,9 @@ require 'open-uri'
 
 class UserController < ApplicationController
   before_filter :check_authentication, :except => [:signin, :register]
+
+  # line below should be uncommented in prod
+  ssl_required :signin, :register
   
   def index
     if request.post?

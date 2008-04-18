@@ -1,4 +1,22 @@
 <div id="team_captain" style="display:<%=!@user.team_captain ? "none" : ""%>">
-	<label>login:</label>
-	<%= team_captain.login %>
+	<table width=100%>
+		<tr>
+			<td valign=top width=50%>
+				<fieldset>
+					<legend>
+						My Team: 
+					</legend>				
+					<%= render :partial => "my_team", :object => @user %>								
+				</fieldset>
+			</td>
+			<td valign=top width=50%>
+				<fieldset>
+					<legend>
+						My Expeditions: 
+					</legend>
+					<%= render :partial => "my_expeditions", :object => @user %>			
+				</fieldset>
+			</td>
+		</tr>
+	</table>
 </div>
