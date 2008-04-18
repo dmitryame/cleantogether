@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   include SslRequirement
 
   def ssl_required?
-   if RAILS_ENV == 'development'
+   unless RAILS_ENV == 'production'
      false
    else
      super
