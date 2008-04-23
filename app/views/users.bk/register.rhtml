@@ -1,0 +1,74 @@
+<%= error_messages_for 'user' %>
+
+<fieldset>
+	<legend>Enter User Details</legend>
+
+	<% form_for :user do |form| %>
+	<table>
+		<tr>
+			<td>
+				<label for="user_login">Login:</label>
+			</td>
+			<td>
+				<%= form.text_field :login, :size => 40 %>
+			</td>
+		</tr>
+		<tr>
+			<td>    
+				<label for="user_password">Password:</label>
+			</td>
+			<td>
+				<%= form.password_field :password, :size => 40 %>
+			</td>
+		</tr>
+		<tr>
+			<td>   
+				<label for="user_password_confirmation">Confirm:</label>
+			</td>
+			<td> 
+				<%= form.password_field :password_confirmation, :size => 40 %>
+			</td>
+		</tr>
+		<tr>
+			<td>   
+				<label for="user_first_name">First Name:</label>
+			</td>
+			<td> 
+				<%= form.text_field :first_name, :size => 40 %>
+			</td>
+		</tr>
+		<tr>
+			<td>   
+				<label for="user_last_name">Last Name:</label>
+			</td>
+			<td> 
+				<%= form.text_field :last_name, :size => 40 %>
+			</td>
+		</tr>
+		<tr>
+			<td> 
+				<label for="user_email">Email:</label>
+			</td>
+			<td>
+				<%= form.text_field :email, :size => 40 %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				 <% session_id = rand(10_000) %>
+				  <img src="http://captchator.com/captcha/image/ctgthr_r<%= session_id -%>" />
+				  <input name="session_id" type="hidden" value="<%= session_id -%>" />
+			</td>
+			<td>
+				<%= text_field_tag :captcha %>
+			</td>
+		</tr>
+		<tr><td></td>
+			<td>    
+				<%= submit_tag "Add User", :class => "submit" %>
+			</td>
+		</tr>
+	</table>
+	<% end %>  
+</fieldset>
+</div>
