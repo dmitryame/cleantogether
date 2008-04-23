@@ -1,6 +1,0 @@
-if @user.team_captain
-#  page.replace "team_captain", :partial => 'team_captain', :object => @user
-  page[:team_captain].visual_effect :slide_down
-else
-  page[:team_captain].visual_effect :slide_up
-end
