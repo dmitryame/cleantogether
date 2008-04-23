@@ -1,9 +1,8 @@
 require 'open-uri'
 
-class UserController < ApplicationController
+class UsersController < ApplicationController
   before_filter :check_authentication, :except => [:signin, :register]
 
-  # line below should be uncommented in prod
   ssl_required :signin, :register
   
   def index
@@ -16,12 +15,13 @@ class UserController < ApplicationController
   end
   
   def signin
+    logger.debug "signing in@@@@@@@@@@@@@@@@@@@@@@@@"
+    debugger
     if request.post?
       @user = User.authenticate(params[:login], params[:password])      
       answer = params[:captcha]
       answer  = answer.gsub(/\W/, '')
       openUrl = open("http://captchator.com/captcha/check_answer/ctgthr_#{params[:session_id].to_i}/#{answer}").read.to_i
-      
       if @user.blank? || openUrl == 0
         session[:user_id] = nil
         flash[:notice] = "try again";
@@ -35,8 +35,12 @@ class UserController < ApplicationController
   
   def logout
     reset_session 
-    redirect_to :action => "index", :controller => "home"
+    redirect_to home_url
   end  
+  
+  def new
+    @user = User.new
+  end
   
   def register
     @user = User.new(params[:user])
@@ -70,6 +74,7 @@ class UserController < ApplicationController
   # post login is called at the end of registration process or the and of login, it will figure out the preallowed_id if necessery and will stick the 
   # necessery id's into session for future reference
   def post_login(user)
+    debugger
     if user.preallowed_id == nil
       user.add_to_preallowed 
     end  
@@ -78,7 +83,5 @@ class UserController < ApplicationController
     session[:return_to] ? redirect_to(session[:return_to]) : redirect_to(default)
     session[:redirect_to] = nil        
   end     
-
-
 
 end

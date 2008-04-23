@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 11) do
+ActiveRecord::Schema.define(:version => 18) do
 
   create_table "cleaning_events", :force => true do |t|
     t.integer  "user_id",                        :null => false
@@ -19,15 +19,39 @@ ActiveRecord::Schema.define(:version => 11) do
     t.datetime "cleaning_at",                    :null => false
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
+    t.integer  "expedition_id"
   end
 
   add_index "cleaning_events", ["user_id"], :name => "index_cleaning_events_on_user_id"
   add_index "cleaning_events", ["geo_location_id"], :name => "index_cleaning_events_on_geo_location_id"
   add_index "cleaning_events", ["cleaning_at"], :name => "index_cleaning_events_on_cleaning_at"
+  add_index "cleaning_events", ["expedition_id"], :name => "index_cleaning_events_on_expedition_id"
 
   create_table "db_files", :force => true do |t|
     t.binary "data"
   end
+
+  create_table "expeditions", :force => true do |t|
+    t.string   "name",        :default => "", :null => false
+    t.datetime "target_date",                 :null => false
+    t.integer  "captain_id",                  :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
+  end
+
+  add_index "expeditions", ["captain_id"], :name => "index_expeditions_on_captain_id"
+
+  create_table "expeditions_teams", :id => false, :force => true do |t|
+    t.integer  "expedition_id",   :null => false
+    t.integer  "team_id",         :null => false
+    t.integer  "geo_location_id"
+    t.date     "cleaning_at",     :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "expeditions_teams", ["expedition_id", "team_id"], :name => "index_expeditions_teams_on_expedition_id_and_team_id"
+  add_index "expeditions_teams", ["team_id"], :name => "index_expeditions_teams_on_team_id"
 
   create_table "geo_locations", :force => true do |t|
     t.string   "name",                                        :default => "", :null => false
@@ -56,7 +80,40 @@ ActiveRecord::Schema.define(:version => 11) do
 
   add_index "pictures", ["cleaning_event_id"], :name => "index_pictures_on_cleaning_event_id"
 
+  create_table "teams", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.string   "motto"
+    t.integer  "captain_id",                 :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+  end
+
+  add_index "teams", ["captain_id"], :name => "index_teams_on_captain_id"
+
+  create_table "teams_users", :id => false, :force => true do |t|
+    t.integer  "team_id",    :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "teams_users", ["team_id", "user_id"], :name => "index_teams_users_on_team_id_and_user_id"
+  add_index "teams_users", ["user_id"], :name => "index_teams_users_on_user_id"
+
   create_table "users", :force => true do |t|
+    t.string   "login"
+    t.string   "email"
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_token"
+    t.datetime "remember_token_expires_at"
+    t.string   "activation_code",           :limit => 40
+    t.datetime "activated_at"
+  end
+
+  create_table "users_old", :force => true do |t|
     t.string   "login"
     t.string   "hashed_password"
     t.string   "salt"
@@ -68,11 +125,11 @@ ActiveRecord::Schema.define(:version => 11) do
     t.integer  "preallowed_id"
   end
 
-  add_index "users", ["login"], :name => "index_users_on_login"
-  add_index "users", ["hashed_password"], :name => "index_users_on_hashed_password"
-  add_index "users", ["salt"], :name => "index_users_on_salt"
-  add_index "users", ["email"], :name => "index_users_on_email"
-  add_index "users", ["first_name"], :name => "index_users_on_first_name"
-  add_index "users", ["last_name"], :name => "index_users_on_last_name"
+  add_index "users_old", ["login"], :name => "index_users_on_login"
+  add_index "users_old", ["hashed_password"], :name => "index_users_on_hashed_password"
+  add_index "users_old", ["salt"], :name => "index_users_on_salt"
+  add_index "users_old", ["email"], :name => "index_users_on_email"
+  add_index "users_old", ["first_name"], :name => "index_users_on_first_name"
+  add_index "users_old", ["last_name"], :name => "index_users_on_last_name"
 
 end

@@ -16,5 +16,7 @@ class HomeController < ApplicationController
                 :disposition => "inline")
     end
   
+    def insufficient
+    end
   
 end

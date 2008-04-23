@@ -9,6 +9,11 @@ require 'net/https'
 #require 'uri'
 
 class ApplicationController < ActionController::Base  
+  include AuthenticatedSystem
+
+
+  before_filter :check_authorization
+
   include SslRequirement
 
   def ssl_required?
@@ -19,27 +24,34 @@ class ApplicationController < ActionController::Base
    end
   end
 
-  before_filter :check_authorization
   
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_cleantogether_session_id'
   
   def check_authentication
     logger.debug "!!!!!!!!!!!!!!!!!!!! authentication !!!!!!!!!!!!!!!!!!!!!!! --> " + request.request_uri
-    unless session[:user_id]
+    if(session[:user_id] == nil || session[:user_id] == GUEST_SUBJECT_ID)
       session[:return_to] = request.request_uri
       flash[:notice] =    "Please log in"      
-      redirect_to :controller => "user", :action => "signin"
+      redirect_to signin_url
     end
   end    
   
   
   def check_authorization
-    session[:preallowed_id] = GUEST_SUBJECT_ID if session[:preallowed_id] == nil
-    logger.debug "preallowed_subject_id:" + session[:preallowed_id]
+    if(@user != nil)
+      @user = User.find(session[:user_id]) 
+      preallowed_id = @user.preallowed_id 
+    else
+      preallowed_id = GUEST_SUBJECT_ID
+      @user = User.new #guest user is not tied to the database id      
+    end
+
+    session[:user_id] = @user.id
+    
     logger.debug "???????????????????? authorization ???????????????????????? --> " + request.request_uri
     
-    url = URI.parse(BASE_URI + "/subjects/" + session[:preallowed_id] + "/has_access/")
+    url = URI.parse(BASE_URI + "/subjects/" + preallowed_id.to_s + "/has_access/")
 
     req = Net::HTTP::Post.new(url.path)
     req.basic_auth PREALLOWED_LOGIN, PREALLOWED_PASSWORD
@@ -55,10 +67,14 @@ class ApplicationController < ActionController::Base
     case res
     when Net::HTTPSuccess, Net::HTTPRedirection
       logger.debug res.body
+      response_string = res.body
+      if(response_string.to_i == 0)
+        redirect_to :controller => "home", :action => "insufficient"
+      end
     else
       flash[:notice] =    "Insufficient privileges"      
       logger.error "failed check authorization -- connection problem!!!!"
-      redirect_to :controller => "user", :action => "signin"
+      redirect_to :controller => "users", :action => "signin"
     end
 
   end
