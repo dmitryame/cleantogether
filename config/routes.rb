@@ -35,9 +35,10 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'
   
   # named routes
-  map.home '/', :controller => "home", :action => "index"
-  map.signin '/signup', :controller => "users", :action => "new"
-  map.logout '/login', :controller => "sessions", :action => "new"
-  map.logout '/logout', :controller => "sessions", :action => "destroy"
-  
+  map.home '/', :controller                           => "home", :action => "index"
+  map.signin '/signup', :controller                   => "users", :action => "new"
+  map.logout '/login', :controller                    => "sessions", :action => "new"
+  map.logout '/logout', :controller                   => "sessions", :action => "destroy"
+  map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
+  map.reset_password '/reset_password', :controller   => 'users', :action => 'reset_password'  
 end
