@@ -27,12 +27,12 @@
 							</td>
 							<td>
 								<div class="menuItem">							      
-									<%= link_to 'Post Your Story', user_cleaning_events_url(session[:user_id] == nil ? GUEST_SUBJECT_ID : session[:user_id])  %>
+									<%= link_to 'Post Your Story', events_path  %>
 								</div>
 							</td>
 							<td>
 								<div class="menuItem">
-									<%= link_to 'Profile', :controller => "users", :action => :index  %>
+									<%= link_to 'Profile', profile_path %>
 								</div>
 							</td>
 							<td>
