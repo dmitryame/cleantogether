@@ -1,7 +1,5 @@
 class GeoLocationsController < ApplicationController
-
-  before_filter :check_authentication
-
+  before_filter :login_required
   def new
   	@geo_location = GeoLocation.new
     @map = GMap.new("map")

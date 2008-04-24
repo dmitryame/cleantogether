@@ -82,16 +82,16 @@ class UsersController < ApplicationController
 
     return if @user unless params[:user]
 
-    if ((params[:user][:password]  params[:user][:password_confirmation]) && !params[:user][:password_confirmation].blank?)
+    if ((params[:user][:password]  == params[:user][:password_confirmation]) && !params[:user][:password_confirmation].blank?)
       #if (params[:user][:password]  params[:user][:password_confirmation])
       self.current_user = @user #for the next two lines to work
       current_user.password_confirmation = params[:user][:password_confirmation]
       current_user.password = params[:user][:password]
       @user.reset_password
-      flash[:notice] = current_user.save ? “Password reset” : “Password not reset” 
+      flash[:notice] = current_user.save ? "Password reset" : "Password not reset"
       redirect_back_or_default(’/’)
     else
-      flash[:alert] = “Password mismatch” 
+      flash[:alert] = "Password mismatch"
     end  
 
 

@@ -11,9 +11,6 @@ require 'net/https'
 class ApplicationController < ActionController::Base  
   include AuthenticatedSystem
 
-
-  before_filter :check_authorization
-
   include SslRequirement
 
   def ssl_required?
@@ -28,16 +25,7 @@ class ApplicationController < ActionController::Base
   # Pick a unique cookie name to distinguish our session data from others'
   session :session_key => '_cleantogether_session_id'
   
-  def check_authentication
-    logger.debug "!!!!!!!!!!!!!!!!!!!! authentication !!!!!!!!!!!!!!!!!!!!!!! --> " + request.request_uri
-    if(session[:user_id] == nil || session[:user_id] == GUEST_SUBJECT_ID)
-      session[:return_to] = request.request_uri
-      flash[:notice] =    "Please log in"      
-      redirect_to signin_url
-    end
-  end    
-  
-  
+    
   def check_authorization
     if(@user != nil)
       @user = User.find(session[:user_id]) 

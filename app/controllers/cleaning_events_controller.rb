@@ -1,5 +1,6 @@
 class CleaningEventsController < ApplicationController
-  before_filter :check_authentication, :except => [:find_user]
+  before_filter :login_required
+  
   before_filter :find_user
 
   in_place_edit_for :cleaning_event, :weigth
