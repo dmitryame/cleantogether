@@ -70,7 +70,7 @@ $KCODE = 'u'
 
 # active mailer configuration
 # First, specify the Host that we will be using later for user_notifier.rb
-HOST = 'http://www.cleantogether.com'
+HOST = 'http://localhost:3000'
 
 # Second, add the :user_observer
 Rails::Initializer.run do |config|

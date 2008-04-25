@@ -27,8 +27,8 @@ class UserMailer < ActionMailer::Base
   protected
     def setup_email(user)
       @recipients  = "#{user.email}"
-      @from        = "ADMINEMAIL"
-      @subject     = "[cleantogehter.com] -- do not reply"
+      @from        = "support"
+      @subject     = "[cleantogehter.com] -- do not reply. "
       @sent_on     = Time.now
       @body[:user] = user
     end

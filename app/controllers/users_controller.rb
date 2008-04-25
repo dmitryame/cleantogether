@@ -21,7 +21,12 @@ class UsersController < ApplicationController
 
   # render new.rhtml
   def new
-    logger.debug "empty new method"
+    @user = User.new
+  end
+
+  #This show action only allows users to view their own profile
+  def show
+    @user = current_user
   end
 
   def create
@@ -33,50 +38,99 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @user.save
     if @user.errors.empty?
-      self.current_user = @user
-      redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!"
+      #we don't want to log in newly regestered user, the user has to activate the account first
+      #self.current_user = @user
+      flash[:notice] = "Thanks for signing up! Check your email for activation link."
+      # debugger
+      redirect_to login_path
     else
+      flash[:notice] = "Error Creating User."
       render :action => 'new'
     end
   end
 
-  def activate
-    self.current_user = params[:activation_code].blank? ? false : User.find_by_activation_code(params[:activation_code])
-    if logged_in? && !current_user.active?
-      current_user.activate
-      flash[:notice] = "Signup complete!"
+  def edit
+    @user = current_user
+  end
+
+
+  def update
+    @user                 = User.find(current_user)
+    if @user.update_attributes(params[:user])
+      flash[:notice]      = "User updated"
+      redirect_to :action => 'show', :id => current_user
+    else
+      render :action      => 'edit'
     end
-    redirect_back_or_default('/')
+  end
+
+  def destroy
+    @user                 = User.find(params[:id])
+    if @user.update_attribute(:enabled, false)
+      flash[:notice]      = "User disabled"
+    else
+      flash[:error]       = "There was a problem disabling this user."
+    end
+    redirect_to :action   => 'index'
+  end
+
+  def enable
+    @user                 = User.find(params[:id])
+    if @user.update_attribute(:enabled, true)
+      flash[:notice]      = "User enabled"
+    else
+      flash[:error]       = "There was a problem enabling this user."
+    end
+    redirect_to :action   => 'index'
   end
 
 
 
+  # Activate action
+  def activate
+    # Uncomment and change paths to have user logged in after activation - not recommended
+    #self.current_user = User.find_and_activate!(params[:id])
+    User.find_and_activate!(params[:id])
+    flash[:notice] = "Your account has been activated! You can now login."
+    redirect_to login_path
+  rescue User::ArgumentError
+    flash[:notice] = 'Activation code not found. Please try creating a new account.'
+    redirect_to new_user_path 
+  rescue User::ActivationCodeNotFound
+    flash[:notice] = 'Activation code not found. Please try creating a new account.'
+    redirect_to new_user_path
+  rescue User::AlreadyActivated
+    flash[:notice] = 'Your account has already been activated. You can log in below.'
+    redirect_to login_path
+  end
 
-  #
-  #change user passowrd
+  # Change password action  
   def change_password
     return unless request.post?
     if User.authenticate(current_user.login, params[:old_password])
       if ((params[:password] == params[:password_confirmation]) && !params[:password_confirmation].blank?)
         current_user.password_confirmation = params[:password_confirmation]
-        current_user.password = params[:password]
-
+        current_user.password = params[:password]        
         if current_user.save
-          flash[:notice] = "Password successfully updated" 
-          redirect_to profile_url(current_user.login)
+          flash[:notice] = "Password successfully updated."
+          redirect_to root_path #profile_url(current_user.login)
         else
-          flash[:alert] = "Password not changed" 
+          flash[:error] = "An error occured, your password was not changed."
+          render :action => 'edit'
         end
-
       else
-        flash[:alert] = "New Password mismatch" 
+        flash[:error] = "New password does not match the password confirmation."
         @old_password = params[:old_password]
+        render :action => 'edit'      
       end
     else
-      flash[:alert] = "Old password incorrect" 
-    end
+      flash[:error] = "Your old password is incorrect."
+      render :action => 'edit'
+    end 
   end
+
+
+
 
   #
   #gain email address
@@ -88,7 +142,7 @@ class UsersController < ApplicationController
       redirect_back_or_default('/')
       flash[:notice] = "A password reset link has been sent to your email address" 
     else
-      flash[:alert] = "Could not find a user with that email address" 
+      flash[:error] = "Could not find a user with that email address" 
     end
   end
 
@@ -109,7 +163,7 @@ class UsersController < ApplicationController
       flash[:notice] = current_user.save ? "Password reset" : "Password not reset"
       redirect_back_or_default(’/’)
     else
-      flash[:alert] = "Password mismatch"
+      flash[:error] = "Password mismatch"
     end  
 
 
@@ -117,7 +171,7 @@ class UsersController < ApplicationController
 
   rescue
     logger.error "Invalid Reset Code entered" 
-    flash[:alert] = "That is an invalid password reset code. Please check your code and try again." 
+    flash[:error] = "That is an invalid password reset code. Please check your code and try again." 
     redirect_back_or_default('/')
   end
 
