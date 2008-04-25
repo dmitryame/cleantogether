@@ -14,7 +14,9 @@ class UsersController < ApplicationController
   end
 
   def profile
+    debugger
     if logged_in?
+      puts "editing user: " + edit_user_path
       redirect_to edit_user_path(current_user) 
     end
     store_location
@@ -53,6 +55,11 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
+    if request.post?
+      @user.update_attributes(params[:user])
+    else
+      @user = User.find(session[:user_id])    
+    end
   end
 
 
