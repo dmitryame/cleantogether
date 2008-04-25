@@ -1,6 +1,7 @@
 class UsersController < ApplicationController  
   #Filter method to enforce a login requirement
   before_filter :login_required, :only => [:change_password]
+  before_filter :initialize_to_current_user
 
   ssl_required :signin, :register
   
@@ -14,13 +15,12 @@ class UsersController < ApplicationController
   end
 
   def profile
-    debugger
     if logged_in?
-      puts "editing user: " + edit_user_path
       redirect_to edit_user_path(current_user) 
+    else
+      store_location
+      redirect_to login_path 
     end
-    store_location
-    redirect_to login_path 
   end
 
   # render new.rhtml
@@ -30,7 +30,6 @@ class UsersController < ApplicationController
 
   #This show action only allows users to view their own profile
   def show
-    @user = current_user
   end
 
   def create
@@ -54,7 +53,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
     if request.post?
       @user.update_attributes(params[:user])
     else
@@ -64,17 +62,17 @@ class UsersController < ApplicationController
 
 
   def update
-    @user                 = User.find(current_user)
     if @user.update_attributes(params[:user])
-      flash[:notice]      = "User updated"
-      redirect_to :action => 'show', :id => current_user
-    else
-      render :action      => 'edit'
+      if @user.save
+        flash[:notice] = "User updated"
+      else
+        flash[:error] = "Error updating user"
+      end
     end
+    redirect_to edit_user_path(current_user) 
   end
 
   def destroy
-    @user                 = User.find(params[:id])
     if @user.update_attribute(:enabled, false)
       flash[:notice]      = "User disabled"
     else
@@ -84,7 +82,6 @@ class UsersController < ApplicationController
   end
 
   def enable
-    @user                 = User.find(params[:id])
     if @user.update_attribute(:enabled, true)
       flash[:notice]      = "User enabled"
     else
@@ -138,9 +135,6 @@ class UsersController < ApplicationController
     end 
   end
 
-
-
-
   #
   #gain email address
   def forgot_password
@@ -175,13 +169,15 @@ class UsersController < ApplicationController
       flash[:error] = "Password mismatch"
     end  
 
-
-
-
   rescue
     logger.error "Invalid Reset Code entered" 
     flash[:error] = "That is an invalid password reset code. Please check your code and try again." 
     redirect_back_or_default('/')
   end
 
+private
+
+  def initialize_to_current_user
+    @user = current_user
+  end
 end

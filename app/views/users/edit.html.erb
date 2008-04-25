@@ -2,7 +2,7 @@
 
 <fieldset>
 	<legend>User Details:</legend>
-	<% form_for :user, :url => {:action => "index", :id => @user} do |form| %>
+	<% form_for( :user, :url => user_path(@user), :html => {:method => :put }) do |form| %>
 	<table>
 		<tr>
 			<td>
