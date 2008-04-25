@@ -50,7 +50,7 @@ class SessionsController < ApplicationController
     flash[:notice] = "Logged in successfully"
     return_to = session[:return_to]
     if return_to.nil?
-      redirect_to user_path(self.current_user)
+      redirect_to home_path
     else
       redirect_to return_to
     end
