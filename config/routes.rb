@@ -36,12 +36,12 @@ ActionController::Routing::Routes.draw do |map|
   
   # named routes
   map.home '/', :controller                           => "home", :action => "index"
-  map.signin '/signup', :controller                   => "users", :action => "new"
-  map.logout '/login', :controller                    => "sessions", :action => "new"
+  map.signup '/signup', :controller                   => "users", :action => "new"
+  map.login '/login', :controller                    => "sessions", :action => "new"
   map.logout '/logout', :controller                   => "sessions", :action => "destroy"
-  map.forgot_password '/forgot_password', :controller => 'users', :action => 'forgot_password'
-  map.reset_password '/reset_password', :controller   => 'users', :action => 'reset_password'  
-  
-  map.events '/events', :controller => 'users', :action => 'events'
-  map.profile '/profile', :controller => 'users', :action => 'profile'
+  map.forgot_password '/forgot_password', :controller => "users", :action => "forgot_password"
+  map.reset_password '/reset_password', :controller   => "users", :action => "reset_password" 
+
+  map.events '/events', :controller                   => "users", :action => "events"
+  map.profile '/profile', :controller                 => "users", :action => "profile"
 end

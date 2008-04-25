@@ -2,6 +2,23 @@ class UsersController < ApplicationController
   #Filter method to enforce a login requirement
   before_filter :login_required, :only => [:change_password]
 
+  def events
+    if logged_in?
+      redirect_to user_cleaning_events_url(current_user) 
+    end
+    store_location
+    redirect_to login_path
+  end
+
+  def profile
+    if logged_in?
+      redirect_to edit_user_path(current_user) 
+    end
+    store_location
+    redirect_to login_path 
+  end
+
+
   # render new.rhtml
   def new
   end

@@ -22,7 +22,7 @@
 						<tr>
 							<td>
 								<div class="menuItem">
-									<%= link_to 'Home', :controller => "home", :action => :index  %> 
+									<%= link_to 'Home', home_path  %> 
 								</div>
 							</td>
 							<td>
@@ -44,8 +44,8 @@
 					</table>
 				</div>
 				<div id="logout">
-					<%if session[:user_id]%>					
-							<%= link_to 'logout', :controller => 'users', :action => 'logout' %>&nbsp;<%=session[:user_login]%>					
+					<%if logged_in?%>					
+							<%= link_to logout_path %>&nbsp;<%=current_user.login%>					
 					<%end%>
 				</div>
 			</div>
