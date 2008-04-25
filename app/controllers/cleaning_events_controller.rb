@@ -179,6 +179,5 @@ class CleaningEventsController < ApplicationController
   def find_user    
     user_id = params[:user_id]
     @user = User.find(user_id)
-    debugger
   end
 end

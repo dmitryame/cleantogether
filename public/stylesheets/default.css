@@ -263,6 +263,7 @@ label {
 #errorExplanation ul li {
   font-size: 12px;
   list-style: square;
+  color: green;
 }
 
 div.uploadStatus {

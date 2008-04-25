@@ -9,14 +9,38 @@ class User < ActiveRecord::Base
   validates_length_of       :password, :within => 4..40, :if => :password_required?
   validates_confirmation_of :password,                   :if => :password_required?
   validates_length_of       :login,    :within => 3..40
-  validates_length_of       :email,    :within => 3..100
+  validates_length_of       :email,    :within => 6..100
   validates_uniqueness_of   :login, :email, :case_sensitive => false
+  validates_format_of       :email, :with => /(^([^@\s]+)@((?:[-_a-z0-9]+\.)+[a-z]{2,})$)|(^$)/i
+
   before_save :encrypt_password
   before_create :make_activation_code 
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :password, :password_confirmation
 
+  class ActivationCodeNotFound < StandardError; end
+  class AlreadyActivated < StandardError
+    attr_reader :user, :message;
+    def initialize(user, message=nil)
+      @message, @user = message, user
+    end
+  end
+    
+  # Finds the user with the corresponding activation code, activates their account and returns the user.
+  #
+  # Raises:
+  #  +User::ActivationCodeNotFound+ if there is no user with the corresponding activation code
+  #  +User::AlreadyActivated+ if the user with the corresponding activation code has already activated their account
+  def self.find_and_activate!(activation_code)
+    raise ArgumentError if activation_code.nil?
+    user = find_by_activation_code(activation_code)
+    raise ActivationCodeNotFound if !user
+    raise AlreadyActivated.new(user) if user.active?
+    user.send(:activate!)
+    user
+  end  
+    
   # Activates the user in the database.
   def activate
     @activated = true
@@ -29,6 +53,11 @@ class User < ActiveRecord::Base
     # the existence of an activation code means they have not activated yet
     activation_code.nil?
   end
+
+  # Returns true if the user has just been activated.
+    def pending?
+      @activated
+    end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
@@ -100,7 +129,15 @@ class User < ActiveRecord::Base
   def recently_forgot_password?
     @forgotten_password
   end
-
+  
+  def recently_reset_password?
+    @reset_password
+  end
+  
+  def self.find_for_forget(email)
+    find :first, :conditions => ['email = ? and activated_at IS NOT NULL', email]
+  end
+  
   protected
   # before filter 
   def encrypt_password
@@ -118,7 +155,15 @@ class User < ActiveRecord::Base
   end
 
   # same as make_activation_code
-  # def make_password_reset_code
-  #     self.password_reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
-  # end
+  def make_password_reset_code
+    self.password_reset_code = Digest::SHA1.hexdigest( Time.now.to_s.split(//).sort_by {rand}.join )
+  end
+  
+  private
+
+  def activate!
+    @activated = true
+    self.update_attribute(:activated_at, Time.now.utc)
+  end
+  
 end

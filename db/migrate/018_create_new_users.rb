@@ -11,6 +11,8 @@ class CreateNewUsers < ActiveRecord::Migration
       t.column :remember_token_expires_at, :datetime
       t.column :activation_code, :string, :limit            => 40
       t.column :activated_at, :datetime
+      t.column :password_reset_code, :string, :limit        => 40
+      t.column :enabled, :boolean, :default                 => true
       #custom code
       t.column :preallowed_id, :integer
       

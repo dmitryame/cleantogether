@@ -45,7 +45,7 @@
 				</div>
 				<div id="logout">
 					<%if logged_in?%>					
-							<%= link_to logout_path %>&nbsp;<%=current_user.login%>					
+							<%= link_to "logout", logout_path %>&nbsp;<%=current_user.login%>					
 					<%end%>
 				</div>
 			</div>

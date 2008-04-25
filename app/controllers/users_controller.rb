@@ -4,10 +4,11 @@ class UsersController < ApplicationController
 
   def events
     if logged_in?
-      redirect_to user_cleaning_events_url(current_user) 
+      redirect_to user_cleaning_events_path(current_user) 
+    else
+      store_location
+      redirect_to login_path
     end
-    store_location
-    redirect_to login_path
   end
 
   def profile
@@ -18,9 +19,9 @@ class UsersController < ApplicationController
     redirect_to login_path 
   end
 
-
   # render new.rhtml
   def new
+    logger.debug "empty new method"
   end
 
   def create
