@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def profile
     if logged_in?
-      redirect_to edit_user_path(current_user) 
+      redirect_to user_path(current_user) 
     else
       store_location
       redirect_to login_path 
@@ -63,13 +63,12 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(params[:user])
-      if @user.save
         flash[:notice] = "User updated"
+        redirect_to user_path(current_user)
       else
         flash[:error] = "Error updating user"
+        render :action => :edit
       end
-    end
-    redirect_to edit_user_path(current_user) 
   end
 
   def destroy

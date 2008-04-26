@@ -1,0 +1,91 @@
+<%= error_messages_for 'user' %>
+<table width=100%>
+	<tr valign="top">
+		<td>
+			<fieldset>
+				<legend>User Details:</legend>
+				<table>
+					<tr>
+						<td>
+							<label for="user_login">Login:</label>
+						</td>
+						<td class="description">
+							<%= @user.login %>
+						</td>
+					</tr>
+					<tr>
+						<td class="description">   
+							<label for="user_first_name">First Name:</label>
+						</td>
+						<td class="description"> 
+							<%= @user.first_name %>
+						</td>
+					</tr>
+					<tr>
+						<td class="description">   
+							<label for="user_last_name">Last Name:</label>
+						</td>
+						<td class="description"> 
+							<%= @user.last_name %>
+						</td>
+					</tr>
+					<tr>
+						<td> 
+							<label for="user_email">Email:</label>
+						</td>
+						<td class="description">
+							<%= @user.email %>
+						</td>
+					</tr>
+					<tr>
+						<td>				
+						</td>
+						<td>    
+							<%= link_to "Edit User Info", edit_user_path(@user) %>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+		</td>
+		<td width=50%>
+			<fieldset>
+				<legend>
+					Statistics:
+				</legend>
+				<table>
+					<tr>
+						<td>
+							<label>Created:</label>
+						</td>
+						<td class="description">
+							<%= @user.created_at.to_s(:long)%>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Updated:</label>
+						</td>
+						<td class="description">
+							<%= @user.updated_at.to_s(:long)%>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label>Total Collected:</label>
+						</td>
+						<td class="description">
+							<%= pluralize @user.collected, 'pound'%> in <%= pluralize @user.number_of_events, 'event'%>.
+						</td>
+					</tr>
+
+				</table>
+			</fieldset>
+		</td>
+	</tr>
+</table>
+<hr>
+<fieldset>
+	<label for="team_captain_<%=@user.id%>">I am a team Captain:</label>
+	<%= check_box_tag "team_captain_#{@user.id}", @user.team_captain, @user.team_captain ? true : false, :onclick => remote_function(:url =>{ :action => :toggle_team_captain, :id => @user.id }) %>	
+	<%= render :partial => "team_captain", :object => @user %>
+</fieldset>
