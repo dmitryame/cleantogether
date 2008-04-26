@@ -2,7 +2,7 @@
 
 <script src="/javascripts/control.tabs.2.1.1.js"></script>
 <h1>Add new Event</h1>
-<% form_for(@cleaning_event, :url => cleaning_events_path) do |f| %>
+<% form_for(@cleaning_event, :url => user_cleaning_events_path(current_user)) do |f| %>
 <div id="main">
 	<% if flash[:error] %>
 		<div class="error_box"><%= flash[:error]%></div>
@@ -92,6 +92,6 @@
 </div>
 
 	
-<%=submit_tag "Post"%><%= link_to 'back', cleaning_events_path%>
+<%=submit_tag "Post"%><%= link_to 'back', user_cleaning_events_path(current_user)%>
 </div>
 <%end%>
