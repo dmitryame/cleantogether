@@ -174,7 +174,7 @@ class User < ActiveRecord::Base
 
 
   def add_to_preallowed
-    self.preallowed_id = OldUser.find_or_create_preallowed_id(self)
+    self.preallowed_id = User.find_or_create_preallowed_id(self)
     self.save
     User.add_user_to_role(self, GUEST_ROLE_ID)
     User.add_user_to_role(self, USER_ROLE_ID)
