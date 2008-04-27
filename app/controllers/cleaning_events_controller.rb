@@ -177,7 +177,6 @@ class CleaningEventsController < ApplicationController
 
   private
   def find_user    
-    user_id = params[:user_id]
-    @user = User.find(user_id)
+    @user = current_user
   end
 end

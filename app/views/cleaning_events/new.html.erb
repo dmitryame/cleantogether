@@ -41,6 +41,9 @@
 						<%end%>
 					</td>
 					<td valign="top">
+						<%= link_to image_tag ("add.gif", :border => 0), { :controller => "geo_locations", :action => "new" }%>
+						<%=link_to "or add a new location", { :controller => "geo_locations", :action => "new" }%>
+						<br/>
 						<label>
 							or search for existing location:
 						</label>
@@ -49,14 +52,6 @@
 						  "{ " +			
 						remote_function(:update=>'full_name',:url=>{:action=>:complete_location},:with=>"'id='+element.value") + "}"
 						 -%>
-					</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td>
-						<%= link_to image_tag ("add.gif", :border => 0), { :controller => "geo_locations", :action => "new" }%>
-						<%=link_to "or add a new location", { :controller => "geo_locations", :action => "new" }%>
 					</td>
 				</tr>
 			</table>

@@ -1,5 +1,6 @@
 class GeoLocationsController < ApplicationController
   before_filter :login_required
+
   def new
   	@geo_location = GeoLocation.new
     @map = GMap.new("map")
@@ -12,14 +13,6 @@ class GeoLocationsController < ApplicationController
     @map.record_init('create_draggable_editable_marker();') ;
     @map.set_map_type_init(GMapType::G_HYBRID_MAP)      
     
-    
-    # @markers = []
-    # locations = GeoLocation.find(:all)
-    # locations.each do |location|
-    #   marker = GMarker.new([location.lat, location.lng], :icon => icon_standard, :title => location.name)  
-    #   @markers << marker
-    #   @map.overlay_init marker
-    # end
   end
   
 
@@ -43,21 +36,13 @@ class GeoLocationsController < ApplicationController
     icon_standard = Variable.new("icon_standard")
     
     @marker = GMarker.new([@lat, @lng],:title => "new location") 
-
-    # @markers = []
-    # locations = GeoLocation.find(:all)
-    # locations.each do |location|
-    #   marker = GMarker.new([location.lat, location.lng], :icon => icon_standard , :title => location.name )  
-    #   @markers << marker
-    # end
   end
 
 
   def create
-    @geo_location = GeoLocation.new(params[:geo_location])
-    
+    @geo_location = GeoLocation.new
     if params[:commit] == "Save new Location"
-      if @geo_location.save
+      if @geo_location.update_attributes(params[:user])      
         redirect_to :controller => "cleaning_events", :action => "new", :geo_location_id => @geo_location
       else
         if (@geo_location.lat == nil && @geo_location.lng == nil) || (@geo_location.lat == 0 && @geo_location.lng == 0)
