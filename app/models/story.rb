@@ -1,4 +1,4 @@
-class CleaningEvent < ActiveRecord::Base
+class Story < ActiveRecord::Base
   has_many :pictures
   belongs_to :user
   belongs_to :geo_location
@@ -13,7 +13,7 @@ class CleaningEvent < ActiveRecord::Base
   end
   
   def self.count_events
-    CleaningEvent.count :conditions => ["weight > ?", 0]
+    Story.count :conditions => ["weight > ?", 0]
   end
   
 end

@@ -30,7 +30,7 @@
 						<% if @cleaning_event.geo_location == nil%>
 							no location provided
 						<%else%>
-							<%=@cleaning_event.geo_location.name%>
+							<%=h @cleaning_event.geo_location.name%>
 							<!-- <%=link_to @cleaning_event.geo_location.name, { :controller => "location_editor", :action => "index", :id => @cleaning_event.id }, :popup => ['view/edit location window', 'height=700,width=1000,scrollbars=yes']%> -->
 						<%end%>
 					</div>

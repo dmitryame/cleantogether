@@ -9,23 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 19) do
-
-  create_table "cleaning_events", :force => true do |t|
-    t.integer  "user_id",                        :null => false
-    t.text     "blog"
-    t.integer  "geo_location_id"
-    t.integer  "weight",          :default => 0, :null => false
-    t.datetime "cleaning_at",                    :null => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "expedition_id"
-  end
-
-  add_index "cleaning_events", ["user_id"], :name => "index_cleaning_events_on_user_id"
-  add_index "cleaning_events", ["geo_location_id"], :name => "index_cleaning_events_on_geo_location_id"
-  add_index "cleaning_events", ["cleaning_at"], :name => "index_cleaning_events_on_cleaning_at"
-  add_index "cleaning_events", ["expedition_id"], :name => "index_cleaning_events_on_expedition_id"
+ActiveRecord::Schema.define(:version => 20) do
 
   create_table "db_files", :force => true do |t|
     t.binary "data"
@@ -79,6 +63,22 @@ ActiveRecord::Schema.define(:version => 19) do
   end
 
   add_index "pictures", ["cleaning_event_id"], :name => "index_pictures_on_cleaning_event_id"
+
+  create_table "stories", :force => true do |t|
+    t.integer  "user_id",                        :null => false
+    t.text     "blog"
+    t.integer  "geo_location_id"
+    t.integer  "weight",          :default => 0, :null => false
+    t.datetime "cleaning_at",                    :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "expedition_id"
+  end
+
+  add_index "stories", ["user_id"], :name => "index_cleaning_events_on_user_id"
+  add_index "stories", ["geo_location_id"], :name => "index_cleaning_events_on_geo_location_id"
+  add_index "stories", ["cleaning_at"], :name => "index_cleaning_events_on_cleaning_at"
+  add_index "stories", ["expedition_id"], :name => "index_cleaning_events_on_expedition_id"
 
   create_table "teams", :force => true do |t|
     t.string   "name",       :null => false

@@ -27,8 +27,6 @@ class GeoLocationsController < ApplicationController
     end
   end
 
-
-
   def add_new_marker
     @lng    = params[:pointx]
     @lat    = params[:pointy]

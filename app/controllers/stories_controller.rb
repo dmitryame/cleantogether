@@ -1,17 +1,17 @@
-class CleaningEventsController < ApplicationController
+class StoriesController < ApplicationController
   before_filter :login_required
   
   before_filter :find_user
 
-  in_place_edit_for :cleaning_event, :weigth
-  in_place_edit_for :cleaning_event, :blog
+  in_place_edit_for :story, :weigth
+  in_place_edit_for :story, :blog
 
   auto_complete_for :geo_location, :name
 
   # in_place_editor_filed helper methods
 
-  def set_cleaning_event_blog
-    @cleaning_event = CleaningEvent.find(params[:id])
+  def set_story_blog
+    @story = Story.find(params[:id])
     value = ERB::Util.h(params[:value])
 
     s = StringScanner.new(value)
@@ -34,35 +34,35 @@ class CleaningEventsController < ApplicationController
     #   end      
     # end
     final_line = '[Enter Description]' if final_line == nil || final_line.strip == ''
-    @cleaning_event.blog = final_line    
-    @cleaning_event.save
+    @story.blog = final_line    
+    @story.save
   end
-  def set_cleaning_event_weight
-    @cleaning_event = CleaningEvent.find(params[:id])
+  def set_story_weight
+    @story = Story.find(params[:id])
     value = ERB::Util.h(params[:value])
     value = 0 if value == nil || value.strip == ''
-    @cleaning_event.weight = value 
-    @cleaning_event.save
+    @story.weight = value 
+    @story.save
   end
 
   # END in_place_editor_filed helper methods 
 
   def update_cleaning_at
-    @cleaning_event = CleaningEvent.find(params[:id])
-    @cleaning_event.cleaning_at = params[:cleaning_at]
-    @cleaning_event.save
+    @story = Story.find(params[:id])
+    @story.cleaning_at = params[:cleaning_at]
+    @story.save
   end
 
   def index
-    @cleaning_events = CleaningEvent.paginate_by_user_id session[:user_id], :page => params[:page],:per_page => 10, :order => "created_at DESC"
+    @stories = Story.paginate_by_user_id session[:user_id], :page => params[:page],:per_page => 10, :order => "created_at DESC"
   end
 
 
-  # GET /cleaning_events/new
+  # GET /stories/new
   def new
 
-    @cleaning_event = CleaningEvent.new
-    @cleaning_event.cleaning_at = Time.today
+    @story = Story.new
+    @story.cleaning_at = Time.today
 
     @recent_geo_locations = 
     GeoLocation.recent_geo_locations(session[:user_id])
@@ -80,32 +80,32 @@ class CleaningEventsController < ApplicationController
   end
 
 
-  # GET /cleaning_events/1/edit
+  # GET /stories/1/edit
   # def edit
-  #   @cleaning_event = CleaningEvent.find(params[:id])
+  #   @story = Story.find(params[:id])
   # end    
 
-  # POST /cleaning_events
-  # POST /cleaning_events.xml
+  # POST /stories
+  # POST /stories.xml
   def create
-    @cleaning_event = CleaningEvent.new(params[:cleaning_event])
-    @cleaning_event.user_id = @user.user_id
-    if(@cleaning_event.blog == nil || @cleaning_event.blog.strip == '')
-      @cleaning_event.blog = '[Click here to write up a short BLOG story about the event...]'
+    @story = Story.new(params[:story])
+    @story.user_id = @user.user_id
+    if(@story.blog == nil || @story.blog.strip == '')
+      @story.blog = '[Click here to write up a short BLOG story about the event...]'
     end
 
     @recent_geo_locations = 
-    GeoLocation.recent_geo_locations(@cleaning_event.user)
-    @geo_location = @cleaning_event.geo_location 
+    GeoLocation.recent_geo_locations(@story.user)
+    @geo_location = @story.geo_location 
     if @geo_location == nil
       flash[:error] = "Location is required"
       @geo_location = GeoLocation.new
     end
 
     respond_to do |format|
-      if @cleaning_event.save
+      if @story.save
         flash[:notice] = "Event was successfully created"
-        format.html {redirect_to cleaning_events_url }
+        format.html {redirect_to stories_url }
         # format.xml do
         #   headers["Location"] = client_url(@client)
         #   render :nothing => true, :status => "201 Created"
@@ -119,12 +119,12 @@ class CleaningEventsController < ApplicationController
   end
 
   def destroy
-    @cleaning_event = CleaningEvent.find(params[:id])
+    @story = Story.find(params[:id])
 
-    @cleaning_event.pictures.each do |picture|
+    @story.pictures.each do |picture|
       Picture.destroy(picture)
     end
-    CleaningEvent.destroy(@cleaning_event)    
+    Story.destroy(@story)    
   end
 
   def select_location
@@ -153,15 +153,15 @@ class CleaningEventsController < ApplicationController
   def upload_picture
     @picture = Picture.create! params[:picture]
 
-    @cleaning_event = CleaningEvent.find(params[:cleaning_event_id])
-    @picture.cleaning_event = @cleaning_event
+    @story = Story.find(params[:story_id])
+    @picture.story = @story
     @picture.save
 
-    if @cleaning_event.save
+    if @story.save
       responds_to_parent do
         render :update do |page|
-          page.replace "cleaning-event-picture-#{@cleaning_event.id}", :partial => 'cleaning_event_picture', :object => @cleaning_event
-          page["cleaning-event-picture-#{@cleaning_event.id}"].visual_effect :slide_down
+          page.replace "cleaning-event-picture-#{@story.id}", :partial => 'story_picture', :object => @story
+          page["cleaning-event-picture-#{@story.id}"].visual_effect :slide_down
         end
       end
     else
