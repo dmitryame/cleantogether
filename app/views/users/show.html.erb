@@ -10,7 +10,7 @@
 							<label for="user_login">Login:</label>
 						</td>
 						<td class="description">
-							<%= @user.login %>
+							<%=h @user.login %>
 						</td>
 					</tr>
 					<tr>
@@ -18,7 +18,7 @@
 							<label for="user_first_name">First Name:</label>
 						</td>
 						<td class="description"> 
-							<%= @user.first_name %>
+							<%=h @user.first_name %>
 						</td>
 					</tr>
 					<tr>
@@ -26,7 +26,7 @@
 							<label for="user_last_name">Last Name:</label>
 						</td>
 						<td class="description"> 
-							<%= @user.last_name %>
+							<%=h @user.last_name %>
 						</td>
 					</tr>
 					<tr>
@@ -34,7 +34,7 @@
 							<label for="user_email">Email:</label>
 						</td>
 						<td class="description">
-							<%= @user.email %>
+							<%=h @user.email %>
 						</td>
 					</tr>
 					<tr>
