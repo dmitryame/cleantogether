@@ -36,12 +36,11 @@ class GeoLocationsController < ApplicationController
     @marker = GMarker.new([@lat, @lng],:title => "new location") 
   end
 
-
   def create
     @geo_location = GeoLocation.new
     if params[:commit] == "Save new Location"
       if @geo_location.update_attributes(params[:user])      
-        redirect_to :controller => "cleaning_events", :action => "new", :geo_location_id => @geo_location
+        redirect_to :controller => "stories", :action => "new", :geo_location_id => @geo_location
       else
         if (@geo_location.lat == nil && @geo_location.lng == nil) || (@geo_location.lat == 0 && @geo_location.lng == 0)
           flash[:error] = "Set a marker by clicking on the map" 

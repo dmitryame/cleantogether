@@ -2,7 +2,7 @@
 
 <script src="/javascripts/control.tabs.2.1.1.js"></script>
 <h1>Post New Story</h1>
-<% form_for(@cleaning_event, :url => user_cleaning_events_path(current_user)) do |f| %>
+<% form_for(@story, :url => user_stories_path(current_user)) do |f| %>
 <div id="main">
 	<% if flash[:error] %>
 		<div class="error_box"><%= flash[:error]%></div>
@@ -29,7 +29,7 @@
 								<%= map.to_html %>
 
 						<%= f.hidden_field :geo_location_id, :value => @geo_location.id %>
-						<%= error_message_on @cleaning_event, :geo_location_id -%>
+						<%= error_message_on @story, :geo_location_id -%>
 					</td>
 					<td valign="top">
 						<label>
@@ -63,14 +63,14 @@
 		<p>
 			<label>Weight:</label>
 			<%= f.text_field :weight %> 
-			<%= error_message_on @cleaning_event, :weight -%>
+			<%= error_message_on @story, :weight -%>
 		</p>
 	</div>
 	<div id="date" class="event-step">
 		<p>
 			<label>When:</label>
-			<%= calendar_date_select_tag "cleaning_event[cleaning_at]", @cleaning_event.cleaning_at ? @cleaning_event.cleaning_at.to_s(:pretty):nil, :embedded => false, :time => false, :buttons => true %>
-			<%= error_message_on @cleaning_event, :cleaning_at -%>	
+			<%= calendar_date_select_tag "story[cleaning_at]", @story.cleaning_at ? @story.cleaning_at.to_s(:pretty):nil, :embedded => false, :time => false, :buttons => true %>
+			<%= error_message_on @story, :cleaning_at -%>	
 		</p>
 	</div>
 	
@@ -87,6 +87,6 @@
 </div>
 
 	
-<%=submit_tag "Post"%><%= link_to 'back', user_cleaning_events_path(current_user)%>
+<%=submit_tag "Post"%><%= link_to 'back', user_stories_path(current_user)%>
 </div>
 <%end%>

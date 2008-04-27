@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :users do |user|
-    user.resources :cleaning_events do |cleaning_event|
+    user.resources :stories do |story|
     end
     user.resources :expeditions do |expedition|
     end

@@ -1,2 +1,2 @@
-page.replace "cleaning-event-blog-#{@cleaning_event.id}", :partial => 'cleaning_event_blog', :object => @cleaning_event
-page["cleaning-event-blog-#{@cleaning_event.id}"].visual_effect :shake
+page.replace "cleaning-event-blog-#{@story.id}", :partial => 'story_blog', :object => @story
+page["cleaning-event-blog-#{@story.id}"].visual_effect :shake

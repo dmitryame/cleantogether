@@ -119,14 +119,14 @@ body {
 
 
 
-#add_cleaning_event {
+#add_story {
     color: #bc4700;
     font-size : 15px;
 	font-weight: bold;	
     height: 20px;
     display: inline;
 }
-#add_cleaning_event a {
+#add_story a {
     color: #bc4700;
     font-size : 15px;
 	font-weight: bold;	

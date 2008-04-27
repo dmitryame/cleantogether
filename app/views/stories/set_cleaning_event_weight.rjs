@@ -1,2 +1,2 @@
-page.replace "cleaning-event-weight-#{@cleaning_event.id}", :partial => 'cleaning_event_weight', :object => @cleaning_event
-page["cleaning-event-weight-#{@cleaning_event.id}"].visual_effect :pulsate
+page.replace "cleaning-event-weight-#{@story.id}", :partial => 'story_weight', :object => @story
+page["cleaning-event-weight-#{@story.id}"].visual_effect :pulsate

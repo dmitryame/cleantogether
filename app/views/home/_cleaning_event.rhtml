@@ -1,24 +1,24 @@
-<div id="cleaning-event-<%=cleaning_event.id%>" class="cleaning-event">				
+<div id="cleaning-event-<%=story.id%>" class="cleaning-event">				
 	<%
-	@cleaning_event = cleaning_event
+	@story = story
 	%>
 	<div class="event-image">
-		<%if @cleaning_event.pictures[0] == nil%>
+		<%if @story.pictures[0] == nil%>
 			No Picture Provided
 		<% else %>
-			<img src="<%=url_for(:controller => "home" , :action => :picture, :id => @cleaning_event.pictures[0])%>" height="230"/>
+			<img src="<%=url_for(:controller => "home" , :action => :picture, :id => @story.pictures[0])%>" height="230"/>
 		<% end %>
 	</div>
 		
 	<div class="event-map">	
-		<% if @cleaning_event.geo_location == nil%>
+		<% if @story.geo_location == nil%>
 			No Location Provided
 		<%else%>
 			<%
-			map = GMap.new("map_div_#{@cleaning_event.id}")
+			map = GMap.new("map_div_#{@story.id}")
 		    map.control_init(:small_map => true,:map_type => true)							    
 		    map.set_map_type_init(GMapType::G_HYBRID_MAP)      							
-		    geo_location  = @cleaning_event.geo_location
+		    geo_location  = @story.geo_location
 		    map.center_zoom_init([geo_location.lat,geo_location.lng],8)  	  						
 			marker = GMarker.new([geo_location.lat, geo_location.lng], :title => geo_location.name)  
 			map.overlay_init marker							
@@ -33,31 +33,31 @@
 			<tr>
 				<td width=60%>
 					<div class="event-location">
-						<%=@cleaning_event.geo_location.name%>
+						<%=@story.geo_location.name%>
 					</div>
 				</td>
 				<td width=40% align="right">
 					<div class="event-date">
 						<img src="/images/new/calendar_icon.png"/>
-						<%=@cleaning_event.cleaning_at.to_s(:pretty)%>						
+						<%=@story.cleaning_at.to_s(:pretty)%>						
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td width=60%>
 					<div class="event-weight">
-						<b>Weight:</b>&nbsp;<%= pluralize @cleaning_event.weight, 'pound' -%>.
+						<b>Weight:</b>&nbsp;<%= pluralize @story.weight, 'pound' -%>.
 					</div>
 				</td>
 				<td width=40% align="right">
 					<div class="event-user">
-						<%= @cleaning_event.user.login %>
+						<%= @story.user.login %>
 					</div>
 				</td>
 			</tr>
 		</table>
 		<div class="event-blog">
-			<%= @cleaning_event.blog%>
+			<%= @story.blog%>
 		</div>
 	</div>
 </div>

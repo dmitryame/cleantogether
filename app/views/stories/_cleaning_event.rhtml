@@ -1,18 +1,18 @@
-<div id="cleaning-event-<%=cleaning_event.id%>" class="cleaning-event">
+<div id="cleaning-event-<%=story.id%>" class="cleaning-event">
 	<%
-	@cleaning_event = cleaning_event
+	@story = story
 	%>
 	<div class="event-image">
-		<%= render :partial => "cleaning_event_picture", :object => @cleaning_event.pictures[0] %>					
+		<%= render :partial => "story_picture", :object => @story.pictures[0] %>					
 	</div>
 
 	<div class="event-map">	
-		<% if @cleaning_event.geo_location != nil%>
+		<% if @story.geo_location != nil%>
 			<%
-			map = GMap.new("map_div_#{@cleaning_event.id}")
+			map = GMap.new("map_div_#{@story.id}")
 		    map.control_init(:small_map => true,:map_type => true)							    
 		    map.set_map_type_init(GMapType::G_HYBRID_MAP)      							
-		    geo_location  = @cleaning_event.geo_location
+		    geo_location  = @story.geo_location
 		    map.center_zoom_init([geo_location.lat,geo_location.lng],8)  	  						
 			marker = GMarker.new([geo_location.lat, geo_location.lng], :title => geo_location.name)  
 			map.overlay_init marker							
@@ -27,17 +27,17 @@
 			<tr>
 				<td width=60%>
 					<div class="event-location">
-						<% if @cleaning_event.geo_location == nil%>
+						<% if @story.geo_location == nil%>
 							no location provided
 						<%else%>
-							<%=h @cleaning_event.geo_location.name%>
-							<!-- <%=link_to @cleaning_event.geo_location.name, { :controller => "location_editor", :action => "index", :id => @cleaning_event.id }, :popup => ['view/edit location window', 'height=700,width=1000,scrollbars=yes']%> -->
+							<%=h @story.geo_location.name%>
+							<!-- <%=link_to @story.geo_location.name, { :controller => "location_editor", :action => "index", :id => @story.id }, :popup => ['view/edit location window', 'height=700,width=1000,scrollbars=yes']%> -->
 						<%end%>
 					</div>
 				</td>
 				<td width=40% align="right">
 					<%= link_to_remote image_tag ("trash.gif", :border => 0), 
-				                    :url => cleaning_event_path(@cleaning_event), 
+				                    :url => story_path(@story), 
 				                    :confirm => 'Are you sure you want to delete the Cleaning Event', 
 				                    :method => :delete %>
 				</td>
@@ -47,18 +47,18 @@
 					<div class="event-weight">
 						<b>Weight:</b>
 					</div>
-					<%= render :partial => "cleaning_event_weight", :object => @cleaning_event %>					
+					<%= render :partial => "story_weight", :object => @story %>					
 				</td>
 				<td width=40% align="right">
 					<div class="event-date">
-						<%= calendar_date_select_tag 'cleaning_at', cleaning_event.cleaning_at.to_s(:pretty), :embedded => false, :time => false, :buttons => false %>
-						<%= observe_field 'cleaning_at', :frequency => 0.5, :url =>{ :action => :update_cleaning_at, :id => cleaning_event.id }, :with => "'cleaning_at=' + escape(value)" %>
+						<%= calendar_date_select_tag 'cleaning_at', story.cleaning_at.to_s(:pretty), :embedded => false, :time => false, :buttons => false %>
+						<%= observe_field 'cleaning_at', :frequency => 0.5, :url =>{ :action => :update_cleaning_at, :id => story.id }, :with => "'cleaning_at=' + escape(value)" %>
 					</div>
 				</td>
 			</tr>
 		</table>
 		<div class="event-blog">
-			<%= render :partial => "cleaning_event_blog", :object => @cleaning_event %>					
+			<%= render :partial => "story_blog", :object => @story %>					
 		</div>
 	</div>
 </div>

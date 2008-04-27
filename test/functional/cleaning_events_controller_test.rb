@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require 'cleaning_events_controller'
+require 'stories_controller'
 
 # Re-raise errors caught by the controller.
 class CleaningEventsController; def rescue_action(e) raise e end; end

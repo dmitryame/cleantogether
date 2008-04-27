@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   
   def events
     if logged_in?
-      redirect_to user_cleaning_events_path(current_user) 
+      redirect_to user_stories_path(current_user) 
     else
       store_location
       redirect_to login_path

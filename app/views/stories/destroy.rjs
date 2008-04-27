@@ -1,1 +1,1 @@
-page["cleaning-event-#{@cleaning_event.id}"].visual_effect :slide_up
+page["cleaning-event-#{@story.id}"].visual_effect :slide_up
