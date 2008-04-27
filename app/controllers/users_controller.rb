@@ -174,6 +174,15 @@ class UsersController < ApplicationController
     redirect_back_or_default('/')
   end
 
+
+  def toggle_team_captain
+    if @user.team_captain
+      User.remove_user_from_role(@user, TEAM_CAPTAIN_ROLE_ID)
+    else
+      User.add_user_to_role(@user, TEAM_CAPTAIN_ROLE_ID)
+    end
+  end
+
 private
 
   def initialize_to_current_user
