@@ -2,11 +2,11 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'stories_controller'
 
 # Re-raise errors caught by the controller.
-class CleaningEventsController; def rescue_action(e) raise e end; end
+class StoriesController; def rescue_action(e) raise e end; end
 
-class CleaningEventsControllerTest < Test::Unit::TestCase
+class StoriesControllerTest < Test::Unit::TestCase
   def setup
-    @controller = CleaningEventsController.new
+    @controller = StoriesController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
   end

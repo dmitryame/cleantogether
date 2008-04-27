@@ -293,11 +293,11 @@ class User < ActiveRecord::Base
 
   #how much user collected 
   def collected
-    CleaningEvent.sum 'weight', :conditions => ["user_id = ?", id]
+    Story.sum 'weight', :conditions => ["user_id = ?", id]
   end
 
   def number_of_events
-    CleaningEvent.count :conditions => ["user_id = ?", id]
+    Story.count :conditions => ["user_id = ?", id]
   end
 
   

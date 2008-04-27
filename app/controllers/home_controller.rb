@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
     
   def index
-    @stories = CleaningEvent.paginate   :page       => params[:page], 
+    @stories = Story.paginate   :page       => params[:page], 
                                                 :per_page   => 10, 
                                                 :conditions => ["geo_location_id != ? and weight > 0", :null],
                                                 :order      => "created_at DESC"

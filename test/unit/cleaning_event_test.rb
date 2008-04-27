@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class CleaningEventTest < Test::Unit::TestCase
+class StoryTest < Test::Unit::TestCase
   fixtures :stories
 
   # Replace this with your real tests.

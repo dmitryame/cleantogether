@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   ssl_required :signin, :register
   
-  def events
+  def stories
     if logged_in?
       redirect_to user_stories_path(current_user) 
     else

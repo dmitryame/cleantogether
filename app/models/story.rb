@@ -9,7 +9,7 @@ class Story < ActiveRecord::Base
   validates_inclusion_of :weight, :in =>1..200, :message => "out of range 1-200"
   
   def self.collected
-    CleaningEvent.sum :weight
+    Story.sum :weight
   end
   
   def self.count_events
