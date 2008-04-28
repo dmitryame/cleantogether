@@ -4,7 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :users do |user|
-    user.resources :stories do |story|
+    user.resources :stories do |story|      
     end
     user.resources :expeditions do |expedition|
     end
@@ -36,12 +36,14 @@ ActionController::Routing::Routes.draw do |map|
   
   # named routes
   map.home '/', :controller         => "home", :action => "index"
+
   map.signup '/signup', :controller => "users", :action => "new"
   map.login '/login', :controller   => "sessions", :action => "new"
   map.logout '/logout', :controller => "sessions", :action => "destroy"
   map.activate '/activate/:id', :controller           => "users", :action => "activate"
   map.forgot_password '/forgot_password', :controller => "users", :action => "forgot_password"
   map.reset_password '/reset_password/:id', :controller   => "users", :action => "reset_password" 
+
   map.stories '/stories', :controller   => "users", :action => "stories"
   map.profile '/profile', :controller => "users", :action => "profile"
 end

@@ -54,22 +54,20 @@ class StoriesController < ApplicationController
   end
 
   def index
-    @stories = Story.paginate_by_user_id session[:user_id], :page => params[:page],:per_page => 10, :order => "created_at DESC"
+    @stories = Story.paginate_by_user_id current_user, :page => params[:page],:per_page => 10, :order => "created_at DESC"
   end
 
 
   # GET /stories/new
   def new
-
     @story = Story.new
     @story.cleaning_at = Time.today
 
     @recent_geo_locations = 
-    GeoLocation.recent_geo_locations(session[:user_id])
+    GeoLocation.recent_geo_locations(current_user)
+    
+    @geo_location = GeoLocation.find(params[:geo_location_id]) if params[:geo_location_id] 
 
-    if params[:geo_location_id] != nil
-      @geo_location = GeoLocation.find(params[:geo_location_id]) 
-    end
     if @geo_location == nil 
       @geo_location = @recent_geo_locations[0] 
     end
@@ -79,6 +77,10 @@ class StoriesController < ApplicationController
 
   end
 
+  # def story_with_location
+  #   @geo_location = GeoLocation.find(params[:geo_location_id])
+  #   render :action => "new" 
+  # end
 
   # GET /stories/1/edit
   # def edit
