@@ -1,0 +1,2 @@
+page.replace "story-blog-#{@story.id}", :partial => 'story_blog', :object => @story
+page["story-blog-#{@story.id}"].visual_effect :shake

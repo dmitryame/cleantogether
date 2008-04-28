@@ -1,2 +1,0 @@
-page.replace "cleaning-event-blog-#{@story.id}", :partial => 'story_blog', :object => @story
-page["cleaning-event-blog-#{@story.id}"].visual_effect :shake

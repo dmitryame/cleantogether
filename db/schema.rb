@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20) do
+ActiveRecord::Schema.define(:version => 21) do
 
   create_table "db_files", :force => true do |t|
     t.binary "data"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(:version => 20) do
   add_index "geo_locations", ["lng"], :name => "index_geo_locations_on_lng"
 
   create_table "pictures", :force => true do |t|
-    t.integer "cleaning_event_id"
+    t.integer "story_id"
     t.string  "content_type"
     t.string  "filename"
     t.integer "size"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(:version => 20) do
     t.integer "user_id"
   end
 
-  add_index "pictures", ["cleaning_event_id"], :name => "index_pictures_on_cleaning_event_id"
+  add_index "pictures", ["story_id"], :name => "index_pictures_on_cleaning_event_id"
 
   create_table "stories", :force => true do |t|
     t.integer  "user_id",                        :null => false

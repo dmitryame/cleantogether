@@ -89,7 +89,7 @@ class StoriesController < ApplicationController
   # POST /stories.xml
   def create
     @story = Story.new(params[:story])
-    @story.user_id = @user.user_id
+    @story.user = current_user
     if(@story.blog == nil || @story.blog.strip == '')
       @story.blog = '[Click here to write up a short BLOG story about the event...]'
     end
@@ -160,8 +160,8 @@ class StoriesController < ApplicationController
     if @story.save
       responds_to_parent do
         render :update do |page|
-          page.replace "cleaning-event-picture-#{@story.id}", :partial => 'story_picture', :object => @story
-          page["cleaning-event-picture-#{@story.id}"].visual_effect :slide_down
+          page.replace "story-picture-#{@story.id}", :partial => 'story_picture', :object => @story
+          page["story-picture-#{@story.id}"].visual_effect :slide_down
         end
       end
     else

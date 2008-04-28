@@ -1,8 +1,8 @@
-<div id="cleaning-event-<%=story.id%>" class="cleaning-event">				
+<div id="story-<%=story.id%>" class="story">				
 	<%
 	@story = story
 	%>
-	<div class="event-image">
+	<div class="story-image">
 		<%if @story.pictures[0] == nil%>
 			No Picture Provided
 		<% else %>
@@ -10,7 +10,7 @@
 		<% end %>
 	</div>
 		
-	<div class="event-map">	
+	<div class="story-map">	
 		<% if @story.geo_location == nil%>
 			No Location Provided
 		<%else%>
@@ -28,16 +28,16 @@
 		<%end%>
 	</div>
 	
-	<div class="event-story">
+	<div class="story-story">
 		<table width=100%>
 			<tr>
 				<td width=60%>
-					<div class="event-location">
+					<div class="story-location">
 						<%=@story.geo_location.name%>
 					</div>
 				</td>
 				<td width=40% align="right">
-					<div class="event-date">
+					<div class="story-date">
 						<img src="/images/new/calendar_icon.png"/>
 						<%=@story.cleaning_at.to_s(:pretty)%>						
 					</div>
@@ -45,18 +45,18 @@
 			</tr>
 			<tr>
 				<td width=60%>
-					<div class="event-weight">
+					<div class="story-weight">
 						<b>Weight:</b>&nbsp;<%= pluralize @story.weight, 'pound' -%>.
 					</div>
 				</td>
 				<td width=40% align="right">
-					<div class="event-user">
+					<div class="story-user">
 						<%= @story.user.login %>
 					</div>
 				</td>
 			</tr>
 		</table>
-		<div class="event-blog">
+		<div class="story-blog">
 			<%= @story.blog%>
 		</div>
 	</div>

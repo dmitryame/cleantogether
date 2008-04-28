@@ -1,12 +1,12 @@
-<div id="cleaning-event-<%=story.id%>" class="cleaning-event">
+<div id="story-<%=story.id%>" class="story">
 	<%
 	@story = story
 	%>
-	<div class="event-image">
+	<div class="story-image">
 		<%= render :partial => "story_picture", :object => @story.pictures[0] %>					
 	</div>
 
-	<div class="event-map">	
+	<div class="story-map">	
 		<% if @story.geo_location != nil%>
 			<%
 			map = GMap.new("map_div_#{@story.id}")
@@ -22,11 +22,11 @@
 		<%end%>
 	</div>
 
-	<div class="event-story">
+	<div class="story-story">
 		<table width=100%>
 			<tr>
 				<td width=60%>
-					<div class="event-location">
+					<div class="story-location">
 						<% if @story.geo_location == nil%>
 							no location provided
 						<%else%>
@@ -37,27 +37,27 @@
 				</td>
 				<td width=40% align="right">
 					<%= link_to_remote image_tag ("trash.gif", :border => 0), 
-				                    :url => story_path(@story), 
+				                    :url => user_story_path(current_user, @story), 
 				                    :confirm => 'Are you sure you want to delete the Cleaning Event', 
 				                    :method => :delete %>
 				</td>
 			</tr>
 			<tr>
 				<td nowrap>
-					<div class="event-weight">
+					<div class="story-weight">
 						<b>Weight:</b>
 					</div>
 					<%= render :partial => "story_weight", :object => @story %>					
 				</td>
 				<td width=40% align="right">
-					<div class="event-date">
+					<div class="story-date">
 						<%= calendar_date_select_tag 'cleaning_at', story.cleaning_at.to_s(:pretty), :embedded => false, :time => false, :buttons => false %>
 						<%= observe_field 'cleaning_at', :frequency => 0.5, :url =>{ :action => :update_cleaning_at, :id => story.id }, :with => "'cleaning_at=' + escape(value)" %>
 					</div>
 				</td>
 			</tr>
 		</table>
-		<div class="event-blog">
+		<div class="story-blog">
 			<%= render :partial => "story_blog", :object => @story %>					
 		</div>
 	</div>

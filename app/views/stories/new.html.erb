@@ -8,7 +8,7 @@
 		<div class="error_box"><%= flash[:error]%></div>
 	<% end %>
 
-	<div id="location" class="event-step">
+	<div id="location" class="story-step">
 		<p>
 			<table>
 				<tr>
@@ -59,14 +59,14 @@
 	</div>
 
 		
-	<div id="weight" class="event-step">
+	<div id="weight" class="story-step">
 		<p>
 			<label>Weight:</label>
 			<%= f.text_field :weight %> 
 			<%= error_message_on @story, :weight -%>
 		</p>
 	</div>
-	<div id="date" class="event-step">
+	<div id="date" class="story-step">
 		<p>
 			<label>When:</label>
 			<%= calendar_date_select_tag "story[cleaning_at]", @story.cleaning_at ? @story.cleaning_at.to_s(:pretty):nil, :embedded => false, :time => false, :buttons => true %>
@@ -76,7 +76,7 @@
 	
 	
 		
-	<div id="story" class="event-step">
+	<div id="story" class="story-step">
 		<label>
 			Story:
 		</label>			

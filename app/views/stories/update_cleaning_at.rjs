@@ -1,1 +1,1 @@
-page["cleaning-event-#{@story.id}"].visual_effect :highlight,:startcolor => "#ffffff", :endcolor => "#00af00"
+page["story-#{@story.id}"].visual_effect :highlight,:startcolor => "#ffffff", :endcolor => "#00af00"
