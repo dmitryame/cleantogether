@@ -17,13 +17,13 @@ class CreateNewUsers < ActiveRecord::Migration
       t.column :preallowed_id, :integer
       
     end
-    add_index :uesrs, :email
-    add_index :uesrs, :activation_code
+    add_index :users, :email
+    add_index :users, :activation_code
   end
 
   def self.down
-    remove_index :uesrs, :activation_code
-    remove_index :uesrs, :email
+    remove_index :users, :activation_code
+    remove_index :users, :email
     
     drop_table "users"
   end
