@@ -120,6 +120,8 @@ ActiveRecord::Schema.define(:version => 21) do
 
   add_index "users", ["login"], :name => "index_users_on_login"
   add_index "users", ["email"], :name => "index_users_on_email"
+  add_index "users", ["activation_code"], :name => "index_users_on_activation_code"
+  add_index "users", ["password_reset_code"], :name => "index_users_on_password_reset_code"
   add_index "users", ["first_name"], :name => "index_users_on_first_name"
   add_index "users", ["last_name"], :name => "index_users_on_last_name"
 

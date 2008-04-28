@@ -25,6 +25,8 @@ class CopyUserTableFromOrig < ActiveRecord::Migration
     
     add_index :users, :login
     add_index :users, :email
+    add_index :users, :activation_code
+    add_index :users, :password_reset_code
     add_index :users, :first_name
     add_index :users, :last_name
         
@@ -71,6 +73,8 @@ class CopyUserTableFromOrig < ActiveRecord::Migration
     remove_index :users, :email
     remove_index :users, :first_name
     remove_index :users, :last_name
+    remove_index :users, :activation_code
+    remove_index :users, :password_reset_code
  
     remove_column :users, :first_name
     remove_column :users, :last_name
