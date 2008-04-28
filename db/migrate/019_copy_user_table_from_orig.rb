@@ -17,6 +17,7 @@ class CopyUserTableFromOrig < ActiveRecord::Migration
       user.email                 = old_user.email
       user.password              = "super_secret1qa"  
       user.password_confirmation = "super_secret1qa"
+      user.activated_at          = old_user.created_at
       user.preallowed_id         = old_user.preallowed_id
       #debugger
       user.save
