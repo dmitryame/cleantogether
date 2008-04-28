@@ -1,12 +1,8 @@
 <%= GMap.header %> 
 
-<script src="/javascripts/control.tabs.2.1.1.js"></script>
 <h1>Post New Story</h1>
 <% form_for(@story, :url => user_stories_path(current_user)) do |f| %>
 <div id="main">
-	<% if flash[:error] %>
-		<div class="error_box"><%= flash[:error]%></div>
-	<% end %>
 
 	<div id="location" class="story-step">
 		<p>

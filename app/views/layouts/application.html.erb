@@ -52,7 +52,9 @@
 		</div>
 		<div id="content">
 			<p style="color: green"><%= flash[:notice] %></p>
-			<p style="color: red"><%= flash[:error] %></p>
+			<% if flash[:error] %>
+				<div class="error_box"><%= flash[:error]%></div>
+			<% end %>
 			<%= yield :layout %>
 		</div>
 		<div id="footer">

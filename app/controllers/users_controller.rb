@@ -44,7 +44,6 @@ class UsersController < ApplicationController
       #we don't want to log in newly regestered user, the user has to activate the account first
       #self.current_user = @user
       flash[:notice] = "Thanks for signing up! Check your email for activation link."
-      # debugger
       redirect_to login_path
     else
       flash[:notice] = "Error Creating User."
@@ -66,7 +65,6 @@ class UsersController < ApplicationController
         flash[:notice] = "User updated"
         redirect_to user_path(current_user)
       else
-        flash[:error] = "Error updating user"
         render :action => :edit
       end
   end

@@ -15,9 +15,8 @@
 </script>
 
 <h1>Add a new Location</h1>
-<% if flash[:error] %>
-	<div class="error_box"><%= flash[:error]%></div>
-<% end %>
+
+<%= error_messages_for :geo_location %>
 
 <table width="100%">
 	<tr>
@@ -38,7 +37,7 @@
 		</td>
 	</tr>
 	
-	<% form_for(@geo_location, :url => geo_locations_path) do |f| %>
+	<% form_for(:geo_location, :url => geo_locations_path) do |f| %>
 	<tr>
 		<td valign="top">
 			<%= @map.div(:width => 400, :height => 280) %>							

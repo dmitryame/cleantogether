@@ -10,9 +10,4 @@ class GeoLocation < ActiveRecord::Base
         :conditions => { 'stories.user_id' => p_user_id }) 
   end
 
-  def validate
-    if(lat == nil || lat == 0 || lat.nan?) && (lng == nil || lng == 0 || lng.nan?)
-      errors.add("Marker is not set")
-    end
-  end
 end

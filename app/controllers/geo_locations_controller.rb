@@ -22,9 +22,20 @@ class GeoLocationsController < ApplicationController
     if @geo_location.save      
       redirect_to new_user_story_path(:user_id => current_user, :geo_location_id => @geo_location.id)
     else
-      flash[:notice] = "Error Creating Geo Location."
-      redirect_to :action => 'new'
-    end
+      flash[:notice] = "Error Creating Geo Location."        
+
+      @map = GMap.new("map")
+      @map.control_init(:large_map => true,:map_type => true)
+      @map.icon_global_init(GIcon.new(:image => "http://labs.google.com/ridefinder/images/mm_20_green.png", :icon_size => GSize.new(15,15),:icon_anchor => GPoint.new(7,7),:info_window_anchor => GPoint.new(9,2)),"icon_standard")
+      icon_standard = Variable.new("icon_standard")
+
+      @map.center_zoom_init([0,0],1)
+
+      @map.record_init('create_draggable_editable_marker();') ;
+      @map.set_map_type_init(GMapType::G_HYBRID_MAP)      
+    	
+      render :action => "new" 
+   end
     
   end
 
