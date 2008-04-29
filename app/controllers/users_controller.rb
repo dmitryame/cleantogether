@@ -1,5 +1,5 @@
 class UsersController < ApplicationController  
-  # ssl_required :new
+  ssl_required :new
   
   
   #Filter method to enforce a login requirement
