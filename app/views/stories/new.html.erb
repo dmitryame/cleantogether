@@ -36,9 +36,9 @@
 						<%= link_to_remote recent_location.name, :url => {:action => :select_location, :id => recent_location.id } %>
 						<%end%>
 					</td>
-					<td valign="top">
+					<td valign="top" class="description">
 						<%= link_to image_tag ("add.gif", :border => 0), { :controller => "geo_locations", :action => "new" }%>
-						<%=link_to "or add a new location", { :controller => "geo_locations", :action => "new" }%>
+						<%= link_to "or add a new location", { :controller => "geo_locations", :action => "new" }%>
 						<br/>
 						<label>
 							or search for existing location:

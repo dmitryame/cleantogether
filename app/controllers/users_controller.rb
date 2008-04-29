@@ -182,10 +182,11 @@ class UsersController < ApplicationController
       User.add_user_to_role(@user, TEAM_CAPTAIN_ROLE_ID)
     end
   end
-
-private
+  private
 
   def initialize_to_current_user
     @user = current_user
   end
+
+
 end

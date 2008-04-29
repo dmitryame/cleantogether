@@ -118,27 +118,23 @@ body {
 }
 
 
-
-#add_story {
-    color: #bc4700;
+.description {
+    color: #bc4700;    
     font-size : 15px;
-	font-weight: bold;	
-    height: 20px;
-    display: inline;
 }
-#add_story a {
+
+.description a {
     color: #bc4700;
-    font-size : 15px;
-	font-weight: bold;	
-    height: 20px;
     display: inline;
     text-decoration: none;	
 }
 
-.description {
-    color: #bc4700;    
+.description a:visited { 
+    color: #bc4700;
 }
-
+.description a:hover {
+	font-weight: bold;
+}
 
 
 DIV.center {
@@ -172,6 +168,22 @@ DIV.nowrap {
 .menuItem a {
 	text-decoration: none;
     position: relative;
+    top: 5px;
+}
+.menuItem a:visited {
+	text-decoration: none;
+    position: relative;
+    color: #bc4700;
+    font-size : 15px;
+    top: 5px;
+}
+
+.menuItem a:active {
+	text-decoration: none;
+    position: relative;
+    color: #bc4700;
+    font-size : 15px;
+	font-weight: bold;	
     top: 5px;
 }
 

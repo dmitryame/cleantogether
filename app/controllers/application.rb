@@ -68,7 +68,6 @@ class ApplicationController < ActionController::Base
     end
 
   end
-
 end
 
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
