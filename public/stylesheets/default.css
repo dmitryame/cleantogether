@@ -168,13 +168,13 @@ DIV.nowrap {
 .menuItem a {
 	text-decoration: none;
     position: relative;
+    color: #bc4700;
     top: 5px;
 }
 .menuItem a:visited {
 	text-decoration: none;
     position: relative;
     color: #bc4700;
-    font-size : 15px;
     top: 5px;
 }
 
