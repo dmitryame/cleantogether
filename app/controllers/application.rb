@@ -11,6 +11,8 @@ require 'net/https'
 class ApplicationController < ActionController::Base  
   include AuthenticatedSystem
 
+  filter_parameter_logging "password" 
+  
   include SslRequirement
 
   def ssl_required?
