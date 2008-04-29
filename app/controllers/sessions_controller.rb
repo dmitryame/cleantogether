@@ -1,6 +1,10 @@
 # This controller handles the login/logout function of the site.  
 class SessionsController < ApplicationController
   before_filter :login_required, :only => :destroy
+  
+  ssl_required :new
+  
+  
   #   before_filter :not_logged_in_required, :only => [:new, :create]
   # render new.rhtml
   def new

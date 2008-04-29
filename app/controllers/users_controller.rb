@@ -1,9 +1,11 @@
 class UsersController < ApplicationController  
+  ssl_required :new
+  
+  
   #Filter method to enforce a login requirement
   before_filter :login_required, :except => [:events, :profile, :new, :create, :activate, :enable, :forgot_password, :reset_password]
   before_filter :initialize_to_current_user
 
-  ssl_required :signin, :register
   
   def stories
     if logged_in?
