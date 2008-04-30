@@ -4,7 +4,7 @@
 	
 	<% for expedition in current_user.captains_expeditions %>
 		<br/>
-		 <%= expedition.target_date%>&nbsp;<%=h expedition.name %>
+		<%=expedition.target_date.to_s(:pretty)%>&nbsp;<%=h expedition.name %>
 	<% end%>
 	
 </div>
