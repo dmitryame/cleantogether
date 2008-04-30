@@ -126,7 +126,7 @@ body {
 .description a {
     color: #bc4700;
     display: inline;
-    text-decoration: none;	
+    text-decoration: underline;	
 }
 
 .description a:visited { 
