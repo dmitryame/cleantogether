@@ -31,8 +31,8 @@
 							choose from my recent locations:					
 						</label>
 						<% @recent_geo_locations.each do |recent_location| %>
-						<br>
-						<%= link_to_remote recent_location.name, :url => {:action => :select_location, :id => recent_location.id } %>
+							<br>
+							<%= link_to_remote recent_location.name, :url => {:action => :select_location, :id => recent_location.id } %>
 						<%end%>
 					</td>
 					<td valign="top" class="description">
@@ -82,6 +82,6 @@
 </div>
 
 	
-<%=submit_tag "Post"%><%= link_to 'back', user_stories_path(current_user)%>
+<p class="description"><%=submit_tag "Post"%><%= link_to 'back', user_stories_path(current_user)%></p>
 </div>
 <%end%>

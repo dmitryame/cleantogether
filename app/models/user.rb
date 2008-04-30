@@ -1,6 +1,18 @@
 require 'digest/sha1'
 class User < ActiveRecord::Base
   # Virtual attribute for the unencrypted password
+  has_many :captains_teams,
+  :foreign_key => "captain_id",
+  :class_name => "Team"
+  
+  has_many :captains_expeditions,
+  :foreign_key => "captain_id",
+  :class_name => "Expedition"
+
+  has_and_belongs_to_many :teams           
+  has_and_belongs_to_many :expeditions
+
+
   attr_accessor :password
 
   validates_presence_of     :login, :email

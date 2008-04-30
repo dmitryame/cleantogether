@@ -4,25 +4,25 @@ class CopyUserTableFromOrig < ActiveRecord::Migration
     
     add_column :users, :first_name, :string
     add_column :users, :last_name, :string
-    
-    OldUser.find(:all).each do |old_user|
-      puts "adding user " + old_user.login
-      user                       = User.new
-      user.id                    = old_user.id
-      user.first_name            = old_user.first_name
-      user.last_name             = old_user.last_name
-      user.created_at            = old_user.created_at
-      user.updated_at            = old_user.updated_at
-      user.login                 = old_user.login
-      user.email                 = old_user.email
-      user.password              = "super_secret1qa"  
-      user.password_confirmation = "super_secret1qa"
-      user.activated_at          = old_user.created_at
-      user.preallowed_id         = old_user.preallowed_id
-      #debugger
-      user.save
-
-    end
+    # 
+    # OldUser.find(:all).each do |old_user|
+    #   puts "adding user " + old_user.login
+    #   user                       = User.new
+    #   user.id                    = old_user.id
+    #   user.first_name            = old_user.first_name
+    #   user.last_name             = old_user.last_name
+    #   user.created_at            = old_user.created_at
+    #   user.updated_at            = old_user.updated_at
+    #   user.login                 = old_user.login
+    #   user.email                 = old_user.email
+    #   user.password              = "super_secret1qa"  
+    #   user.password_confirmation = "super_secret1qa"
+    #   user.activated_at          = old_user.created_at
+    #   user.preallowed_id         = old_user.preallowed_id
+    #   #debugger
+    #   user.save
+    # 
+    # end
     
     add_index :users, :login
     add_index :users, :email
@@ -53,22 +53,22 @@ class CopyUserTableFromOrig < ActiveRecord::Migration
     add_index :old_users, :last_name 
     
 
-    User.find(:all).each do |user|
-      puts "transfering old_user " + user.login
-      old_user                       = OldUser.new
-      old_user.id                    = user.id
-      old_user.first_name            = user.first_name
-      old_user.last_name             = user.last_name
-      old_user.created_at            = user.created_at
-      old_user.updated_at            = user.updated_at
-      old_user.login                 = user.login
-      old_user.email                 = user.email
-      old_user.password              = "super_secret1qa"
-      old_user.password_confirmation = "super_secret1qa"
-      old_user.preallowed_id         = user.preallowed_id
-      old_user.save
-
-    end
+    # User.find(:all).each do |user|
+    #   puts "transfering old_user " + user.login
+    #   old_user                       = OldUser.new
+    #   old_user.id                    = user.id
+    #   old_user.first_name            = user.first_name
+    #   old_user.last_name             = user.last_name
+    #   old_user.created_at            = user.created_at
+    #   old_user.updated_at            = user.updated_at
+    #   old_user.login                 = user.login
+    #   old_user.email                 = user.email
+    #   old_user.password              = "super_secret1qa"
+    #   old_user.password_confirmation = "super_secret1qa"
+    #   old_user.preallowed_id         = user.preallowed_id
+    #   old_user.save
+    # 
+    # end
 
     remove_index :users, :login
     remove_index :users, :email

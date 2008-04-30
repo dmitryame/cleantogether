@@ -1,5 +1,10 @@
 <div id="my_expeditions" class="description">
 	<%= link_to image_tag ("add.gif", :border => 0), :controller => :expedition, :action => :new %>
-	<%= link_to "Add New Expedition", :controller => :expedition, :action => :new %>
+	<%= link_to "Add New Expedition", new_user_expedition_path(current_user) %>
+	
+	<% for expedition in current_user.captains_expeditions %>
+		<br/>
+		 <%= expedition.target_date%>&nbsp;<%=h expedition.name %>
+	<% end%>
 	
 </div>

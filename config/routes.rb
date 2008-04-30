@@ -6,9 +6,9 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users do |user|
     user.resources :stories do |story|      
     end
-    user.resources :expeditions do |expedition|
-    end
     user.resources :teams do |team|
+    end
+    user.resources :expeditions do |expedition|
     end
   end
   map.resource  :session

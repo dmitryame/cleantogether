@@ -1,0 +1,11 @@
+<h1>Add new Expedition</h1>
+<%= error_messages_for :expedition %>
+<% form_for :expedition, :url => user_expeditions_path(current_user) do |f| -%>
+<p><label for="name">Expedition Name</label><br/>
+<%= f.text_field :name %></p>
+
+<p><label for="target_date">Target Date</label><br/>
+<%= f.text_field :target_date %></p>
+
+<p class="description"><%= submit_tag 'Create Expedition' %><%= link_to 'back', user_path(current_user)%></p>
+<% end -%>
