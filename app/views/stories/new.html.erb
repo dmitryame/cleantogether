@@ -1,9 +1,8 @@
 <%= GMap.header %> 
-
 <h1>Post New Story</h1>
-<% form_for(@story, :url => user_stories_path(current_user)) do |f| %>
+<%= error_messages_for :story %>
+<% form_for(:story, :url => user_stories_path(current_user)) do |f| %>
 <div id="main">
-
 	<div id="location" class="story-step">
 		<p>
 			<table>
