@@ -4,6 +4,6 @@
 	
 	<% for team in current_user.captains_teams %>
 		<br/>
-		<%= link_to h(team.name), edit_user_team_path(current_user) %>
+		<%= link_to h(team.name), user_team_path(current_user, team) %>
 	<% end%>
 </div>

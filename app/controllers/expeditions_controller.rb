@@ -28,4 +28,32 @@ class ExpeditionsController < ApplicationController
     end
   end
 
+
+  def show 
+    @expedition = current_user.captains_expeditions.find(params[:id])
+    respond_to do |format| 
+      format.html # show.rhtml 
+      # format.xml { render :xml => @article.to_xml } 
+    end 
+  end 
+
+
+  def edit
+    @expedition = current_user.captains_expeditions.find(params[:id])
+  end  
+  
+  def update 
+    @expedition = current_user.captains_expeditions.find(params[:id])
+    respond_to do |format| 
+      if @expedition.update_attributes(params[:expedition]) 
+        format.html { redirect_to user_expedition_url(current_user, @expedition) } 
+        # format.xml { render :nothing => true } 
+      else 
+        format.html { render :action => "edit" } 
+        # format.xml { render :xml => @article.errors.to_xml } 
+      end 
+    end 
+  end 
+
+
 end

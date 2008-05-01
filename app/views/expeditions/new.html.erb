@@ -5,7 +5,7 @@
 <%= f.text_field :name %></p>
 
 <p><label for="target_date">Target Date</label><br/>
-	<%= calendar_date_select_tag "expedition[target_date]", @expedition.target_date ? @expedition.target_date.to_s(:pretty):nil, :embedded => false, :time => false, :buttons => true %>
+	<%= calendar_date_select_tag "expedition[target_date]", @expedition.target_date ? @expedition.target_date.to_s(:date_time12):nil, :embedded => false, :time => true, :buttons => true %>
 
 <p class="description"><%= submit_tag 'Create Expedition' %><%= link_to 'back', user_path(current_user)%></p>
 <% end -%>
