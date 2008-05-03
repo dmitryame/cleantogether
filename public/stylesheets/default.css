@@ -119,8 +119,9 @@ body {
 
 
 .description {
-    color: #bc4700;    
-    font-size : 15px;
+	text-align: left;
+    color: #bc4700;
+    display: block;
 }
 
 .description a {
@@ -448,11 +449,6 @@ legend {
   text-align:right;
 }
 
-.story-step {
-	text-align: left;
-    color: #bc4700;
-    display: block;
-}
 
 .error_box {
     display:inline;

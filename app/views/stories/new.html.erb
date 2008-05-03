@@ -3,7 +3,8 @@
 <%= error_messages_for :story %>
 <% form_for(:story, :url => user_stories_path(current_user)) do |f| %>
 <div id="main">
-	<div id="location" class="story-step">
+	<!-- code between these comments is redundant with expeditions controller has to be rafactored into a reusable component     -->
+	<div id="location" class="description">
 		<p>
 			<table>
 				<tr>
@@ -37,7 +38,7 @@
 					</td>
 					<td valign="top" class="description">
 						<%= link_to image_tag ("add.gif", :border => 0), { :controller => "geo_locations", :action => "new" }%>
-						<%= link_to "or add a new location", { :controller => "geo_locations", :action => "new" }%>
+						<%= link_to "or add a new location", { :controller => "geo_locations", :action => "new", :return => "story" }%>
 						<br/>
 						<label>
 							or search for existing location:
@@ -52,26 +53,23 @@
 			</table>
 		</p>
 	</div>
+	<!-- code between these comments is redundant with expeditions controller has to be rafactored into a reusable component     -->
 
-		
-	<div id="weight" class="story-step">
+	<div id="weight" class="description">
 		<p>
 			<label>Weight:</label>
 			<%= f.text_field :weight %> 
 			<%= error_message_on @story, :weight -%>
 		</p>
 	</div>
-	<div id="date" class="story-step">
+	<div id="date" class="description">
 		<p>
 			<label>When:</label>
 			<%= calendar_date_select_tag "story[cleaning_at]", @story.cleaning_at ? @story.cleaning_at.to_s(:pretty):nil, :embedded => false, :time => false, :buttons => true %>
 			<%= error_message_on @story, :cleaning_at -%>	
 		</p>
 	</div>
-	
-	
-		
-	<div id="story" class="story-step">
+	<div id="story" class="description">
 		<label>
 			Story:
 		</label>			

@@ -6,7 +6,9 @@ class StoriesController < ApplicationController
   in_place_edit_for :story, :weigth
   in_place_edit_for :story, :blog
 
+  # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
   auto_complete_for :geo_location, :name
+  # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
 
   # in_place_editor_filed helper methods
 
@@ -63,6 +65,7 @@ class StoriesController < ApplicationController
     @story = Story.new
     @story.cleaning_at = Time.today
 
+    # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
     @recent_geo_locations = 
     GeoLocation.recent_geo_locations(current_user)
     
@@ -74,6 +77,7 @@ class StoriesController < ApplicationController
     if @geo_location == nil	
       @geo_location = GeoLocation.new 
     end
+    # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
 
   end
 
@@ -129,6 +133,7 @@ class StoriesController < ApplicationController
     Story.destroy(@story)    
   end
 
+  # code between these comments is redundant with stories/expeditions -- has to be rafactored into a reusable component
   def select_location
     @geo_location = GeoLocation.find(params[:id])
     @marker = GMarker.new([@geo_location.lat, @geo_location.lng],:title => @geo_location.description) 
@@ -139,7 +144,9 @@ class StoriesController < ApplicationController
     @map.center_zoom_init([@geo_location.lat,@geo_location.lng],8)                 
     @map.overlay_init @marker             
   end
+  # code between these comments is redundant with stories/expeditions -- has to be rafactored into a reusable component
 
+  # code between these comments is redundant with stories/expeditions -- has to be rafactored into a reusable component
   def complete_location
     @geo_location = GeoLocation.find_by_name(params[:id])
     @marker = GMarker.new([@geo_location.lat, @geo_location.lng],:title => @geo_location.description) 
@@ -150,6 +157,7 @@ class StoriesController < ApplicationController
     @map.center_zoom_init([@geo_location.lat,@geo_location.lng],8)                 
     @map.overlay_init @marker                 
   end  
+  # code between these comments is redundant with stories/expeditions -- has to be rafactored into a reusable component
 
 
   def upload_picture

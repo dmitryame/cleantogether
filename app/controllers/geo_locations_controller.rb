@@ -13,14 +13,19 @@ class GeoLocationsController < ApplicationController
          
     @map.record_init('create_draggable_editable_marker();') ;
     @map.set_map_type_init(GMapType::G_HYBRID_MAP)      
-    
+      	
   end
   
   def create
     @geo_location = GeoLocation.new(params[:geo_location])
+    
+    return_to = session[:return]
    
     if @geo_location.save      
-      redirect_to new_user_story_path(:user_id => current_user, :geo_location_id => @geo_location.id)
+      case return_to
+        when "story" then redirect_to new_user_story_path(:user_id => current_user, :geo_location_id => @geo_location.id) 
+        when "expedition" then redirect_to new_user_expedition_path(:user_id => current_user, :geo_location_id => @geo_location.id) 
+      end
     else
       flash[:notice] = "Error Creating Geo Location."        
 

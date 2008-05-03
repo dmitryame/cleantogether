@@ -1,3 +1,4 @@
+# code between these comments is redundant with expeditions/stories -- has to be rafactored into a reusable component
 page << @map.clear_overlays
 
 if @geo_location != nil
@@ -10,3 +11,4 @@ if @geo_location != nil
 else
   page.alert("Location not found, provide more information and try again!")
 end
+# code between these comments is redundant with expeditions/stories -- has to be rafactored into a reusable component

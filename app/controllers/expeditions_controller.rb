@@ -1,10 +1,58 @@
 class ExpeditionsController < ApplicationController
   before_filter :login_required
 
+  # code between these comments is redundant with stories controller has to be rafactored into a reusable component
+  auto_complete_for :geo_location, :name
+  # code between these comments is redundant with stories controller has to be rafactored into a reusable component
+
+  # code between these comments is redundant with stories/expeditions -- has to be rafactored into a reusable component
+  def select_location
+    @geo_location = GeoLocation.find(params[:id])
+    @marker = GMarker.new([@geo_location.lat, @geo_location.lng],:title => @geo_location.description) 
+    @map = Variable.new("map")
+
+    @map.control_init(:large_map => true,:map_type => true)                  
+    # @map.set_map_type_init(GMapType::G_HYBRID_MAP)                   
+    @map.center_zoom_init([@geo_location.lat,@geo_location.lng],8)                 
+    @map.overlay_init @marker             
+  end
+  # code between these comments is redundant with stories/expeditions -- has to be rafactored into a reusable component
+
+  # code between these comments is redundant with stories/expeditions -- has to be rafactored into a reusable component
+  def complete_location
+    @geo_location = GeoLocation.find_by_name(params[:id])
+    @marker = GMarker.new([@geo_location.lat, @geo_location.lng],:title => @geo_location.description) 
+    @map = Variable.new("map")
+
+    @map.control_init(:large_map => true,:map_type => true)                  
+    # @map.set_map_type_init(GMapType::G_HYBRID_MAP)                   
+    @map.center_zoom_init([@geo_location.lat,@geo_location.lng],8)                 
+    @map.overlay_init @marker                 
+  end  
+  # code between these comments is redundant with stories/expeditions -- has to be rafactored into a reusable component
+
+
   # render new.rhtml
   def new
     @expedition = Expedition.new
     @expedition.captain = current_user
+    @expedition.target_date = Time.today
+    
+
+    # code between these comments is redundant with stories controller has to be rafactored into a reusable component
+    @recent_geo_locations = 
+    GeoLocation.recent_geo_locations(current_user)
+    
+    @geo_location = GeoLocation.find(params[:geo_location_id]) if params[:geo_location_id] 
+
+    if @geo_location == nil 
+      @geo_location = @recent_geo_locations[0] 
+    end
+    if @geo_location == nil	
+      @geo_location = GeoLocation.new 
+    end
+    # code between these comments is redundant with stories controller has to be rafactored into a reusable component
+
   end
   
   # POST /stories
@@ -12,6 +60,15 @@ class ExpeditionsController < ApplicationController
   def create
     @expedition = Expedition.new(params[:expedition])
     @expedition.captain = current_user
+
+    @recent_geo_locations = 
+    GeoLocation.recent_geo_locations(current_user)
+    @geo_location = @expedition.geo_location 
+    if @geo_location == nil
+      flash[:error] = "Location is required"
+      @geo_location = GeoLocation.new
+    end
+
 
     respond_to do |format|
       if @expedition.save

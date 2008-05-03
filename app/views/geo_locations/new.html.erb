@@ -37,6 +37,10 @@
 		</td>
 	</tr>
 	
+	<%
+	session[:return] = params[:return]
+	%>
+	
 	<% form_for(:geo_location, :url => geo_locations_path) do |f| %>
 	<tr>
 		<td valign="top">
@@ -53,7 +57,7 @@
 			<%= f.text_area :description, :rows => 15, :cols => 45 %>			
 			</p>
 			<%=submit_tag "Save new Location"%>
-			<%= link_to 'back', user_stories_path(current_user)%>
+			<!-- <%= link_to 'back', user_stories_path(current_user)%> -->
 		</td>
 	</tr>
 	<% end %>				

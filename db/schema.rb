@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(:version => 22) do
   end
 
   create_table "expeditions", :force => true do |t|
-    t.string   "name",         :null => false
-    t.datetime "target_date",  :null => false
-    t.integer  "captain_id",   :null => false
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.integer  "geo_location", :null => false
+    t.string   "name",            :null => false
+    t.datetime "target_date",     :null => false
+    t.integer  "captain_id",      :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "geo_location_id", :null => false
   end
 
   add_index "expeditions", ["captain_id"], :name => "index_expeditions_on_captain_id"
