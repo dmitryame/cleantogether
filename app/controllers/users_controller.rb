@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   before_filter :login_required, :except => [:events, :profile, :new, :create, :activate, :enable, :forgot_password, :reset_password]
   before_filter :initialize_to_current_user
 
+  auto_complete_for :team, :name
+
   
   def stories
     if logged_in?
@@ -182,7 +184,20 @@ class UsersController < ApplicationController
       User.add_user_to_role(@user, TEAM_CAPTAIN_ROLE_ID)
     end
   end
-  private
+
+  def join_team
+    @team = Team.find_by_name(params[:name])
+    if(!current_user.teams.find_by_name(@team.name))
+      current_user.teams << @team 
+    end
+  end  
+
+  def leave_team
+    @team = Team.find(params[:id])
+    current_user.teams.delete(@team)
+  end
+  
+private
 
   def initialize_to_current_user
     @user = current_user

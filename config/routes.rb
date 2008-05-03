@@ -9,9 +9,10 @@ ActionController::Routing::Routes.draw do |map|
     user.resources :teams do |team|
     end
     user.resources :expeditions do |expedition|
-    end
+    end    
   end
   map.resource  :session
+  
   # The priority is based upon order of creation: first created -> highest priority.
   
   # Sample of regular route:
