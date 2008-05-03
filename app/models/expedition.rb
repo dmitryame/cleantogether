@@ -5,6 +5,8 @@ class Expedition < ActiveRecord::Base
 
   has_and_belongs_to_many :users
 
+  belongs_to :geo_location
+
   validates_presence_of :name
   validates_presence_of :target_date
   # validates_uniqueness_of :name
