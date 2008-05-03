@@ -3,7 +3,7 @@ class Expedition < ActiveRecord::Base
   :class_name  => "User",
   :foreign_key => "captain_id"
 
-  has_and_belongs_to_many :users
+  has_and_belongs_to_many :teams
 
   belongs_to :geo_location
 

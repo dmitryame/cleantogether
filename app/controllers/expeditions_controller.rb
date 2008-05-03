@@ -111,6 +111,11 @@ class ExpeditionsController < ApplicationController
       end 
     end 
   end 
+  
+  def destroy
+    @expedition = current_user.captains_expeditions.find(params[:id])
+    current_user.captains_expeditions.destroy(@expedition)
+  end
 
 
 end

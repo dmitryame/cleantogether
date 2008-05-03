@@ -9,9 +9,7 @@ class User < ActiveRecord::Base
   :foreign_key => "captain_id",
   :class_name => "Expedition"
 
-  has_and_belongs_to_many :teams           
-  has_and_belongs_to_many :expeditions
-
+  has_and_belongs_to_many :teams
 
   attr_accessor :password
 
