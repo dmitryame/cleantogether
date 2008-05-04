@@ -514,5 +514,17 @@ legend {
 /* Subsection Tabs end
 --------------------*/
 
+.hover {
+    background-color: #888888;
+}
+
+#expeditions_teams ul, li, #captains_teams ul, li {
+    list-style: none;
+    cursor: -moz-grab;
+}
+
+#expeditions_teams, #captains_teams {
+    border: 1px solid gray;
+}
 
 

@@ -118,4 +118,22 @@ class ExpeditionsController < ApplicationController
   end
 
 
+  def add_team    
+    @expedition = current_user.captains_expeditions.find(params[:id])    
+    @team = @current_user.captains_teams.find(params[:team_id])
+    
+    @expedition.teams << @team
+
+    @captains_teams = current_user.captains_teams - @expedition.teams
+  end
+
+  def remove_team
+    @expedition = current_user.captains_expeditions.find(params[:id])    
+    @team = @current_user.captains_teams.find(params[:team_id])
+
+    @expedition.teams.delete(@team)
+
+    @captains_teams = current_user.captains_teams - @expedition.teams
+  end
+
 end

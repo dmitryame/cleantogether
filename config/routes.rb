@@ -4,6 +4,9 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :users do |user|
+    user.resources :expeditions, 
+    :member => {:add_team => :post,
+    :remove_team => :post}          
     user.resources :stories do |story|      
     end
     user.resources :teams do |team|
