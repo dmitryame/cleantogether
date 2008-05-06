@@ -2,6 +2,8 @@ class Story < ActiveRecord::Base
   has_many :pictures
   belongs_to :user
   belongs_to :geo_location
+  belongs_to :expedition
+  
   
   validates_presence_of :geo_location, :on => :create
   validates_presence_of :weight, :on => :create

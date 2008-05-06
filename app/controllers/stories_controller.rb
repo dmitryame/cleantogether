@@ -81,7 +81,7 @@ class StoriesController < ApplicationController
   end
 
   def select_expedition
-    if params[:id] != nil and params[:id] != ""
+    if params[:id] != "0" && params[:id] != nil && params[:id] != ""       
       @expedition = Expedition.find(params[:id]) 
       @geo_location = @expedition.geo_location
       @marker = GMarker.new([@geo_location.lat, @geo_location.lng],:title => @geo_location.description) 
@@ -123,6 +123,12 @@ class StoriesController < ApplicationController
       @geo_location = GeoLocation.new
     end
 
+    if(@story.expedition) # force some story fields to expedition's values
+      @expedition = @story.expedition
+      @story.geo_location = @expedition.geo_location
+      @story.cleaning_at = @expedition.target_date
+    end
+        
     respond_to do |format|
       if @story.save
         flash[:notice] = "Event was successfully created"
@@ -133,7 +139,7 @@ class StoriesController < ApplicationController
         # end
       else
         flash[:error] = "Oops, something went wrong, correct the errors below and resubmit..." if flash[:error] == nil
-        format.html {render :action => "new"}
+        # format.html {render :action => "new"}
         # format.xml {render :xml => @client.errors.to_xml}
       end
     end

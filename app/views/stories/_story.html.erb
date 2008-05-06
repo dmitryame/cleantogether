@@ -51,7 +51,7 @@
 				</td>
 				<td width=40% align="right">
 					<div class="story-date">
-						<%= calendar_date_select_tag 'cleaning_at', story.cleaning_at.to_s(:pretty), :embedded => false, :time => false, :buttons => false %>
+						<%= calendar_date_select_tag 'cleaning_at', story.cleaning_at.to_s(:date_time12), :embedded => false, :time => false, :buttons => false %>
 						<%= observe_field 'cleaning_at', :frequency => 0.5, :url =>{ :action => :update_cleaning_at, :id => story.id }, :with => "'cleaning_at=' + escape(value)" %>
 					</div>
 				</td>

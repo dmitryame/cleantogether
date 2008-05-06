@@ -4,20 +4,21 @@
 
 
 
+<label>Available expeditions:</label>
+<div class="description">
+<%= select(:expedition_drop_down, :id, @my_expeditions.map {|l| [l.id == 0 ? " " : l.target_date.to_s(:date_time12) + ' ' + h(l.geo_location.name) +  ' : ' + h(l.name) + ' ', l.id]},  
+{:selected=>0}, 
+{"onchange" => remote_function(:url =>{ :action => :select_expedition},  
+:with => "'id='+value" )
+}  
+) %>
+</div>
+
+
 <% form_for(:story, :url => user_stories_path(current_user)) do |f| %>
 <div id="main">
-
-
-	<label>Available expeditions:</label>
-	<div class="description">
-	<%= select(:expedition, :id, @my_expeditions.map {|l| [l.id == nil ? "" : l.target_date.to_s(:pretty) + ' ' + h(l.geo_location.name) +  ' : ' + h(l.name) + ' ', l.id]},  
-	{:selected=>0}, 
-	{"onchange" => remote_function(:url =>{ :action => :select_expedition},  
-	:with => "'id='+value" )
-	}  
-	) %>
-	</div>
-
+	<%= f.hidden_field :expedition_id, :value => "" %>
+	<%= error_message_on @story, :expedition_id -%>
 	
 	<!-- code between these comments is redundant with expeditions controller has to be rafactored into a reusable component     -->
 	<div id="location" class="description">
@@ -43,7 +44,7 @@
 						<%= f.hidden_field :geo_location_id, :value => @geo_location.id %>
 						<%= error_message_on @story, :geo_location_id -%>
 					</td>
-					<td valign="top">
+					<td valign="top" id="recent-locations">
 						<label>
 							choose from my recent locations:					
 						</label>
@@ -52,7 +53,7 @@
 							<%= link_to_remote recent_location.name, :url => {:action => :select_location, :id => recent_location.id } %>
 						<%end%>
 					</td>
-					<td valign="top" class="description">
+					<td valign="top" class="description" id="existing-locations">
 						<%= link_to image_tag ("add.gif", :border => 0), { :controller => "geo_locations", :action => "new" }%>
 						<%= link_to "or add a new location", { :controller => "geo_locations", :action => "new", :return => "story" }%>
 						<br/>
@@ -81,7 +82,7 @@
 	<div id="date" class="description">
 		<p>
 			<label>When:</label>
-			<%= calendar_date_select_tag "story[cleaning_at]", @story.cleaning_at ? @story.cleaning_at.to_s(:pretty):nil, :embedded => false, :time => false, :buttons => true %>
+			<%= calendar_date_select_tag "story[cleaning_at]", @story.cleaning_at ? @story.cleaning_at.to_s(:date_time12):nil, :embedded => false, :time => true, :buttons => true %>
 			<%= error_message_on @story, :cleaning_at -%>	
 		</p>
 	</div>

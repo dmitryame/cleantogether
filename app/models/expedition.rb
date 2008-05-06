@@ -17,7 +17,9 @@ class Expedition < ActiveRecord::Base
   # If the user already posted a story to oa particular expedition, it's excluded from the list -- one post per user per expeedition.
   def self.recent_expeditions(user)
     my_expeditions = Array.new
-    my_expeditions << Expedition.new() # used as a nil object design pattern to show no expedition idem in the drop down 
+    null_expedition = Expedition.new()
+    null_expedition.id = 0
+    my_expeditions <<  null_expedition # used as a nil object design pattern to show no expedition idem in the drop down 
     my_expeditions += Expedition.find(:all, 
     :include => {:teams => :users},
     :conditions => {'users.id' => user.id},
