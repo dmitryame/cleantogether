@@ -1,8 +1,24 @@
 <%= GMap.header %> 
 <h1>Post New Story</h1>
 <%= error_messages_for :story %>
+
+
+
 <% form_for(:story, :url => user_stories_path(current_user)) do |f| %>
 <div id="main">
+
+
+	<label>Available expeditions:</label>
+	<div class="description">
+	<%= select(:expedition, :id, @my_expeditions.map {|l| [l.id == nil ? "" : l.target_date.to_s(:pretty) + ' ' + h(l.geo_location.name) +  ' : ' + h(l.name) + ' ', l.id]},  
+	{:selected=>0}, 
+	{"onchange" => remote_function(:url =>{ :action => :select_expedition},  
+	:with => "'id='+value" )
+	}  
+	) %>
+	</div>
+
+	
 	<!-- code between these comments is redundant with expeditions controller has to be rafactored into a reusable component     -->
 	<div id="location" class="description">
 		<p>

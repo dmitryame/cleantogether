@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   
   has_many :captains_expeditions,
   :foreign_key => "captain_id",
-  :class_name => "Expedition"
+  :class_name => "Expedition",
+  :order => "target_date DESC"
 
   has_and_belongs_to_many :teams
 
@@ -310,7 +311,6 @@ class User < ActiveRecord::Base
     Story.count :conditions => ["user_id = ?", id]
   end
 
-  
   protected
   # before filter 
   def encrypt_password

@@ -10,5 +10,21 @@ class Expedition < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :target_date
   # validates_uniqueness_of :name
+
+
+
+  # returns all expeditions available for user to post to based on the teams the user is in. 
+  # If the user already posted a story to oa particular expedition, it's excluded from the list -- one post per user per expeedition.
+  def self.recent_expeditions(user)
+    my_expeditions = Array.new
+    my_expeditions << Expedition.new() # used as a nil object design pattern to show no expedition idem in the drop down 
+    my_expeditions += Expedition.find(:all, 
+    :include => {:teams => :users},
+    :conditions => {'users.id' => user.id},
+    :order => "target_date DESC",
+    :limit => 25
+    )
+    my_expeditions
+  end
   
 end

@@ -7,6 +7,11 @@ if @geo_location != nil
   page[:story_geo_location_id].value = @geo_location.id
   page.replace_html "location_name", @geo_location.name
   page["location_name"].visual_effect :shake
+
+  page[:story_cleaning_at].value = @expedition.target_date
+  page[:story_cleaning_at].visual_effect :shake
+
+
 else
   page.alert("Location not found, provide more information and try again!")
 end

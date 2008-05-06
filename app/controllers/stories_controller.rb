@@ -1,8 +1,6 @@
 class StoriesController < ApplicationController
   before_filter :login_required
   
-  before_filter :find_user
-
   in_place_edit_for :story, :weigth
   in_place_edit_for :story, :blog
 
@@ -79,7 +77,24 @@ class StoriesController < ApplicationController
     end
     # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
 
+    @my_expeditions = Expedition.recent_expeditions(current_user)
   end
+
+  def select_expedition
+    if params[:id] != nil and params[:id] != ""
+      @expedition = Expedition.find(params[:id]) 
+      @geo_location = @expedition.geo_location
+      @marker = GMarker.new([@geo_location.lat, @geo_location.lng],:title => @geo_location.description) 
+
+      @map = Variable.new("map")
+
+      @map.control_init(:large_map => true,:map_type => true)                  
+      # @map.set_map_type_init(GMapType::G_HYBRID_MAP)                   
+      @map.center_zoom_init([@geo_location.lat,@geo_location.lng],8)                 
+      @map.overlay_init @marker             
+    end
+  end
+
 
   # def story_with_location
   #   @geo_location = GeoLocation.find(params[:geo_location_id])
@@ -186,7 +201,6 @@ class StoriesController < ApplicationController
   end
 
   private
-  def find_user    
-    @user = current_user
-  end
+  
+
 end

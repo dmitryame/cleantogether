@@ -63,4 +63,6 @@ class SessionsController < ApplicationController
       redirect_to return_to
     end
   end
+  
+  
 end
