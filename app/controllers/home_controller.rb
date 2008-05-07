@@ -9,7 +9,7 @@ class HomeController < ApplicationController
   
   def picture
       @picture = Picture.find(params[:id])
-      @thumbnail = Picture.find_by_parent_id_and_thumbnail(@picture.id,"thumb")
+      @thumbnail = Picture.find_by_parent_id_and_thumbnail(@picture.id,"normal")
       send_data(@thumbnail.db_file.data,
                 :filename => @thumbnail.filename,
                 :type => @thumbnail.content_type,
@@ -18,5 +18,8 @@ class HomeController < ApplicationController
   
     def insufficient
     end
+
+  def terms
+  end
   
 end
