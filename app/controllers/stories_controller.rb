@@ -63,21 +63,8 @@ class StoriesController < ApplicationController
     @story = Story.new
     @story.cleaning_at = Time.today
 
-    # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
-    @recent_geo_locations = 
-    GeoLocation.recent_geo_locations(current_user)
+    init_defaults
     
-    @geo_location = GeoLocation.find(params[:geo_location_id]) if params[:geo_location_id] 
-
-    if @geo_location == nil 
-      @geo_location = @recent_geo_locations[0] 
-    end
-    if @geo_location == nil	
-      @geo_location = GeoLocation.new 
-    end
-    # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
-
-    @my_expeditions = Expedition.recent_expeditions(current_user)
   end
 
   def select_expedition
@@ -115,33 +102,20 @@ class StoriesController < ApplicationController
       @story.blog = '[Click here to write up a short BLOG story about the event...]'
     end
 
-    @recent_geo_locations = 
-    GeoLocation.recent_geo_locations(@story.user)
-    @geo_location = @story.geo_location 
-    if @geo_location == nil
-      flash[:error] = "Location is required"
-      @geo_location = GeoLocation.new
-    end
+    init_defaults
 
     if(@story.expedition) # force some story fields to expedition's values
       @expedition = @story.expedition
       @story.geo_location = @expedition.geo_location
       @story.cleaning_at = @expedition.target_date
     end
-        
-    respond_to do |format|
-      if @story.save
-        flash[:notice] = "Event was successfully created"
-        format.html {redirect_to stories_url }
-        # format.xml do
-        #   headers["Location"] = client_url(@client)
-        #   render :nothing => true, :status => "201 Created"
-        # end
-      else
-        flash[:error] = "Oops, something went wrong, correct the errors below and resubmit..." if flash[:error] == nil
-        # format.html {render :action => "new"}
-        # format.xml {render :xml => @client.errors.to_xml}
-      end
+
+    if @story.save
+      flash[:notice] = "Event was successfully created"
+      redirect_to stories_url 
+    else
+      flash[:error] = "Oops, something went wrong, correct the errors below and resubmit..." if flash[:error] == nil
+      render :action => "new"
     end
   end
 
@@ -207,6 +181,22 @@ class StoriesController < ApplicationController
   end
 
   private
-  
+  def init_defaults
+    # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
+    @recent_geo_locations = 
+    GeoLocation.recent_geo_locations(current_user)
+
+    @geo_location = GeoLocation.find(params[:geo_location_id]) if params[:geo_location_id] 
+
+    if @geo_location == nil 
+      @geo_location = @recent_geo_locations[0] 
+    end
+    if @geo_location == nil	
+      @geo_location = GeoLocation.new 
+    end
+    # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
+
+    @my_expeditions = Expedition.recent_expeditions(current_user)
+  end  
 
 end

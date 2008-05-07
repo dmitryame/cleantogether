@@ -17,8 +17,9 @@
 
 <% form_for(:story, :url => user_stories_path(current_user)) do |f| %>
 <div id="main">
-	<%= f.hidden_field :expedition_id, :value => "" %>
-	<%= error_message_on @story, :expedition_id -%>
+	<div id="expedition-id">
+		<%= f.hidden_field :expedition_id, :value => "" %>
+	</div>
 	
 	<!-- code between these comments is redundant with expeditions controller has to be rafactored into a reusable component     -->
 	<div id="location" class="description">

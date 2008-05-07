@@ -14,7 +14,10 @@ if @expedition != nil
   page["recent-locations"].visual_effect :fade
   page["existing-locations"].visual_effect :fade
 
+  # insert a hidden input form field for selected expedition and assign value to the expedition.id
+  # page["expedition-id"].replace_html "<input id=\"story_expedition_id\" name=\"story[expedition_id]\" type=\"hidden\" value=\"\" />"
   page[:story_expedition_id].value = @expedition.id  
+
 
 else # empty expedition selected -- meaning you are on your own without expedition
   page["story[cleaning_at]"].visual_effect :highlight
@@ -24,5 +27,6 @@ else # empty expedition selected -- meaning you are on your own without expediti
   page["existing-locations"].visual_effect :appear
 
   page[:story_expedition_id].value = ""
+  # page["expedition-id"].replace_html "" #just remove the expedition_id hidden form field
 
 end
