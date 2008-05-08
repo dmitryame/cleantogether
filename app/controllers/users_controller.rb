@@ -1,5 +1,5 @@
 class UsersController < ApplicationController  
-  # ssl_required :new
+  ssl_required :new
   
   
   #Filter method to enforce a login requirement
@@ -9,23 +9,23 @@ class UsersController < ApplicationController
   auto_complete_for :team, :name
 
   
-  def stories
-    if logged_in?
-      redirect_to user_stories_path(current_user) 
-    else
-      store_location
-      redirect_to login_path
-    end
-  end
-
-  def profile
-    if logged_in?
-      redirect_to user_path(current_user) 
-    else
-      store_location
-      redirect_to login_path 
-    end
-  end
+  # def stories
+  #   if logged_in?
+  #     redirect_to user_stories_path(current_user) 
+  #   else
+  #     store_location
+  #     redirect_to login_path
+  #   end
+  # end
+  # 
+  # def profile
+  #   if logged_in?
+  #     redirect_to user_path(current_user) 
+  #   else
+  #     store_location
+  #     redirect_to login_path 
+  #   end
+  # end
 
   # render new.rhtml
   def new
