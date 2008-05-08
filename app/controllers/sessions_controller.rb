@@ -57,11 +57,13 @@ class SessionsController < ApplicationController
     # check preallowed_id and resolve if necessery
     current_user.add_to_preallowed if current_user.preallowed_id == nil
 
-    if return_to.nil?
-      redirect_to home_path
-    else
-      redirect_to return_to
-    end
+    redirect_to home_path
+
+    # if return_to.nil?
+    #   redirect_to home_path
+    # else
+    #   redirect_to return_to
+    # end
   end
   
   
