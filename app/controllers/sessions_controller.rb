@@ -2,7 +2,9 @@
 class SessionsController < ApplicationController
   before_filter :login_required, :only => :destroy
   
-  ssl_required :new
+  def ssl_required?
+    true
+  end
   
   
   #   before_filter :not_logged_in_required, :only => [:new, :create]
@@ -39,15 +41,6 @@ class SessionsController < ApplicationController
     end
   end
 
-  def show
-    return_to = session[:return_to]
-    
-    if return_to.nil?
-      redirect_to home_path
-    else
-      redirect_to return_to
-    end
-  end
 
   private
 

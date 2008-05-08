@@ -37,6 +37,8 @@ class StoriesController < ApplicationController
     @story.blog = final_line    
     @story.save
   end
+  
+  
   def set_story_weight
     @story = Story.find(params[:id])
     value = ERB::Util.h(params[:value])
