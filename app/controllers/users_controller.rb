@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   #     redirect_to user_stories_path(current_user) 
   #   else
   #     store_location
-  #     redirect_to login_path
+  #     redirect_to :controller   => "sessions", :action => "new"
   #   end
   # end
   # 
@@ -23,7 +23,7 @@ class UsersController < ApplicationController
   #     redirect_to user_path(current_user) 
   #   else
   #     store_location
-  #     redirect_to login_path 
+  #     redirect_to :controller   => "sessions", :action => "new" 
   #   end
   # end
 
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
       #we don't want to log in newly regestered user, the user has to activate the account first
       #self.current_user = @user
       flash[:notice] = "Thanks for signing up! Check your email for activation link."
-      redirect_to login_path
+      redirect_to :controller   => "sessions", :action => "new"
     else
       flash[:notice] = "Error Creating User."
       render :action => 'new'
@@ -99,7 +99,7 @@ class UsersController < ApplicationController
     #self.current_user = User.find_and_activate!(params[:id])
     User.find_and_activate!(params[:id])
     flash[:notice] = "Your account has been activated! You can now login."
-    redirect_to login_path
+    redirect_to :controller   => "sessions", :action => "new"
   rescue User::ArgumentError
     flash[:notice] = 'Activation code not found. Please try creating a new account.'
     redirect_to new_user_path 
@@ -108,7 +108,7 @@ class UsersController < ApplicationController
     redirect_to new_user_path
   rescue User::AlreadyActivated
     flash[:notice] = 'Your account has already been activated. You can log in below.'
-    redirect_to login_path
+    redirect_to :controller   => "sessions", :action => "new"
   end
 
   # Change password action  
@@ -144,7 +144,7 @@ class UsersController < ApplicationController
       @user.forgot_password
       @user.save
       flash[:notice] = "A password reset link has been sent to your email address" 
-      redirect_to login_path
+      redirect_to :controller   => "sessions", :action => "new"
     else
       flash[:error] = "Could not find a user with that email address" 
     end
