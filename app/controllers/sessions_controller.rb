@@ -39,6 +39,16 @@ class SessionsController < ApplicationController
     end
   end
 
+  def show
+    return_to = session[:return_to]
+    
+    if return_to.nil?
+      redirect_to home_path
+    else
+      redirect_to return_to
+    end
+  end
+
   private
 
   def failed_login(message)
@@ -57,13 +67,11 @@ class SessionsController < ApplicationController
     # check preallowed_id and resolve if necessery
     current_user.add_to_preallowed if current_user.preallowed_id == nil
 
-    redirect_to home_path
-
-    # if return_to.nil?
-    #   redirect_to home_path
-    # else
-    #   redirect_to return_to
-    # end
+    if return_to.nil?
+      redirect_to home_path
+    else
+      redirect_to return_to
+    end
   end
   
   
