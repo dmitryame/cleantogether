@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
    unless RAILS_ENV == 'production'
      false
    else
-     super
+     true
    end
   end
 

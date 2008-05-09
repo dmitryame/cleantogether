@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
   
   include SslRequirement
 
+  def ssl_required?
+   unless RAILS_ENV == 'production'
+     false
+   else
+     super
+   end
+  end
 
   
   # Pick a unique cookie name to distinguish our session data from others'

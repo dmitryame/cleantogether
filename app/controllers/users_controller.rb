@@ -1,12 +1,5 @@
 class UsersController < ApplicationController  
 
-  def ssl_required?
-   unless RAILS_ENV == 'production'
-     false
-   else
-     super
-   end
-  end
   
   
   #Filter method to enforce a login requirement
