@@ -1,8 +1,6 @@
-<h1>Team</h1>
+<h1>Team: <i><%=h @team.name%></i></h1>
 <div class="description">
-	<label for="team_name">Name:</label>&nbsp;<%=h @team.name%><br/>
 	<label for="team_motto">Motto:</label>&nbsp;<%=h @team.motto%><br/>
-
 	<%= link_to "Edit Team Info", edit_user_team_path(current_user, @team) %>
 	<%= link_to "Back", user_path(current_user) %>
 	<h1>Team members</h1>

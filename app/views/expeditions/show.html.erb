@@ -1,11 +1,10 @@
 <%= GMap.header %> 
 
-<h1>Expedition</h1>
+<h1>Expedition: <i><%=h @expedition.name%></i></h1>
 <div class="description">
 	<table>
 		<tr valign="top">
 			<td width=50%>
-				<label for="expedition_name">Name:</label>&nbsp;<%=h @expedition.name%><br/>
 				<label for="expedition_target_date">Target Date:</label>&nbsp;<%=h @expedition.target_date.to_s(:date_time12)%><br/>
 
 				<%= link_to "Edit Expedition Info", edit_user_expedition_path(current_user, @expedition) %>
