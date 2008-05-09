@@ -1,1 +1,0 @@
-page["story-#{@story.id}"].visual_effect :highlight,:startcolor => "#ffffff", :endcolor => "#00af00"

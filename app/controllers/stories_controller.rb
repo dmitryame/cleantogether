@@ -1,59 +1,9 @@
 class StoriesController < ApplicationController
   before_filter :login_required
   
-  in_place_edit_for :story, :weigth
-  in_place_edit_for :story, :blog
-
   # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
   auto_complete_for :geo_location, :name
   # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
-
-  # in_place_editor_filed helper methods
-
-  def set_story_blog
-    @story = Story.find(params[:id])
-    value = ERB::Util.h(params[:value])
-
-    s = StringScanner.new(value)
-    final_line = value
-    # final_line = ""
-    # count = 0
-    # while !s.eos?  
-    #   next_char = s.getch()   
-    #   if(count <= 80)
-    #     if(next_char == "\n")
-    #       count = 0
-    #     else
-    #       count += 1
-    #     end
-    #     final_line += next_char 
-    #   else
-    #     count = 0
-    #     final_line += "\n" 
-    #     final_line += next_char if next_char != "\n"
-    #   end      
-    # end
-    final_line = '[Enter Description]' if final_line == nil || final_line.strip == ''
-    @story.blog = final_line    
-    @story.save
-  end
-  
-  
-  def set_story_weight
-    @story = Story.find(params[:id])
-    value = ERB::Util.h(params[:value])
-    value = 0 if value == nil || value.strip == ''
-    @story.weight = value 
-    @story.save
-  end
-
-  # END in_place_editor_filed helper methods 
-
-  def update_cleaning_at
-    @story = Story.find(params[:id])
-    @story.cleaning_at = params[:cleaning_at]
-    @story.save
-  end
 
   def index
     @stories = Story.paginate_by_user_id current_user, :page => params[:page],:per_page => 10, :order => "created_at DESC"
@@ -101,7 +51,6 @@ class StoriesController < ApplicationController
     @story = Story.new(params[:story])
     @story.user = current_user
     if(@story.blog == nil || @story.blog.strip == '')
-      @story.blog = '[Click here to write up a short BLOG story about the event...]'
     end
 
     init_defaults
@@ -167,7 +116,7 @@ class StoriesController < ApplicationController
     if @story.save
       responds_to_parent do
         render :update do |page|
-          page.replace "story-picture-#{@story.id}", :partial => 'story_picture', :object => @story
+          page.insert_html :bottom, dom_id(@story, "story_images"), :partial => 'story_picture', :object => @story
           page["story-picture-#{@story.id}"].visual_effect :slide_down
         end
       end

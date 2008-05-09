@@ -371,49 +371,33 @@ span.in_place_editor_field {
   color: #ddd;
 }
 
-.storys {
-    position: relative;
-    left: 100px;
-    top: 300px;    	
-}
-
 .story {
-    width: 876px;
-    height: 500px;
-    background: url(/images/new/entry_background.png);
-    background-repeat: no-repeat;
 }
 
-.story-image {
-    text-align: center;
-    padding: 10px 10px 10px 10px;
-    width: 300px;
-    height: 200px;	
+.story-controls {
+	float: left;
+	border: 1px solid #999;
+	padding: 2px;
+
 }
+
 
 .story-map {
-    text-align: center;
-    padding: 28px 10px 10px 10px;
-    width: 300px;
-    height: 200px;
+    width: 320px;
+    height: 220px;
+	float: right;
+	border: 1px solid #999;
+	padding: 20px;
 }
-
 
 .story-location {
     color: #bc4700;
     font-size : 15px;
 	font-weight: bold;	
-    height: 20px;
-    display: inline;
 }
 .story-location a {
 	text-decoration: none;
     color: #bc4700;
-}
-
-.story-weight {
-    white-space: nowrap;
-    display: inline;
 }
 
 .story-date {
@@ -421,12 +405,8 @@ span.in_place_editor_field {
     font-size : 15px;
     height: 20px;
     text-align: right;
-    display: inline;
 }
 .story-story {
-    position:relative;
-    left:330px;
-    top:-440px;
     width: 535px;
 	color : #555;
 }
@@ -436,6 +416,14 @@ span.in_place_editor_field {
     font-size: 85%;
     overflow: auto;
     height: 400px;
+}
+
+
+.thumbnail {
+	float: left;
+	border: 1px solid #999;
+	margin: 0 15px 15px 0;
+	padding: 5px;
 }
 
 

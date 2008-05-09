@@ -1,1 +1,1 @@
-page["story-#{@story.id}"].visual_effect :slide_up
+page[dom_id(@story)].visual_effect :slide_up
