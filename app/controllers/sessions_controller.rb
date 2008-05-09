@@ -3,9 +3,13 @@ class SessionsController < ApplicationController
   before_filter :login_required, :only => :destroy
   
   def ssl_required?
-    true
+   unless RAILS_ENV == 'production'
+     false
+   else
+     super
+   end
   end
-  
+
   
   #   before_filter :not_logged_in_required, :only => [:new, :create]
   # render new.rhtml
