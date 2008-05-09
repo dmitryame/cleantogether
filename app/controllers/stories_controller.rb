@@ -114,7 +114,7 @@ class StoriesController < ApplicationController
 
     if @story.save
       flash[:notice] = "Event was successfully created"
-      redirect_to stories_url 
+      redirect_to user_stories_url(current_user)
     else
       flash[:error] = "Oops, something went wrong, correct the errors below and resubmit..." if flash[:error] == nil
       render :action => "new"

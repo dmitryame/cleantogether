@@ -73,18 +73,19 @@
 	</div>
 	<!-- code between these comments is redundant with expeditions controller has to be rafactored into a reusable component     -->
 
-	<div id="weight" class="description">
-		<p>
-			<label>Weight:</label>
-			<%= f.text_field :weight %> 
-			<%= error_message_on @story, :weight -%>
-		</p>
-	</div>
 	<div id="date" class="description">
 		<p>
 			<label>When:</label>
 			<%= calendar_date_select_tag "story[cleaning_at]", @story.cleaning_at ? @story.cleaning_at.to_s(:date_time12):nil, :embedded => false, :time => true, :buttons => true %>
 			<%= error_message_on @story, :cleaning_at -%>	
+		</p>
+	</div>
+
+	<div id="weight" class="description">
+		<p>
+			<label>Weight:</label>
+			<%= f.text_field :weight %> 
+			<%= error_message_on @story, :weight -%>
 		</p>
 	</div>
 	<div id="story" class="description">
