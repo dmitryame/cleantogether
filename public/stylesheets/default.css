@@ -416,16 +416,12 @@ span.in_place_editor_field {
     height: 20px;
     text-align: right;
 }
-.story-story {
-    width: 535px;
-	color : #555;
-}
 
 .story-blog {
     font-family: Verdana; 
-    font-size: 85%;
-    overflow: auto;
+    font-size: 75%;
     height: 400px;
+	white-space : normal;
 }
 
 
