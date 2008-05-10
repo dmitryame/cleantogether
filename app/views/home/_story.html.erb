@@ -1,63 +1,44 @@
-<div id="story-<%=story.id%>" class="story">				
-	<%
-	@story = story
-	%>
-	<div class="story-image">
-		<%if @story.pictures[0] == nil%>
-			No Picture Provided
-		<% else %>
-			<img src="<%=url_for(:controller => "home" , :action => :picture, :id => @story.pictures[0])%>" height="230"/>
-		<% end %>
-	</div>
-		
-	<div class="story-map">	
-		<% if @story.geo_location == nil%>
-			No Location Provided
-		<%else%>
-			<%
-			map = GMap.new("map_div_#{@story.id}")
-		    map.control_init(:small_map => true,:map_type => true)							    
-		    map.set_map_type_init(GMapType::G_HYBRID_MAP)      							
-		    geo_location  = @story.geo_location
-		    map.center_zoom_init([geo_location.lat,geo_location.lng],8)  	  						
-			marker = GMarker.new([geo_location.lat, geo_location.lng], :title => geo_location.name)  
-			map.overlay_init marker							
-			%>
-			<%= map.to_html %>
-			<%= map.div(:width => 305, :height => 230) %>
-		<%end%>
-	</div>
-	
-	<div class="story-story">
-		<table width=100%>
-			<tr>
-				<td width=60%>
-					<div class="story-location">
-						<%=@story.geo_location.name%>
-					</div>
-				</td>
-				<td width=40% align="right">
-					<div class="story-date">
-						<img src="/images/new/calendar_icon.png"/>
-						<%=@story.cleaning_at.to_s(:date_time12)%>						
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td width=60%>
-					<div class="story-weight">
-						<b>Weight:</b>&nbsp;<%= pluralize @story.weight, 'pound' -%>.
-					</div>
-				</td>
-				<td width=40% align="right">
-					<div class="story-user">
-						<%= @story.user.login %>
-					</div>
-				</td>
-			</tr>
-		</table>
-		<div class="story-blog">
-			<%= @story.blog%>
-		</div>
-	</div>
+<%@story = story%>
+<div id="<%=dom_id story%>" class="story">
+	<table width="100%">
+		<tr>
+			<td>
+				<div class="description">
+					<img src="/images/new/calendar_icon.png"/><%=@story.cleaning_at.to_s(:date_time12)%>&nbsp;<label>Weight:</label><%=h @story.weight%>&nbsp;lb.&nbsp;<label>Location:</label><%=h story.geo_location.name%>
+				</div>
+
+				<%if story.expedition%>
+				<div class="description">
+					<label>Expedition:</label>&nbsp;<%=h story.expedition.name%>
+				</div>
+				<%end%>
+
+
+				<div class="story-map">	
+					<%
+					map = GMap.new("map_div_#{story.id}")
+					map.control_init(:small_map => true,:map_type => true)							    
+					map.set_map_type_init(GMapType::G_HYBRID_MAP)      							
+					geo_location  = story.geo_location
+					map.center_zoom_init([geo_location.lat,geo_location.lng],8)  	  						
+					marker = GMarker.new([geo_location.lat, geo_location.lng], :title => geo_location.name)  
+					map.overlay_init marker							
+					%>
+					<%= map.to_html %>
+					<%= map.div(:width => 305, :height => 230) %>
+				</div>
+
+
+				<div class="description"><label>Story:</label><br/><%=h @story.blog%></div>
+
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="<%=dom_id(story, "story_images")%>">
+					<%= render :partial => "story_picture", :collection => story.pictures %>					
+				</div>
+			</td>
+		</tr>
+	</table>
 </div>
