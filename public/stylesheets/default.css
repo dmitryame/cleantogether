@@ -372,10 +372,11 @@ span.in_place_editor_field {
 }
 
 .story {
+	border: 1px solid #999;
 }
 
 .story-controls {
-	float: left;
+	float: right;
 	border: 1px solid #999;
 	padding: 2px;
 
@@ -386,7 +387,7 @@ span.in_place_editor_field {
     width: 320px;
     height: 220px;
 	float: right;
-	border: 1px solid #999;
+/*  border: 1px solid #999;*/
 	padding: 20px;
 }
 
@@ -421,10 +422,16 @@ span.in_place_editor_field {
 
 .thumbnail {
 	float: left;
-	border: 1px solid #999;
-	margin: 0 15px 15px 0;
-	padding: 5px;
+    border: 1px solid #999;
+	margin: 2 5px 5px 2;
+	padding: 2px;
 }
+
+
+.float-left {
+	float: left;
+}
+
 
 
 fieldset { border:0px solid #84D02E }

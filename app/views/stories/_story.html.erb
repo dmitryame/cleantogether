@@ -1,12 +1,10 @@
-<hr size="1">
-
 <%@story = story%>
-<table>
-	<tr>
-		<td>
-			<div id="<%=dom_id story%>">
+<div id="<%=dom_id story%>" class="story">
+	<table width="100%">
+		<tr>
+			<td>
 				<div class="story-controls">
-					<%= link_to "Edit Story", user_story_path(current_user, story) %>
+					<%= link_to "Edit Story", edit_user_story_path(current_user, story) %>
 					<%= link_to_remote image_tag ("trash.gif", :border => 0), 
 					:url => user_story_path(current_user, story), 
 					:confirm => 'Are you sure you want to delete the Story', 
@@ -45,8 +43,9 @@
 		</tr>
 		<tr>
 			<td>
-				<div class="<%=dom_id(story, "story_images")%>">
+				<div id="<%=dom_id(story, "story_images")%>">
 					<%= render :partial => "story_picture", :collection => story.pictures %>					
+				</div>
 
 					<%form_for(
 					:picture,
@@ -60,10 +59,7 @@
 					<%= submit_tag("Upload a Picture")%>
 					<% end %>									
 					<iframe id="<%=dom_id(story, "upload_frame")%>" name="<%=dom_id(story, "upload_frame")%>" style="width:0px;height:0px;border:0px" src="about:blank"></iframe>							
-				</div>
-
-
-			</div>
-		</td>
-	</tr>
-</table>
+			</td>
+		</tr>
+	</table>
+</div>

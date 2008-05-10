@@ -1,0 +1,1 @@
+page[dom_id(@picture)].visual_effect :shrink

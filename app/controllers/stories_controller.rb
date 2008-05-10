@@ -19,6 +19,25 @@ class StoriesController < ApplicationController
     
   end
 
+  def edit
+    @story = current_user.stories.find(params[:id])
+  end  
+
+  def update 
+    @story = current_user.stories.find(params[:id])
+    respond_to do |format| 
+      if @story.update_attributes(params[:story]) 
+        flash[:notice] = "Story updated"
+        format.html { redirect_to user_stories_url(current_user) } 
+        # format.xml { render :nothing => true } 
+      else 
+        format.html { render :action => "edit" } 
+        # format.xml { render :xml => @article.errors.to_xml } 
+      end 
+    end 
+  end 
+
+
   def select_expedition
     if params[:id] != "0" && params[:id] != nil && params[:id] != ""       
       @expedition = Expedition.find(params[:id]) 
@@ -116,8 +135,8 @@ class StoriesController < ApplicationController
     if @story.save
       responds_to_parent do
         render :update do |page|
-          page.insert_html :bottom, dom_id(@story, "story_images"), :partial => 'story_picture', :object => @story
-          page["story-picture-#{@story.id}"].visual_effect :slide_down
+          page.insert_html :bottom, dom_id(@story, "story_images"), :partial => 'story_picture', :object => @picture
+          page[dom_id(@picture)].visual_effect :grow
         end
       end
     else
@@ -129,6 +148,11 @@ class StoriesController < ApplicationController
     end
     # redirect_to :controller => "cleaning", :action => "index"
 
+  end
+
+  def delete_picture
+    @picture = Picture.find params[:id]
+    @picture.destroy
   end
 
   private

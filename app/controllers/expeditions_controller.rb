@@ -103,6 +103,7 @@ class ExpeditionsController < ApplicationController
     @expedition = current_user.captains_expeditions.find(params[:id])
     respond_to do |format| 
       if @expedition.update_attributes(params[:expedition]) 
+        flash[:notice] = "Expedition updated"        
         format.html { redirect_to user_expedition_url(current_user, @expedition) } 
         # format.xml { render :nothing => true } 
       else 

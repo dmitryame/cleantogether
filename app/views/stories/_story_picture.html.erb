@@ -1,3 +1,12 @@
 <div id="<%= dom_id(story_picture)%>" class="thumbnail">
-	<img src="<%=url_for(:controller => "home" , :action => :picture, :id => story_picture)%>" height="230"/>
+	<div class="float-left">
+		<%= link_to_remote image_tag ("trash.gif", :border=>0,:width=>12, :height=>12), 
+		:url => {
+			:controller => :stories, :action => :delete_picture, :id => story_picture
+		},
+		:confirm => 'Are you sure you want to delete the Picture', 
+		:method => :delete %>	
+	</div>
+	
+	<img src="<%=url_for(:controller => "home" , :action => :picture, :id => story_picture, :thumb => "thumb")%>"/>
 </div>

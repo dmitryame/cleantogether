@@ -44,6 +44,7 @@ class TeamsController < ApplicationController
     @team = current_user.captains_teams.find(params[:id])
     respond_to do |format| 
       if @team.update_attributes(params[:team]) 
+        flash[:notice] = "Team updated"        
         format.html { redirect_to user_team_url(current_user, @team) } 
         # format.xml { render :nothing => true } 
       else 
