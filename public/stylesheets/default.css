@@ -379,7 +379,12 @@ span.in_place_editor_field {
 	float: right;
 	border: 1px solid #999;
 	padding: 2px;
-
+	color: #bc4700;
+}
+.story-controls a {
+    color: #bc4700;
+    display: inline;
+    text-decoration: underline;	
 }
 
 
