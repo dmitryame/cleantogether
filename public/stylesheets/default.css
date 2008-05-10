@@ -389,11 +389,15 @@ span.in_place_editor_field {
 
 
 .story-map {
+    color: #bc4700;
+    text-align: right;
+    vertical-align: top;    
     width: 320px;
-    height: 220px;
+    height: 240px;
 	float: right;
-/*  border: 1px solid #999;*/
-	padding: 20px;
+  border: 1px solid #999;
+  padding: 1px;
+  margin: 5px;
 }
 
 .story-location {

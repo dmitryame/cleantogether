@@ -8,17 +8,19 @@
 				</div>
 
 				<div class="description">
-					<img src="/images/new/calendar_icon.png"/><%=@story.cleaning_at.to_s(:date_time12)%>&nbsp;<label>Weight:</label><%=h @story.weight%>&nbsp;lb.&nbsp;<label>Location:</label><%=h story.geo_location.name%>
+					<img src="/images/new/calendar_icon.png"/><%=@story.cleaning_at.to_s(:date_time12)%>&nbsp;<%=h @story.weight%>&nbsp;lb.
 				</div>
 
 				<%if story.expedition%>
 				<div class="description">
-					<label>Expedition:</label>&nbsp;<%=h story.expedition.name%>
+					<label>Expedition:</label><br/>
+					<%=h story.expedition.name%>
 				</div>
 				<%end%>
 
 
 				<div class="story-map">	
+					<%=h story.geo_location.name%>
 					<%
 					map = GMap.new("map_div_#{story.id}")
 					map.control_init(:small_map => true,:map_type => true)							    
@@ -29,7 +31,7 @@
 					map.overlay_init marker							
 					%>
 					<%= map.to_html %>
-					<%= map.div(:width => 305, :height => 230) %>
+					<%= map.div(:width => 320, :height => 220) %>
 				</div>
 
 
