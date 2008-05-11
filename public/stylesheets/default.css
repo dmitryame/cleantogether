@@ -341,6 +341,14 @@ span.in_place_editor_field {
 }
 
 
+pre {
+white-space: pre-wrap; /* css-3 */
+white-space: -moz-pre-wrap !important; /* Mozilla, since 1999 */
+white-space: -pre-wrap; /* Opera 4-6 */
+white-space: -o-pre-wrap; /* Opera 7 */
+word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
 .pagination {
   padding: 3px;
   margin: 3px;
@@ -420,8 +428,19 @@ span.in_place_editor_field {
 .story-blog {
     font-family: Verdana; 
     font-size: 75%;
-	white-space : normal;
+    color: #bc4700;
+/*  white-space: pre;*/
+white-space: pre; /* CSS2 */
+white-space: -moz-pre-wrap; /* Mozilla */
+white-space: -hp-pre-wrap; /* HP printers */
+white-space: -o-pre-wrap; /* Opera 7 */
+white-space: -pre-wrap; /* Opera 4-6 */
+white-space: pre-wrap; /* CSS 2.1 */
+white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+word-wrap: break-word; /* IE */	
 }
+
+
 
 
 .thumbnail {
