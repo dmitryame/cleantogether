@@ -1,6 +1,14 @@
 class TeamsController < ApplicationController
   before_filter :login_required
 
+  def ssl_required?
+   unless RAILS_ENV == 'production'
+     false
+   else
+     true
+   end
+  end
+
 
   # render new.rhtml
   def new

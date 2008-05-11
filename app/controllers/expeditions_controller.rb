@@ -1,6 +1,14 @@
 class ExpeditionsController < ApplicationController
   before_filter :login_required
 
+  def ssl_required?
+   unless RAILS_ENV == 'production'
+     false
+   else
+     true
+   end
+  end
+
   # code between these comments is redundant with stories controller has to be rafactored into a reusable component
   auto_complete_for :geo_location, :name
   # code between these comments is redundant with stories controller has to be rafactored into a reusable component
