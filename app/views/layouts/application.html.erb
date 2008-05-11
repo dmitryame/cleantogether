@@ -27,12 +27,12 @@
 							</td>
 							<td>
 								<div class="menuItem">							      
-									<%= link_to 'Stories', logged_in? ? user_stories_path(current_user) : user_stories_path(0)%>
+									<%= link_to 'My Stories', logged_in? ? user_stories_path(current_user) : user_stories_path(0)%>
 								</div>
 							</td>
 							<td>
 								<div class="menuItem">
-									<%= link_to 'Profile', logged_in? ? user_path(current_user) : user_path(0) %>
+									<%= link_to 'My Profile', logged_in? ? user_path(current_user) : user_path(0) %>
 								</div>
 							</td>
 							<td>
