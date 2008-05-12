@@ -4,6 +4,7 @@ class StoriesController < ApplicationController
   # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
   auto_complete_for :geo_location, :name
   # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
+  auto_complete_for :team, :name
 
   def index
     @stories = Story.paginate_by_user_id current_user, :page => params[:page],:per_page => 10, :order => "created_at DESC"
@@ -154,6 +155,21 @@ class StoriesController < ApplicationController
     @picture = Picture.find params[:id]
     @picture.destroy
   end
+
+  def join_team    
+    @team = Team.find_by_name(params[:name])
+    if(!current_user.teams.find_by_name(@team.name))
+      current_user.teams << @team 
+      init_defaults      
+    end
+  end  
+
+  def leave_team
+    @team = Team.find(params[:id])
+    current_user.teams.delete(@team)
+    init_defaults
+  end
+
 
   private
   def init_defaults

@@ -3,16 +3,22 @@
 <%= error_messages_for :story %>
 
 
+<table width="100%">
+	<tr>
+		<td with="50%" valign="top">
+			<%= render :partial => 'available_expeditions' %>
+		</td>
+		<td with="50%" valign="top">
+			<fieldset>
+				<legend>
+					My Teams: 
+				</legend>				
+				<%= render :partial => "member_of", :object => current_user %>												
+			</fieldset>
+		</td>
+	</tr>
+</table>		
 
-<label>Available expeditions:</label>
-<div class="description">
-<%= select(:expedition_drop_down, :id, @my_expeditions.map {|l| [l.id == 0 ? " " : l.target_date.to_s(:date_time12) + ' ' + h(l.geo_location.name) +  ' : ' + h(l.name) + ' ', l.id]},  
-{:selected=>0}, 
-{"onchange" => remote_function(:url =>{ :action => :select_expedition},  
-:with => "'id='+value" )
-}  
-) %>
-</div>
 
 
 <% form_for(:story, :url => user_stories_path(current_user)) do |f| %>
