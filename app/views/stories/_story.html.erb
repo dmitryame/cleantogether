@@ -3,24 +3,25 @@
 	<table width="100%">
 		<tr>
 			<td>
-				<div class="story-controls">
-					<%= link_to "Edit Story", edit_user_story_path(current_user, story) %>
-					<%= link_to_remote image_tag ("trash.gif", :border => 0), 
-					:url => user_story_path(current_user, story), 
-					:confirm => 'Are you sure you want to delete the Story', 
-					:method => :delete %>
-				</div>
+				<div class="story-header">
+					<div class="story-controls">
+						<%= link_to "Edit Story", edit_user_story_path(current_user, story) %>
+						<%= link_to_remote image_tag ("trash.gif", :border => 0), 
+						:url => user_story_path(current_user, story), 
+						:confirm => 'Are you sure you want to delete the Story', 
+						:method => :delete %>
+					</div>
 
-				<div class="description">
-					<img src="/images/new/calendar_icon.png"/><%=@story.cleaning_at.to_s(:date_time12)%>&nbsp;&nbsp;&nbsp;<label>Weight:</label>&nbsp;<%=h @story.weight%>&nbsp;lbs.
-				</div>
+					<div class="description">
+						<img src="/images/new/calendar_icon.png"/><%=@story.cleaning_at.to_s(:date_time12)%>&nbsp;&nbsp;&nbsp;<label>Weight:</label>&nbsp;<%=h @story.weight%>&nbsp;lbs.
+					</div>
 
-				<%if story.expedition%>
-				<div class="description">
-					<label>Expedition:</label>&nbsp;<%=h story.expedition.name%>
+					<%if story.expedition%>
+					<div class="description">
+						<label>Expedition:</label>&nbsp;<%=h story.expedition.name%>
+					</div>
+					<%end%>
 				</div>
-				<%end%>
-
 
 				<div class="story-map">	
 					<%=h story.geo_location.name%>					

@@ -382,10 +382,13 @@ word-wrap: break-word; /* Internet Explorer 5.5+ */
 .story {
 	border: 1px solid #999;
 }
+.story-header {
+    background-color: #ffffcc;
+}
 
 .story-controls {
 	float: right;
-	border: 1px solid #999;
+/*  border: 1px solid #999;*/
 	padding: 2px;
 	color: #bc4700;
 }
