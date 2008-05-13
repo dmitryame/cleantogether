@@ -86,6 +86,11 @@ class SponsorsController < ApplicationController
     @logo = Logo.create! params[:logo]
 
     @sponsor = Sponsor.find(params[:sponsor_id])
+    
+    if(@sponsor.logo)
+      @sponsor.logo.destroy
+    end
+    
     @sponsor.logo = @logo
     @logo.save
 
@@ -107,12 +112,6 @@ class SponsorsController < ApplicationController
 
   end
 
-  def delete_logo
-    # debugger
-    @sponsor = Sponsor.find(params[:id])    
-    @logo = @sponsor.logo
-    @logo.destroy
-  end
 
   def logo
     @logo = Logo.find(params[:id])
