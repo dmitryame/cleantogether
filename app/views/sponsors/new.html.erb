@@ -1,0 +1,11 @@
+<h1>New Sponsor</h1>
+<%= error_messages_for :sponsor %>
+
+<% form_for(:sponsor, :url => sponsors_path) do |f| %>
+	<label>Name:</label><br/><%= f.text_field :name %> <br/>
+	<label>Email:</label><br/><%= f.text_field :email %> <br/>
+	<label>URL:</label><br/><%= f.text_field :url %> <br/>
+	<p><%=submit_tag "Create"%></p>
+<%end%>
+
+<%= link_to 'back', sponsors_path%>

@@ -2,6 +2,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :geo_locations do |geo_location|
   end
+  map.resources :sponsors do |sponsors|
+  end
   
   map.resources :users do |user|
     user.resources :expeditions, 

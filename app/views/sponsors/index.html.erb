@@ -1,0 +1,6 @@
+<div id='add_story' class="description">
+	<%= link_to image_tag ("add.gif", :border => 0), :controller => :sponsors, :action => :new %>
+	<%= link_to "Create New Sponsor", :controller => :sponsors, :action => :new %>
+</div>
+
+<%= render :partial => "sponsor", :collection => @sponsors %>

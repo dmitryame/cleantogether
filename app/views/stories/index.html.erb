@@ -1,14 +1,8 @@
 <%= GMap.header %> 
-<table>
-	<tr>
-		<td>
-			<div id='add_story' class="description">
-				<%= link_to image_tag ("add.gif", :border => 0), :controller => :stories, :action => :new %>
-				<%= link_to "Post New Story", :controller => :stories, :action => :new %>
-			</div>
-		</td>
-	</tr>
-</table>
+<div id='add_story' class="description">
+	<%= link_to image_tag ("add.gif", :border => 0), :controller => :stories, :action => :new %>
+	<%= link_to "Post New Story", :controller => :stories, :action => :new %>
+</div>
 
 <div id="story-first"></div>
 <%= render :partial => "story", :collection => @stories %>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 22) do
+ActiveRecord::Schema.define(:version => 24) do
 
   create_table "db_files", :force => true do |t|
     t.binary "data"
@@ -50,6 +50,19 @@ ActiveRecord::Schema.define(:version => 22) do
   add_index "geo_locations", ["lat"], :name => "index_geo_locations_on_lat"
   add_index "geo_locations", ["lng"], :name => "index_geo_locations_on_lng"
 
+  create_table "logos", :force => true do |t|
+    t.string   "content_type"
+    t.string   "filename"
+    t.integer  "size"
+    t.integer  "parent_id"
+    t.string   "thumbnail"
+    t.integer  "width"
+    t.integer  "height"
+    t.integer  "db_file_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "pictures", :force => true do |t|
     t.integer "story_id"
     t.string  "content_type"
@@ -64,6 +77,17 @@ ActiveRecord::Schema.define(:version => 22) do
   end
 
   add_index "pictures", ["story_id"], :name => "index_pictures_on_cleaning_event_id"
+
+  create_table "sponsors", :force => true do |t|
+    t.string   "name",       :default => "", :null => false
+    t.string   "url"
+    t.string   "email"
+    t.integer  "logo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sponsors", ["name"], :name => "index_sponsors_on_name"
 
   create_table "stories", :force => true do |t|
     t.integer  "user_id",                        :null => false

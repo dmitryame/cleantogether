@@ -1,0 +1,11 @@
+<div class="description">
+	<h1>Sponsor Details</h1>
+	<label>Name:</label>&nbsp;<%=h @sponsor.name%><br/>
+	<label>Email:</label>&nbsp;<%=h @sponsor.email%><br/>
+	<label>URL:</label>&nbsp;<%=h @sponsor.url%><br/>
+
+
+	<%= link_to 'edit', edit_sponsor_path(@sponsor)%> |
+	<%= link_to 'back', sponsors_path%>
+
+</div>

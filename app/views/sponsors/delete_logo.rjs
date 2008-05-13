@@ -1,0 +1,2 @@
+# page["logo"].visual_effect :puff
+page.replace_html "logo", :partial => 'logo'

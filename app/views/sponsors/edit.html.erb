@@ -1,0 +1,22 @@
+<h1>Edit sponsor:</h1>
+<%= error_messages_for :sponsor %>
+
+<% form_for(:sponsor, :url => sponsor_path(@sponsor), :html => { :method => :put }) do  |f| %>
+	<label>Name:</label><br/><%= f.text_field :name %> <br/>
+	<label>Email:</label><br/><%= f.text_field :email %> <br/>
+	<label>URL:</label><br/><%= f.text_field :url %> <br/>
+	
+	<p><%= submit_tag "Update"%></p>
+<% end %>
+
+<%= link_to 'back', sponsor_path(@sponsor)%>
+
+<%= render :partial => "logo" %>					
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
