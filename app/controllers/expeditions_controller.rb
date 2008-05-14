@@ -1,6 +1,8 @@
 class ExpeditionsController < ApplicationController
   before_filter :login_required
 
+  auto_complete_for :sponsor, :name
+
   def ssl_required?
    unless RAILS_ENV == 'production'
      false
@@ -144,5 +146,10 @@ class ExpeditionsController < ApplicationController
 
     @captains_teams = current_user.captains_teams - @expedition.teams
   end
+
+  def complete_sponsor
+    @sponsor = Sponsor.find_by_name(params[:id])
+  end  
+
 
 end

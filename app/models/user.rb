@@ -161,6 +161,13 @@ class User < ActiveRecord::Base
     end
   end
   # preallowed methods that make a service call 
+  def admin
+    if is_user_in_role(ADMIN_ROLE_ID) == "1"
+      return true
+    else
+      return false
+    end
+  end
 
   # return true in case of success, false otherwise
   def self.add_user_to_role(user, role_id)

@@ -97,6 +97,8 @@ PREALLOWED_PASSWORD = 'cleantogether'
 
 CLIENT_ID = "2"
 GUEST_ROLE_ID = "11"
+GUEST_SUBJECT_ID = "69"
 USER_ROLE_ID = "12"
 TEAM_CAPTAIN_ROLE_ID = "14"
+ADMIN_ROLE_ID = "15"
 BASE_URI = "https://www.preallowed.com/clients/" + CLIENT_ID

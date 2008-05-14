@@ -10,6 +10,8 @@
 				<%= link_to "Edit Expedition Info", edit_user_expedition_path(current_user, @expedition) %>
 				<%= link_to "Back", user_path(current_user) %>
 				<%= render :partial => 'draggable_teams' %>				
+				<br/>
+				<%= render :partial => 'sponsor', :object => @expedition.sponsor %>								
 			</td>
 			<td>
 				<div id="location_name">

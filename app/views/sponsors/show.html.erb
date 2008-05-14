@@ -4,6 +4,9 @@
 	<label>Email:</label>&nbsp;<%=h @sponsor.email%><br/>
 	<label>URL:</label>&nbsp;<%=h @sponsor.url%><br/>
 
+	
+	<img src="<%=url_for(:controller => :sponsors , :action => :logo, :id => @sponsor.logo)%>"/><br/>
+	
 
 	<%= link_to 'edit', edit_sponsor_path(@sponsor)%> |
 	<%= link_to 'back', sponsors_path%>

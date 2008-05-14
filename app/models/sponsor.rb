@@ -5,4 +5,7 @@ class Sponsor < ActiveRecord::Base
   validates_format_of       :email, :with => /(^([^@\s]+)@((?:[-_a-z0-9]+\.)+[a-z]{2,})$)|(^$)/i
 
   belongs_to :logo
+  
+  has_many :expeditions
+  
 end

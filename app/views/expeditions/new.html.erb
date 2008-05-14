@@ -5,8 +5,32 @@
 <% form_for :expedition, :url => user_expeditions_path(current_user) do |f| -%>
 
 
-<p><label for="name">Expedition Name</label><br/>
-<%= f.text_field :name %></p>
+
+<table width="100%">
+	<tr>
+		<td width="50%" valign="top">
+			<label for="name">Expedition Name</label><br/>
+			<%= f.text_field :name %>
+		</td>
+		<td width="50%" valign="top" class="description">
+			
+			<label>Sponsor</label><br/>
+			<%= text_field_with_auto_complete :sponsor, :name, { :size => 25 }, :skip_style => false, :after_update_element => 
+			"function(element,value) " +
+			  "{ " +			
+			remote_function(:update=>'full_name',:url=>{:action=>:complete_sponsor},:with=>"'id='+element.value") + "}"
+			 -%>			
+
+			<div id="sponsor-id">
+				<%= f.hidden_field :sponsor_id, :value => "" %>
+			</div>
+			<%#this will be redrawn ones the sponsor is added%>
+			<%= render :partial => "sponsor", :object => nil %>
+			
+			
+		</td>
+	</tr>
+</table>
 
 <p><label for="target_date">Target Date</label><br/>
 	<%= calendar_date_select_tag "expedition[target_date]", @expedition.target_date ? @expedition.target_date.to_s(:date_time12):nil, :embedded => false, :time => true, :buttons => true %>

@@ -9,22 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 24) do
+ActiveRecord::Schema.define(:version => 25) do
 
   create_table "db_files", :force => true do |t|
     t.binary "data"
   end
 
   create_table "expeditions", :force => true do |t|
-    t.string   "name",            :default => "", :null => false
-    t.datetime "target_date",                     :null => false
-    t.integer  "captain_id",                      :null => false
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
-    t.integer  "geo_location_id",                 :null => false
+    t.string   "name",            :null => false
+    t.datetime "target_date",     :null => false
+    t.integer  "captain_id",      :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "geo_location_id", :null => false
+    t.integer  "sponsor_id"
   end
 
   add_index "expeditions", ["captain_id"], :name => "index_expeditions_on_captain_id"
+  add_index "expeditions", ["sponsor_id"], :name => "index_expeditions_on_sponsor_id"
 
   create_table "expeditions_teams", :id => false, :force => true do |t|
     t.integer  "expedition_id",   :null => false
@@ -39,12 +41,12 @@ ActiveRecord::Schema.define(:version => 24) do
   add_index "expeditions_teams", ["team_id"], :name => "index_expeditions_teams_on_team_id"
 
   create_table "geo_locations", :force => true do |t|
-    t.string   "name",                                        :default => "", :null => false
+    t.string   "name",                                        :null => false
     t.text     "description"
-    t.decimal  "lat",         :precision => 20, :scale => 15,                 :null => false
-    t.decimal  "lng",         :precision => 20, :scale => 15,                 :null => false
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
+    t.decimal  "lat",         :precision => 20, :scale => 15, :null => false
+    t.decimal  "lng",         :precision => 20, :scale => 15, :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   add_index "geo_locations", ["lat"], :name => "index_geo_locations_on_lat"
@@ -79,7 +81,7 @@ ActiveRecord::Schema.define(:version => 24) do
   add_index "pictures", ["story_id"], :name => "index_pictures_on_cleaning_event_id"
 
   create_table "sponsors", :force => true do |t|
-    t.string   "name",       :default => "", :null => false
+    t.string   "name",       :null => false
     t.string   "url"
     t.string   "email"
     t.integer  "logo_id"
@@ -106,11 +108,11 @@ ActiveRecord::Schema.define(:version => 24) do
   add_index "stories", ["expedition_id"], :name => "index_cleaning_events_on_expedition_id"
 
   create_table "teams", :force => true do |t|
-    t.string   "name",       :default => "", :null => false
+    t.string   "name",       :null => false
     t.string   "motto"
-    t.integer  "captain_id",                 :null => false
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.integer  "captain_id", :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "teams", ["captain_id"], :name => "index_teams_on_captain_id"

@@ -29,15 +29,11 @@ class ApplicationController < ActionController::Base
   
     
   def check_authorization
-    if(@user != nil)
-      @user = User.find(session[:user_id]) 
-      preallowed_id = @user.preallowed_id 
+    if(current_user != nil)
+      preallowed_id = current_user.preallowed_id 
     else
       preallowed_id = GUEST_SUBJECT_ID
-      @user = User.new #guest user is not tied to the database id      
     end
-
-    session[:user_id] = @user.id
     
     logger.debug "???????????????????? authorization ???????????????????????? --> " + request.request_uri
     

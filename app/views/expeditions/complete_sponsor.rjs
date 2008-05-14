@@ -1,0 +1,8 @@
+if @sponsor != nil
+  page[:expedition_sponsor_id].value = @sponsor.id
+  # page[:sponsor_name].value = ""
+  page.replace_html "sponsor_image", :partial => 'sponsor', :object => @sponsor
+  page["sponsor_image"].visual_effect :shake
+else
+  page.alert("Sponsor not found, provide more information and try again!")
+end

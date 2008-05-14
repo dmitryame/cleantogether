@@ -1,6 +1,10 @@
-<div id="<%=dom_id sponsor%>" class="description">
-	<%=link_to "Edit", edit_sponsor_path(sponsor)%>
-	<label>Name:</label>&nbsp;<%=h sponsor.name%>
-	<label>Email:</label>&nbsp;<%=h sponsor.email%>
-	<label>URL:</label>&nbsp;<%=h sponsor.url%>
+<div class="sponsor">
+	<%if sponsor%>
+		<%if current_user && current_user.admin%>
+			<%=link_to "Edit", edit_sponsor_path(sponsor)%><br/>	
+		<%end%>
+		<a href="<%=sponsor.url%>">
+			<img src="<%=url_for(:controller => :sponsors , :action => :logo, :id => sponsor.logo)%>" alt="<%=sponsor.name%>" title="<%=sponsor.name%>"/>
+		</a>	
+	<%end%>
 </div>

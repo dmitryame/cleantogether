@@ -19,7 +19,11 @@
 					<%end%>
 				</div>
 
+
+
+				<%= render :partial => "/sponsors/sponsor", :object => story.expedition.sponsor %>
 				<div class="story-map">	
+					<%#this will be redrawn ones the sponsor is added%>
 					<%=h story.geo_location.name%>
 					<%
 					map = GMap.new("map_div_#{story.id}")

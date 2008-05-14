@@ -1,0 +1,5 @@
+<div id="sponsor_image" class="sponsor">
+	<%if sponsor%>	
+		<img src="<%=url_for(:controller => :sponsors , :action => :logo, :id => sponsor.logo)%>" alt="<%=sponsor.name%>" title="<%=sponsor.name%>"/>
+	<%end%>
+</div>
