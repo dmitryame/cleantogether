@@ -20,8 +20,9 @@
 				</div>
 
 
-
-				<%= render :partial => "/sponsors/sponsor", :object => story.expedition.sponsor %>
+				<%if story.expedition%>
+					<%= render :partial => "/sponsors/sponsor", :object => story.expedition.sponsor %>
+				<%end%>
 				<div class="story-map">	
 					<%#this will be redrawn ones the sponsor is added%>
 					<%=h story.geo_location.name%>
