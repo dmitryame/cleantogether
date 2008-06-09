@@ -41,8 +41,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect ':controller/:action/:id'
   
   # named routes
-  map.facebook_root 'facebook', :controller=>"facebook", :conditions=>{:canvas=>true}
   map.home '/', :controller         => "home", :action => "index"
+  map.facebook_root 'facebook', :controller=>"facebook", :conditions=>{:canvas=>true}
 
   # map.signup '/signup', :controller => "users", :action => "new"
   # map.login '/login', :controller   => "sessions", :action => "new"
