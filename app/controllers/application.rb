@@ -9,6 +9,7 @@ require 'net/https'
 #require 'uri'
 
 class ApplicationController < ActionController::Base  
+  
   include AuthenticatedSystem
 
   filter_parameter_logging "password" 
