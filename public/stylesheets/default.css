@@ -237,7 +237,7 @@ a:visited { color: #888; }
 #a:hover { color: #fff; background-color:#000; }
 
 label {
-    font-size: 8px;
+    font-size: 10px;
     font-weight: bold;    
     color: #bc4700;        
 }
