@@ -50,7 +50,10 @@ Rails::Initializer.run do |config|
      :session_key => '_myapp_demo-session', 
      :secret      => 'ojweoijwoeioiu3oi5u6oi7oi46oi7oi567io5io67j5o8i6joi9oo7i8io0io0oi97io07oio97io090' 
   } 
-  
+
+  ## Load gems from vendor/gems
+  config.load_paths += Dir.glob(File.join(RAILS_ROOT, 'vendor', 'gems', '*', 'lib'))
+      
 end
 
 # Add new inflection rules using the following format 
