@@ -1,10 +1,12 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 one:
   id: 1
+  name: sample_one
   lat: 43.12332123
   lng: 123.3333333
 two:
   id: 2
+  name: sample_two
   lat: 42.234443234
   lng: 30.33212333
   

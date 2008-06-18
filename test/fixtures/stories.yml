@@ -1,5 +1,9 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 one:
   id: 1
+  user_id: 1
+  cleaning_at: 2008-01-01
 two:
   id: 2
+  user_id: 2
+  cleaning_at: 2008-01-01
