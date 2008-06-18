@@ -56,22 +56,22 @@ class UsersControllerTest < Test::Unit::TestCase
       assert_response :success
     end
   end
-  
+
   def test_should_sign_up_user_with_activation_code
     stub_user_observer
     create_user
     assigns(:user).reload
     assert_not_nil assigns(:user).activation_code
   end
-
-  def test_should_activate_user
+  
+  should_eventually "activate user" do
     assert_nil User.authenticate('aaron', 'test')
     get :activate, :activation_code => users(:aaron).activation_code
     assert_redirected_to '/'
     assert_not_nil flash[:notice]
     assert_equal users(:aaron), User.authenticate('aaron', 'test')
   end
-  
+
   def test_should_not_activate_user_without_key
     get :activate
     assert_not_nil flash[:notice]
@@ -88,9 +88,10 @@ class UsersControllerTest < Test::Unit::TestCase
 
   protected
     def create_user(options = {})
-      post :create, :user => { :login => 'quire', :email => 'quire@example.com',
-        :password => 'quire', :password_confirmation => 'quire' }.merge(options)
-    end               
+      user_atts = Factory.attributes_for(:user, options)
+      post :create, :user => { :login => user_atts[:login], :email => user_atts[:email],
+        :password => user_atts[:password], :password_confirmation => user_atts[:password] }.merge(options)
+    end  
     
     def stub_user_observer
       UserObserver.any_instance.stubs(:after_create)

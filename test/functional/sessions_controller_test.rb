@@ -17,7 +17,7 @@ class SessionsControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
   end
 
-  def test_should_login_and_redirect
+  should_eventually "login and redirect" do
     post :create, :login => 'quentin', :password => 'test'
     assert session[:user_id]
     assert_response :redirect
@@ -36,12 +36,12 @@ class SessionsControllerTest < Test::Unit::TestCase
     assert_response :redirect
   end
 
-  def test_should_remember_me
+  should_eventually "remember me" do
     post :create, :login => 'quentin', :password => 'test', :remember_me => "1"
     assert_not_nil @response.cookies["auth_token"]
   end
 
-  def test_should_not_remember_me
+  should_eventually "not remember me" do
     post :create, :login => 'quentin', :password => 'test', :remember_me => "0"
     assert_nil @response.cookies["auth_token"]
   end
