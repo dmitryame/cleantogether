@@ -17,7 +17,8 @@ class UsersControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
   end
 
-  def test_should_allow_signup
+  def test_should_allow_signup 
+    stub_user_observer
     assert_difference 'User.count' do
       create_user
       assert_response :redirect
@@ -56,11 +57,8 @@ class UsersControllerTest < Test::Unit::TestCase
     end
   end
   
-
-  
   def test_should_sign_up_user_with_activation_code
-    UserObserver.any_instance.stubs(:after_create)
-    UserObserver.any_instance.stubs(:after_save)
+    stub_user_observer
     create_user
     assigns(:user).reload
     assert_not_nil assigns(:user).activation_code
@@ -92,5 +90,10 @@ class UsersControllerTest < Test::Unit::TestCase
     def create_user(options = {})
       post :create, :user => { :login => 'quire', :email => 'quire@example.com',
         :password => 'quire', :password_confirmation => 'quire' }.merge(options)
-    end
+    end               
+    
+    def stub_user_observer
+      UserObserver.any_instance.stubs(:after_create)
+      UserObserver.any_instance.stubs(:after_save)
+    end      
 end
