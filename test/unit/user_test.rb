@@ -5,13 +5,21 @@ class UserTest < Test::Unit::TestCase
   # Then, you can remove it from this and the functional test.
   include AuthenticatedTestHelper
   fixtures :users
-
+  
   def test_should_create_user
     assert_difference 'User.count' do
-      user = create_user
+      user = Factory(:user)
+      assert user.valid?
       assert !user.new_record?, "#{user.errors.full_messages.to_sentence}"
     end
   end
+
+  # def test_should_create_user
+  #   assert_difference 'User.count' do
+  #     user = create_user
+  #     assert !user.new_record?, "#{user.errors.full_messages.to_sentence}"
+  #   end
+  # end
 
   def test_should_initialize_activation_code_upon_creation
     user = create_user
