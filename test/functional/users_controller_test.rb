@@ -59,6 +59,8 @@ class UsersControllerTest < Test::Unit::TestCase
 
   
   def test_should_sign_up_user_with_activation_code
+    UserObserver.any_instance.stubs(:after_create)
+    UserObserver.any_instance.stubs(:after_save)
     create_user
     assigns(:user).reload
     assert_not_nil assigns(:user).activation_code
