@@ -3,9 +3,9 @@ class FacebookerPublisher < Facebooker::Rails::Publisher
       send_as :profile
       from user_to_update
       recipients user_to_update
-      fbml = render :template => "facebook/index"
+      fbml = render(:partial =>"/facebook/user_profile.fbml.erb")
       profile(fbml)
-      # action =  render(:partial => "messaging/profile_action.fbml.erb") 
-      # profile_action(action) 
+      action =  render(:partial => "facebook/profile_action.fbml.erb") 
+      profile_action(action) 
   end
 end
