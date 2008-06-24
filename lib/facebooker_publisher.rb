@@ -5,7 +5,7 @@ class FacebookerPublisher < Facebooker::Rails::Publisher
       recipients user_to_update
       fbml = render(:partial =>"/facebook/user_profile.fbml.erb")
       profile(fbml)
-      action =  render(:partial => "facebook/profile_action.fbml.erb") 
+      action =  render(:partial => "/facebook/profile_action.fbml.erb") 
       profile_action(action) 
   end
 end
