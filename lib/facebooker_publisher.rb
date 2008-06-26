@@ -7,7 +7,6 @@ class FacebookerPublisher < Facebooker::Rails::Publisher
       profile(fbml)
       action =  render(:partial => "/facebook/profile_action.fbml.erb") 
       profile_action(action) 
-      session[:facebook_session].user.profile_fbml =  (render_to_string :partial => 'profile')
-      
+      # session[:facebook_session].user.profile_fbml =  (render_to_string :partial => 'profile')      
   end
 end
