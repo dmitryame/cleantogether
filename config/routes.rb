@@ -17,6 +17,9 @@ ActionController::Routing::Routes.draw do |map|
     end    
   end
   map.resource  :session
+
+  # map.resource :facebook, :conditions=>{:canvas=>true}
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   
@@ -42,7 +45,7 @@ ActionController::Routing::Routes.draw do |map|
   
   # named routes
   map.home '/', :controller         => "home", :action => "index"
-  map.facebook_root 'facebook', :controller=>"facebook", :action=>"index", :conditions=>{:canvas=>true}
+  map.facebook 'facebook', :controller => 'facebook', :action => 'index', :canvas => true
 
   # map.signup '/signup', :controller => "users", :action => "new"
   # map.login '/login', :controller   => "sessions", :action => "new"
