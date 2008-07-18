@@ -1,20 +1,15 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.resources :geo_locations do |geo_location|
-  end
-  map.resources :sponsors do |sponsors|
-  end
+  map.resources :geo_locations
+  map.resources :sponsors 
   
   map.resources :users do |user|
     user.resources :expeditions, 
     :member => {:add_team => :post,
     :remove_team => :post}          
-    user.resources :stories do |story|      
-    end
-    user.resources :teams do |team|
-    end
-    user.resources :expeditions do |expedition|
-    end    
+    user.resources :stories 
+    user.resources :teams
+    user.resources :expeditions
   end
   map.resource  :session
 
@@ -35,13 +30,6 @@ ActionController::Routing::Routes.draw do |map|
   # -- just remember to delete public/index.html.
   # map.connect '', :controller => "welcome"
 
-  # Allow downloading Web Service WSDL as a file with an extension
-  # instead of a file named 'wsdl'
-  map.connect ':controller/service.wsdl', :action => 'wsdl'
-
-  # Install the default route as the lowest priority.
-  map.connect ':controller/:action/:id.:format'
-  map.connect ':controller/:action/:id'
   
   # named routes
   map.home '/', :controller         => "home", :action => "index"
@@ -57,4 +45,13 @@ ActionController::Routing::Routes.draw do |map|
 
   # map.stories '/stories', :controller   => "users", :action => "stories"
   # map.profile '/profile', :controller => "users", :action => "profile"
+
+  # Allow downloading Web Service WSDL as a file with an extension
+  # instead of a file named 'wsdl'
+  map.connect ':controller/service.wsdl', :action => 'wsdl'
+
+  # Install the default route as the lowest priority.
+  map.connect ':controller/:action/:id.:format'
+  map.connect ':controller/:action/:id'
+
 end

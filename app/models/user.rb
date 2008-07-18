@@ -277,7 +277,6 @@ class User < ActiveRecord::Base
       logger.debug res.body      
       return self.resolve_preallowed_id(user) # now that the subject created in the preallowed system, have to get it's id
     else
-      flash[:notice] =    "failed creating preallowed subject !!!!!!!!!!!!!!!!!!!! " + user.login      
       logger.error "error adding new preallowed_user to default guest role"      
       nil
     end
