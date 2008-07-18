@@ -37,6 +37,7 @@ body {
 
 
 #logout {
+	text-align: right;
 	position: relative;
     left: 750px;
     top: -60px;        
@@ -232,8 +233,11 @@ body, p, ol, ul, td {
   font-family : Arial, Helvetica;
 }
 
-a { color: #000; }
-a:visited { color: #888; }
+a { color: #088; }
+a:visited { 
+	color: #088;
+	text-decoration: none;
+ }
 #a:hover { color: #fff; background-color:#000; }
 
 label {

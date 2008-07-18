@@ -45,7 +45,9 @@
 				</div>
 				<div id="logout" class="description">
 					<%if logged_in?%>					
-							<%= link_to "logout", logout_path %>&nbsp;<%=current_user.login%>					
+						<%= link_to "logout", logout_path %>&nbsp;<%=current_user.login%>	
+					<%else%>			
+						<%= link_to "login", new_session_path %>
 					<%end%>
 				</div>
 			</div>
