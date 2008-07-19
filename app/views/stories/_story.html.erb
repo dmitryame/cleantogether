@@ -35,7 +35,7 @@
 					map.overlay_init marker							
 					%>
 					<%= map.to_html %>
-					<%= map.div %>
+					<%= map.div(:width => 320, :height => 220) %>
 				</div>
 				<label>Story:</label>
 				<div class="story-blog"><%=h @story.blog%></div>
