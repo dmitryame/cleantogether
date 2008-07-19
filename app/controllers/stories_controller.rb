@@ -127,7 +127,7 @@ class StoriesController < ApplicationController
 
 
   def upload_picture
-    @picture = Picture.create! params[:picture]
+    @picture = Picture.new(params[:picture])
 
     @story = Story.find(params[:story_id])
     @picture.story = @story
