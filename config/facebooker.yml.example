@@ -3,14 +3,14 @@
 # Your callback url in Facebook should be set to http://public_host:public_port
 
 development:
-  api_key: 
-  secret_key: 
-  canvas_page_name:
-  callback_url:
+  api_key: e954b35e9538a6105b1ef87121d7c679
+  secret_key: 2a4036ed9ba3edf56b88ed43d997137a
+  canvas_page_name: cleantogether_dev
+  callback_url: http://test.cleantogether.com
   tunnel:
     public_host_username: 
     public_host: 
-    public_port: 4007
+    public_port: 80
     local_port: 3000
 
 test:

@@ -11,15 +11,13 @@
 					<div class="description">
 						<img src="/images/new/calendar_icon.png"/><%=@story.cleaning_at.to_s(:date_time12)%>&nbsp;&nbsp;&nbsp;<%=h @story.weight%>&nbsp;lbs.
 					</div>
-
+					&nbsp;
 					<%if story.expedition%>
-					<div class="description">
-						<label>Expedition:</label>&nbsp;<%=h story.expedition.name%>
-					</div>
+						<div class="description">
+							<label>Expedition:</label>&nbsp;<%=h story.expedition.name%>
+						</div>
 					<%end%>
 				</div>
-
-
 				<%if story.expedition%>
 					<%= render :partial => "/sponsors/sponsor", :object => story.expedition.sponsor %>
 				<%end%>
@@ -36,10 +34,8 @@
 					map.overlay_init marker							
 					%>
 					<%= map.to_html %>
-					<%= map.div(:width => 320, :height => 220) %>
+					<%= map.div %>
 				</div>
-
-
 				<label>Story:</label>					
 				<div class="story-blog"><%=h @story.blog%></div>
 			</td>

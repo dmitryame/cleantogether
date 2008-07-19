@@ -384,7 +384,8 @@ word-wrap: break-word; /* Internet Explorer 5.5+ */
 }
 
 .story {
-	border: 1px solid #999;
+	border: 0px solid #999;
+	margin-bottom: 15px;
 }
 .story-header {
     background-color: #ffffcc;
