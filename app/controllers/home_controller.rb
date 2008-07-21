@@ -21,5 +21,15 @@ class HomeController < ApplicationController
 
   def terms
   end
+  
+  def enlarge_picture
+    @picture = Picture.find(params[:id])
+    @thumbnail = Picture.find_by_parent_id_and_thumbnail(@picture.id, :normal)
+  end
+
+  def shrink_picture
+    @picture = Picture.find(params[:id])
+    @thumbnail = Picture.find_by_parent_id_and_thumbnail(@picture.id, :thumb)
+  end
 
 end

@@ -1,3 +1,7 @@
 <div id="<%= dom_id(story_picture)%>" class="thumbnail">
-	<img src="<%=url_for(:controller => "home" , :action => :picture, :id => story_picture, :thumb => "thumb")%>"/>
+	<%= link_to_remote image_tag (url_for(:controller => "home" , :action => :picture, :id => story_picture, :thumb => "thumb")), 
+		:url => {
+			:controller => :home, :action => :enlarge_picture, :id => story_picture
+		}
+	%>
 </div>
