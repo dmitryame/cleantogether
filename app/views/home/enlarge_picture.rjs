@@ -1,2 +1,1 @@
 page.replace_html dom_id(@picture), :partial => 'large_story_picture', :object => @picture
-#page[dom_id(@picture)].visual_effect :grow
