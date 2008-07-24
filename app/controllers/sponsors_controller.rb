@@ -5,7 +5,7 @@ class SponsorsController < ApplicationController
     @sponsors = Sponsor.find(:all)
     respond_to do |format|
       format.html # index.html
-      format.xml { render :xml => @sponsors.to_xml}
+      format.xml { render :xml => @sponsors}
     end
   end
   

@@ -19,25 +19,6 @@ class UsersController < ApplicationController
 
   auto_complete_for :team, :name
 
-  
-  # def stories
-  #   if logged_in?
-  #     redirect_to user_stories_path(current_user) 
-  #   else
-  #     store_location
-  #     redirect_to :controller   => "sessions", :action => "new"
-  #   end
-  # end
-  # 
-  # def profile
-  #   if logged_in?
-  #     redirect_to user_path(current_user) 
-  #   else
-  #     store_location
-  #     redirect_to :controller   => "sessions", :action => "new" 
-  #   end
-  # end
-
   # render new.rhtml
   def new
     @user = User.new

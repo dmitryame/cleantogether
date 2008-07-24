@@ -31,35 +31,18 @@ class ApplicationController < ActionController::Base
     
   def check_authorization
     if(current_user != nil)
-      preallowed_id = current_user.preallowed_id 
-    else
-      preallowed_id = GUEST_SUBJECT_ID
-    end
-    
-    logger.debug "???????????????????? authorization ???????????????????????? --> " + request.request_uri
-    
-    url = URI.parse(BASE_URI + "/subjects/" + preallowed_id.to_s + "/has_access/")
+      
+      subject = Subject.find(current_user.preallowed_id)
+      
+      res = subject.get(:has_access, :resource => request.request_uri)
 
-    req = Net::HTTP::Post.new(url.path)
-    req.basic_auth PREALLOWED_LOGIN, PREALLOWED_PASSWORD
-    req.set_form_data({'resource'=> request.request_uri}, ';')
-    logger.debug("url: " + url.to_s )
-    logger.debug('resource: ' + request.request_uri)
-
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-
-    res = http.start {|http| http.request(req) }
-
-    case res
-    when Net::HTTPSuccess, Net::HTTPRedirection
-      logger.debug res.body
-      response_string = res.body
-      if(response_string.to_i == 0)
+      if res == "1"
+        true
+      else
+        flash[:notice] =    "Insufficient privileges"      
         redirect_to :controller => "home", :action => "insufficient"
       end
-    else
-      flash[:notice] =    "Insufficient privileges"      
+    else # user not logged in
       logger.error "failed check authorization -- connection problem!!!!"
       redirect_to :controller => "users", :action => "signin"
     end

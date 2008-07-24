@@ -62,7 +62,7 @@ class SessionsController < ApplicationController
     return_to = session[:return_to]
     
     # check preallowed_id and resolve if necessery
-    current_user.add_to_preallowed if current_user.preallowed_id == nil
+    current_user.add_to_preallowed if current_user.preallowed_id == nil || current_user.preallowed_id == 0
 
     if return_to.nil?
       redirect_to home_path

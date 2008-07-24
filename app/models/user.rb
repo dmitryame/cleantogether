@@ -154,34 +154,19 @@ class User < ActiveRecord::Base
   
   # is a virtual RO attribute that will make a call to preallowed service
   def team_captain
-    if is_user_in_role(TEAM_CAPTAIN_ROLE_ID) == "1"
-      return true
-    else
-      return false
-    end
+    is_user_in_role(TEAM_CAPTAIN_ROLE_ID)
   end
   # preallowed methods that make a service call 
   def admin
-    if is_user_in_role(ADMIN_ROLE_ID) == "1"
-      return true
-    else
-      return false
-    end
+    is_user_in_role(ADMIN_ROLE_ID)
   end
 
   # return true in case of success, false otherwise
   def self.add_user_to_role(user, role_id)
-    url = URI.parse( BASE_URI + "/subjects/" + user.preallowed_id.to_s + "/add_role")
-    logger.debug url.path
+    subject = Subject.find(user.preallowed_id)
 
-    req = Net::HTTP::Post.new(url.path)
-    req.basic_auth PREALLOWED_LOGIN, PREALLOWED_PASSWORD
-    req.set_form_data({'role_id'=> role_id}, ';')
+    res = subject.put(:add_role, :role_id => role_id)
 
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-
-    res = http.start {|http| http.request(req) } 
     case res
     when Net::HTTPSuccess, Net::HTTPRedirection
       logger.debug "successfully added preallowed_user to role"
@@ -191,52 +176,13 @@ class User < ActiveRecord::Base
       return false
     end
   end
-
-
-  def add_to_preallowed
-    self.preallowed_id = User.find_or_create_preallowed_id(self)
-    self.save
-    User.add_user_to_role(self, GUEST_ROLE_ID)
-    User.add_user_to_role(self, USER_ROLE_ID)
-  end
-
-
-  def is_user_in_role(role_id)
-    url = URI.parse(BASE_URI + "/subjects/" + preallowed_id.to_s + "/is_subject_in_role/" + role_id)
-
-    req = Net::HTTP::Get.new(url.path)
-    req.basic_auth PREALLOWED_LOGIN, PREALLOWED_PASSWORD
-    logger.debug("url: " + url.to_s )
-
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-
-    res = http.start {|http| http.request(req) }
-
-    case res
-    when Net::HTTPSuccess, Net::HTTPRedirection
-      logger.debug res.body      
-      return res.body
-    else
-      logger.error "error in is_subject_in_role web service call"
-    end
-    "0"    
-  end
-
-  
   # return true in case of success, false otherwise
   def self.remove_user_from_role(user, role_id)
-    url = URI.parse( BASE_URI + "/subjects/" + user.preallowed_id.to_s + "/remove_role")
-    logger.debug url.path
+    
+    subject = Subject.find(user.preallowed_id)
 
-    req = Net::HTTP::Post.new(url.path)
-    req.basic_auth PREALLOWED_LOGIN, PREALLOWED_PASSWORD
-    req.set_form_data({'role_id'=> role_id}, ';')
-
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-
-    res = http.start {|http| http.request(req) } 
+    res = subject.put(:remove_role, :role_id => role_id)
+    
     case res
     when Net::HTTPSuccess, Net::HTTPRedirection
       logger.debug "successfully removed preallowed_user from role"
@@ -248,65 +194,50 @@ class User < ActiveRecord::Base
   end
 
 
+  def add_to_preallowed
+    self.preallowed_id = User.find_or_create_preallowed_id(self)
+    self.save
+    User.add_user_to_role(self, USER_ROLE_ID)
+  end
+
+
+  def is_user_in_role(role_id)
+    subject = Subject.find(preallowed_id)
+    res = subject.get(:is_subject_in_role, :role_id => role_id)
+    
+    if res == "1"
+      true
+    else
+      false
+    end
+  end
+
   
   #this methods will try to find a subject in preallowed by login, or will create a new one, will return a preallowed_id or nil
   def self.find_or_create_preallowed_id(user)
     # first lets see if such seubject already eixst to avoid dups
     preallowed_id = self.resolve_preallowed_id(user) 
-    
-    unless preallowed_id == nil
+        
+        
+    if preallowed_id != nil and preallowed_id != "0"
       return preallowed_id
     end
     
     #otherwise create a new one
-    url = URI.parse(BASE_URI + "/subjects")
-
-    req = Net::HTTP::Post.new(url.path)
-    req.basic_auth PREALLOWED_LOGIN, PREALLOWED_PASSWORD
-    req.set_form_data({'subject[name]' => user.login, 'commit' => "Create"}, '&')
-    logger.debug("url: " + url.to_s )
-
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-
-    res = http.start {|http| http.request(req) }
-
-    case res
-    when Net::HTTPSuccess, Net::HTTPRedirection
-      logger.debug "creating preallowed subject succsess!!!!!!!!!!!!!!!!!!!!! " + user.login 
-      logger.debug res.body      
-      return self.resolve_preallowed_id(user) # now that the subject created in the preallowed system, have to get it's id
-    else
-      logger.error "error adding new preallowed_user to default guest role"      
-      nil
-    end
     
+    subject = Subject.create(:name => user.login)
+    
+    puts subject.id
+    return subject.id
   end
 
 
   # resolve_preallowed_id takes user, returns preallowed_id or nil if not found
   def self.resolve_preallowed_id(user)
-    url = URI.parse( BASE_URI + "/subjects/id_from_name/" + user.login)
-    logger.debug url.path
-
-    req = Net::HTTP::Get.new(url.path)
-    req.basic_auth PREALLOWED_LOGIN, PREALLOWED_PASSWORD
-
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-
-    res = http.start {|http| http.request(req) }
-
-    case res
-    when Net::HTTPSuccess, Net::HTTPRedirection      
-      logger.debug "subject:" + user.login + " --> id:" + res.body
-      return nil if res.body.to_i == 0 # return nil if the id is 0
-      res.body      
-    else
-      logger.error "does not exist"
-      nil
-    end
     
+    client = Client.find(CLIENT_ID)
+    
+    client.get(:subject_id_from_name, :subject_name => user.login)
   end
 
 
