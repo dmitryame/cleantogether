@@ -171,9 +171,9 @@ class UsersController < ApplicationController
 
   def toggle_team_captain
     if @user.team_captain
-      User.remove_user_from_role(@user, TEAM_CAPTAIN_ROLE_ID)
+      @user.remove_user_from_role(TEAM_CAPTAIN_ROLE_ID)
     else
-      User.add_user_to_role(@user, TEAM_CAPTAIN_ROLE_ID)
+      @user.add_user_to_role(TEAM_CAPTAIN_ROLE_ID)
     end
   end
 

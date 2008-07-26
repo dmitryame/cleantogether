@@ -162,8 +162,8 @@ class User < ActiveRecord::Base
   end
 
   # return true in case of success, false otherwise
-  def self.add_user_to_role(user, role_id)
-    subject = Subject.find(user.preallowed_id)
+  def add_user_to_role(role_id)
+    subject = Subject.find(preallowed_id)
 
     res = subject.put(:add_role, :role_id => role_id)
 
@@ -177,9 +177,9 @@ class User < ActiveRecord::Base
     end
   end
   # return true in case of success, false otherwise
-  def self.remove_user_from_role(user, role_id)
+  def remove_user_from_role(role_id)
     
-    subject = Subject.find(user.preallowed_id)
+    subject = Subject.find(preallowed_id)
 
     res = subject.put(:remove_role, :role_id => role_id)
     
@@ -195,9 +195,9 @@ class User < ActiveRecord::Base
 
 
   def add_to_preallowed
-    self.preallowed_id = User.find_or_create_preallowed_id(self)
+    self.preallowed_id = find_or_create_preallowed_id
     self.save
-    User.add_user_to_role(self, USER_ROLE_ID)
+    add_user_to_role(USER_ROLE_ID)
   end
 
 
@@ -214,32 +214,18 @@ class User < ActiveRecord::Base
 
   
   #this methods will try to find a subject in preallowed by login, or will create a new one, will return a preallowed_id or nil
-  def self.find_or_create_preallowed_id(user)
+  def find_or_create_preallowed_id
     # first lets see if such seubject already eixst to avoid dups
-    preallowed_id = self.resolve_preallowed_id(user) 
-        
+    preallowed_id = Client.find(CLIENT_ID).get(:subject_id_from_name, :subject_name => login)
         
     if preallowed_id != nil and preallowed_id != "0"
       return preallowed_id
     end
     
     #otherwise create a new one
-    
-    subject = Subject.create(:name => user.login)
-    
-    puts subject.id
+    subject = Subject.create(:name => self.login)
     return subject.id
   end
-
-
-  # resolve_preallowed_id takes user, returns preallowed_id or nil if not found
-  def self.resolve_preallowed_id(user)
-    
-    client = Client.find(CLIENT_ID)
-    
-    client.get(:subject_id_from_name, :subject_name => user.login)
-  end
-
 
   #how much user collected 
   def collected
