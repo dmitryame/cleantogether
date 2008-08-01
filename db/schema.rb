@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
   end
 
   create_table "expeditions", :force => true do |t|
-    t.string   "name",                          :default => "", :null => false
-    t.datetime "target_date",                                   :null => false
-    t.integer  "captain_id",      :limit => 11,                 :null => false
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
-    t.integer  "geo_location_id", :limit => 11,                 :null => false
+    t.string   "name",                          :null => false
+    t.datetime "target_date",                   :null => false
+    t.integer  "captain_id",      :limit => 11, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.integer  "geo_location_id", :limit => 11, :null => false
     t.integer  "sponsor_id",      :limit => 11
   end
 
@@ -41,12 +41,12 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
   add_index "expeditions_teams", ["team_id"], :name => "index_expeditions_teams_on_team_id"
 
   create_table "geo_locations", :force => true do |t|
-    t.string   "name",                                        :default => "", :null => false
+    t.string   "name",                                        :null => false
     t.text     "description"
-    t.decimal  "lat",         :precision => 20, :scale => 15,                 :null => false
-    t.decimal  "lng",         :precision => 20, :scale => 15,                 :null => false
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
+    t.decimal  "lat",         :precision => 20, :scale => 15, :null => false
+    t.decimal  "lng",         :precision => 20, :scale => 15, :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
   end
 
   add_index "geo_locations", ["lat"], :name => "index_geo_locations_on_lat"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
   add_index "pictures", ["story_id"], :name => "index_pictures_on_cleaning_event_id"
 
   create_table "sessions", :force => true do |t|
-    t.string   "session_id", :default => "", :null => false
+    t.string   "session_id", :null => false
     t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "sponsors", :force => true do |t|
-    t.string   "name",                     :default => "", :null => false
+    t.string   "name",                     :null => false
     t.string   "url"
     t.string   "email"
     t.integer  "logo_id",    :limit => 11
@@ -118,11 +118,11 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
   add_index "stories", ["expedition_id"], :name => "index_cleaning_events_on_expedition_id"
 
   create_table "teams", :force => true do |t|
-    t.string   "name",                     :default => "", :null => false
+    t.string   "name",                     :null => false
     t.string   "motto"
-    t.integer  "captain_id", :limit => 11,                 :null => false
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.integer  "captain_id", :limit => 11, :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   add_index "teams", ["captain_id"], :name => "index_teams_on_captain_id"
