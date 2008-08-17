@@ -1,5 +1,5 @@
-class Client < ActiveResource::Base
-  self.site = PREALLOWED_HOST
+class Role < ActiveResource::Base
+  self.site = CLIENTS_URI
   self.user = PREALLOWED_LOGIN
   self.password = PREALLOWED_PASSWORD
 end

@@ -163,9 +163,11 @@ class User < ActiveRecord::Base
 
   # return true in case of success, false otherwise
   def add_user_to_role(role_id)
-    subject = Subject.find(preallowed_id)
+    # subject = Subject.find(preallowed_id)
+    role = Role.find(role_id)
 
-    res = subject.put(:add_role, :role_id => role_id)
+    # put :add_subject, :id => role.id, :subject_id => @subject.id, :client_id => @subject.client.id
+    res = role.put(:add_subject, :id => role.id, :subject_id => preallowed_id, :client_id => CLIENT_ID)
 
     case res
     when Net::HTTPSuccess, Net::HTTPRedirection
@@ -178,10 +180,11 @@ class User < ActiveRecord::Base
   end
   # return true in case of success, false otherwise
   def remove_user_from_role(role_id)
-    
-    subject = Subject.find(preallowed_id)
+    # subject = Subject.find(preallowed_id)
+    role = Role.find(role_id)
 
-    res = subject.put(:remove_role, :role_id => role_id)
+    # put :remove_subject, :id => role.id, :subject_id => @subject.id, :client_id => @subject.client.id
+    res = role.put(:remove_subject, :id => role.id, :subject_id => preallowed_id, :client_id => CLIENT_ID)
     
     case res
     when Net::HTTPSuccess, Net::HTTPRedirection
@@ -202,7 +205,9 @@ class User < ActiveRecord::Base
 
 
   def is_user_in_role(role_id)
-    subject = Subject.find(preallowed_id)
+    subject = Subject.find(self.preallowed_id)
+    # get :is_subject_in_role, :id => @subject.id, :role_id => @role.id , :client_id => @subject.client.id # this should fail if the subject was not added to role first
+    
     res = subject.get(:is_subject_in_role, :role_id => role_id)
     
     if res == "1"
