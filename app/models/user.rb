@@ -202,21 +202,6 @@ class User < ActiveRecord::Base
     self.save
     add_user_to_role(USER_ROLE_ID)
   end
-
-
-  def is_user_in_role(role_id)
-    subject = Subject.find(self.preallowed_id)
-    # get :is_subject_in_role, :id => @subject.id, :role_id => @role.id , :client_id => @subject.client.id # this should fail if the subject was not added to role first
-    
-    res = subject.get(:is_subject_in_role, :role_id => role_id)
-    
-    if res == "1"
-      true
-    else
-      false
-    end
-  end
-
   
   #this methods will try to find a subject in preallowed by login, or will create a new one, will return a preallowed_id or nil
   def find_or_create_preallowed_id
@@ -231,6 +216,21 @@ class User < ActiveRecord::Base
     subject = Subject.create(:name => self.login)
     return subject.id
   end
+
+  def is_user_in_role(role_id)
+    subject = Subject.find(self.preallowed_id)
+    # get :is_subject_in_role, :id => @subject.id, :role_id => @role.id , :client_id => @subject.client.id # this should fail if the subject was not added to role first
+    
+    res = subject.get(:is_subject_in_role, :role_id => role_id)
+    
+    if res == "1"
+      true
+    else
+      false
+    end
+  end
+
+
 
   #how much user collected 
   def collected
