@@ -8,13 +8,13 @@ class UsersController < ApplicationController
   #   ((self.class.read_inheritable_attribute(:ssl_required_actions)
   #   || []).include?(action_name.to_sym)) && RAILS_ENV == 'production'
   # end
-  def ssl_required?
-   unless RAILS_ENV == 'production'
-     false
-   else
-     true
-   end
-  end
+  # def ssl_required?
+  #  unless RAILS_ENV == 'production'
+  #    false
+  #  else
+  #    true
+  #  end
+  # end
 
 
   auto_complete_for :team, :name
