@@ -84,7 +84,6 @@ HOST = 'http://localhost:3000'
 # config.active_record.observers = :user_observer
 # end
 
-require "smtp_tls"
 # Third, add your SMTP settings
 ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
