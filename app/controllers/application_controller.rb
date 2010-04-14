@@ -29,25 +29,7 @@ class ApplicationController < ActionController::Base
   session :session_key => '_cleantogether_session_id'
   
     
-  def check_authorization
-    if(current_user != nil)
-      
-      subject = Subject.find(current_user.preallowed_id)
-      
-      res = subject.get(:has_access, :resource => request.request_uri)
 
-      if res == "1"
-        true
-      else
-        flash[:notice] =    "Insufficient privileges"      
-        redirect_to :controller => "home", :action => "insufficient"
-      end
-    else # user not logged in
-      logger.error "failed check authorization -- connection problem!!!!"
-      redirect_to :controller => "users", :action => "signin"
-    end
-
-  end
 end
 
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(

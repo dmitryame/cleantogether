@@ -88,7 +88,5 @@
 </table>
 <hr>
 <fieldset>
-	<label for="team_captain_<%=@user.id%>">I am a team Captain:</label>
-	<%= check_box_tag "team_captain_#{@user.id}", @user.team_captain, @user.team_captain ? true : false, :onclick => remote_function(:url =>{ :action => :toggle_team_captain, :id => @user.id }) %>	
 	<%= render :partial => "team_captain", :object => @user %>
 </fieldset>

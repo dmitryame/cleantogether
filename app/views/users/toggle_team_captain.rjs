@@ -1,5 +1,0 @@
-if @user.team_captain
-  page[:team_captain].visual_effect :slide_down
-else
-  page[:team_captain].visual_effect :slide_up
-end

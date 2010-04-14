@@ -16,23 +16,23 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
   end
 
   create_table "expeditions", :force => true do |t|
-    t.string   "name",                          :null => false
-    t.datetime "target_date",                   :null => false
-    t.integer  "captain_id",      :limit => 11, :null => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
-    t.integer  "geo_location_id", :limit => 11, :null => false
-    t.integer  "sponsor_id",      :limit => 11
+    t.string   "name",            :null => false
+    t.datetime "target_date",     :null => false
+    t.integer  "captain_id",      :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "geo_location_id", :null => false
+    t.integer  "sponsor_id"
   end
 
   add_index "expeditions", ["captain_id"], :name => "index_expeditions_on_captain_id"
   add_index "expeditions", ["sponsor_id"], :name => "index_expeditions_on_sponsor_id"
 
   create_table "expeditions_teams", :id => false, :force => true do |t|
-    t.integer  "expedition_id",   :limit => 11, :null => false
-    t.integer  "team_id",         :limit => 11, :null => false
-    t.integer  "geo_location_id", :limit => 11
-    t.date     "cleaning_at",                   :null => false
+    t.integer  "expedition_id",   :null => false
+    t.integer  "team_id",         :null => false
+    t.integer  "geo_location_id"
+    t.date     "cleaning_at",     :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,27 +55,27 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
   create_table "logos", :force => true do |t|
     t.string   "content_type"
     t.string   "filename"
-    t.integer  "size",         :limit => 11
-    t.integer  "parent_id",    :limit => 11
+    t.integer  "size"
+    t.integer  "parent_id"
     t.string   "thumbnail"
-    t.integer  "width",        :limit => 11
-    t.integer  "height",       :limit => 11
-    t.integer  "db_file_id",   :limit => 11
+    t.integer  "width"
+    t.integer  "height"
+    t.integer  "db_file_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "pictures", :force => true do |t|
-    t.integer "story_id",     :limit => 11
+    t.integer "story_id"
     t.string  "content_type"
     t.string  "filename"
-    t.integer "size",         :limit => 11
-    t.integer "parent_id",    :limit => 11
+    t.integer "size"
+    t.integer "parent_id"
     t.string  "thumbnail"
-    t.integer "width",        :limit => 11
-    t.integer "height",       :limit => 11
-    t.integer "db_file_id",   :limit => 11
-    t.integer "user_id",      :limit => 11
+    t.integer "width"
+    t.integer "height"
+    t.integer "db_file_id"
+    t.integer "user_id"
   end
 
   add_index "pictures", ["story_id"], :name => "index_pictures_on_cleaning_event_id"
@@ -91,10 +91,10 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "sponsors", :force => true do |t|
-    t.string   "name",                     :null => false
+    t.string   "name",       :null => false
     t.string   "url"
     t.string   "email"
-    t.integer  "logo_id",    :limit => 11
+    t.integer  "logo_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -102,34 +102,34 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
   add_index "sponsors", ["name"], :name => "index_sponsors_on_name"
 
   create_table "stories", :force => true do |t|
-    t.integer  "user_id",         :limit => 11,                :null => false
+    t.integer  "user_id",                        :null => false
     t.text     "blog"
-    t.integer  "geo_location_id", :limit => 11
-    t.integer  "weight",          :limit => 11, :default => 0, :null => false
-    t.datetime "cleaning_at",                                  :null => false
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
-    t.integer  "expedition_id",   :limit => 11
+    t.integer  "geo_location_id"
+    t.integer  "weight",          :default => 0, :null => false
+    t.datetime "cleaning_at",                    :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "expedition_id"
   end
 
-  add_index "stories", ["user_id"], :name => "index_cleaning_events_on_user_id"
-  add_index "stories", ["geo_location_id"], :name => "index_cleaning_events_on_geo_location_id"
   add_index "stories", ["cleaning_at"], :name => "index_cleaning_events_on_cleaning_at"
   add_index "stories", ["expedition_id"], :name => "index_cleaning_events_on_expedition_id"
+  add_index "stories", ["geo_location_id"], :name => "index_cleaning_events_on_geo_location_id"
+  add_index "stories", ["user_id"], :name => "index_cleaning_events_on_user_id"
 
   create_table "teams", :force => true do |t|
-    t.string   "name",                     :null => false
+    t.string   "name",       :null => false
     t.string   "motto"
-    t.integer  "captain_id", :limit => 11, :null => false
-    t.datetime "created_at",               :null => false
-    t.datetime "updated_at",               :null => false
+    t.integer  "captain_id", :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "teams", ["captain_id"], :name => "index_teams_on_captain_id"
 
   create_table "teams_users", :id => false, :force => true do |t|
-    t.integer  "team_id",    :limit => 11, :null => false
-    t.integer  "user_id",    :limit => 11, :null => false
+    t.integer  "team_id",    :null => false
+    t.integer  "user_id",    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -150,16 +150,16 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
     t.datetime "activated_at"
     t.string   "password_reset_code",       :limit => 40
     t.boolean  "enabled",                                 :default => true
-    t.integer  "preallowed_id",             :limit => 11
+    t.integer  "preallowed_id"
     t.string   "first_name"
     t.string   "last_name"
   end
 
-  add_index "users", ["login"], :name => "index_users_on_login"
-  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["activation_code"], :name => "index_users_on_activation_code"
-  add_index "users", ["password_reset_code"], :name => "index_users_on_password_reset_code"
+  add_index "users", ["email"], :name => "index_users_on_email"
   add_index "users", ["first_name"], :name => "index_users_on_first_name"
   add_index "users", ["last_name"], :name => "index_users_on_last_name"
+  add_index "users", ["login"], :name => "index_users_on_login"
+  add_index "users", ["password_reset_code"], :name => "index_users_on_password_reset_code"
 
 end

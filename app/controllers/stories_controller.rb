@@ -6,15 +6,15 @@ class StoriesController < ApplicationController
   # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
   auto_complete_for :team, :name
 
-  def index
-    @stories = Story.paginate_by_user_id current_user, :page => params[:page],:per_page => 10, :order => "created_at DESC"
+  def index    
+    @stories = Story.paginate :page => params[:page],:per_page => 10, :conditions => ['user_id = ?', "#{current_user.id}"], :order => "created_at DESC"
   end
 
 
   # GET /stories/new
   def new
     @story = Story.new
-    @story.cleaning_at = Time.today
+    @story.cleaning_at = Date.today
 
     init_defaults
     

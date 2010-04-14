@@ -168,15 +168,6 @@ class UsersController < ApplicationController
     redirect_back_or_default('/')
   end
 
-
-  def toggle_team_captain
-    if @user.team_captain
-      @user.remove_user_from_role(TEAM_CAPTAIN_ROLE_ID)
-    else
-      @user.add_user_to_role(TEAM_CAPTAIN_ROLE_ID)
-    end
-  end
-
   def join_team
     @team = Team.find_by_name(params[:name])
     if(!current_user.teams.find_by_name(@team.name))

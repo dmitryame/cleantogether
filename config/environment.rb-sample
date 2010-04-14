@@ -94,16 +94,3 @@ ActionMailer::Base.smtp_settings = {
   :password => "yourrailsapp",
   :authentication => :login
 }
-
-
-# Include your application configuration below
-# these credentials are not real, ask a preallowed admin for the login/password to use in local configuration
-PREALLOWED_LOGIN = 'cleantogether_rest'
-PREALLOWED_PASSWORD = 'admin'
-
-CLIENT_ID = "2"
-USER_ROLE_ID = "3"
-TEAM_CAPTAIN_ROLE_ID = "4"
-ADMIN_ROLE_ID = "5"
-PREALLOWED_HOST = "http://localhost:3001"
-CLIENTS_URI = PREALLOWED_HOST + "/clients/" + CLIENT_ID

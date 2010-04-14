@@ -46,7 +46,7 @@ class ExpeditionsController < ApplicationController
   def new
     @expedition = Expedition.new
     @expedition.captain = current_user
-    @expedition.target_date = Time.today
+    @expedition.target_date = Date.today
     
 
     # code between these comments is redundant with stories controller has to be rafactored into a reusable component
@@ -146,10 +146,6 @@ class ExpeditionsController < ApplicationController
 
     @captains_teams = current_user.captains_teams - @expedition.teams
   end
-
-  def complete_sponsor
-    @sponsor = Sponsor.find_by_name(params[:id])
-  end  
 
 
 end
