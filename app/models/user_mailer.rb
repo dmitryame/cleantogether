@@ -26,7 +26,7 @@ class UserMailer < ActionMailer::Base
     def setup_email(user)
       @recipients  = "#{user.email}"
       @bcc         = "dmitry@rootlocusinc.com" #email monitoring log, do not erase
-      @from        = "support"
+      @from        = "helper@echowaves.com"
       @subject     = "[cleantogether.com] -- do not reply. "
       @sent_on     = Time.now
       @body[:user] = user
