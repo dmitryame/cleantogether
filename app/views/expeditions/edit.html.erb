@@ -1,7 +1,0 @@
-<h1>Edit expedition</h1>
-<%= error_messages_for 'expedition' %>
-<% form_for(:expedition, :url => user_expedition_path(current_user, @expedition), :html => { :method => :put }) do |f| %> 
-<label for="expedition_name">Name</label><br/><%= f.text_field :name %><br/> 
-<label for="expedition_target_date">Target Date</label><br/><%= calendar_date_select_tag "expedition[target_date]", @expedition.target_date ? @expedition.target_date.to_s(:date_time12):nil, :embedded => false, :time => true, :buttons => true %><br/> 
-<%= submit_tag "Update" %><%= link_to 'Back', user_expedition_path(current_user, @expedition) %> 
-<% end %> 

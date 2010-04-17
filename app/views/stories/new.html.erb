@@ -3,29 +3,9 @@
 <%= error_messages_for :story %>
 
 
-<table width="100%">
-	<tr>
-		<td with="50%" valign="top">
-			<%= render :partial => 'available_expeditions' %>
-		</td>
-		<td with="50%" valign="top">
-			<fieldset>
-				<legend>
-					My Teams: 
-				</legend>				
-				<%= render :partial => "member_of", :object => current_user %>												
-			</fieldset>
-		</td>
-	</tr>
-</table>		
-
-
 
 <% form_for(:story, :url => user_stories_path(current_user)) do |f| %>
 <div id="main">
-	<div id="expedition-id">
-		<%= f.hidden_field :expedition_id, :value => "" %>
-	</div>
 	
 	<!-- code between these comments is redundant with expeditions controller has to be rafactored into a reusable component     -->
 	<div id="location" class="description">

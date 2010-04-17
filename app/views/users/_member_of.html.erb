@@ -1,9 +1,0 @@
-<div id="member_of" class="description">
-	Join a team:
-	<%= text_field_with_auto_complete :team, :name, { :size => 25 }, :skip_style => false, :after_update_element => 
-	"function(element,value) " +
-	  "{ " +			
-	remote_function(:update=>'full_name',:url=>{:action=>:join_team},:with=>"'name='+element.value") + "}"
-	 -%>
- 	<%= render(:partial => "team_item", :collection => current_user.teams)%>	 
-</div>

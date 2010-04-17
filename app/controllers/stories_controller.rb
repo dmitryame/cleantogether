@@ -173,7 +173,6 @@ class StoriesController < ApplicationController
 
   private
   def init_defaults
-    # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
     @recent_geo_locations = 
     GeoLocation.recent_geo_locations(current_user)
 
@@ -185,9 +184,7 @@ class StoriesController < ApplicationController
     if @geo_location == nil	
       @geo_location = GeoLocation.new 
     end
-    # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
 
-    @my_expeditions = Expedition.recent_expeditions(current_user)
   end  
 
 end

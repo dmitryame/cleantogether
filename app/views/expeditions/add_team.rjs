@@ -1,2 +1,0 @@
-page[:draggable_teams].reload 
-page[:expeditions_teams_list].visual_effect :highlight,:startcolor => "#ffffff", :endcolor => "#00af00"

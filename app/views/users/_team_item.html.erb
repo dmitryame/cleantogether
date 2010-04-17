@@ -1,8 +1,0 @@
-<div id="<%= dom_id team_item%>">
-	<label>
-		<%= link_to_remote  "leave", 
-		:url=>{:action=>:leave_team, :id => team_item.id},
-		:confirm => 'Are you sure you want to leave the team ' + h(team_item.name) + '?' -%>
-	</label>
-	<%=h(team_item.name)%>
-</div>

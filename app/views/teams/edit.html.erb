@@ -1,7 +1,0 @@
-<h1>Edit team:</h1>
-<%= error_messages_for 'team' %>
-<% form_for(:team, :url => user_team_path(current_user, @team), :html => { :method => :put }) do |f| %> 
-<label for="team_name">Name</label><br/><%= f.text_field :name %><br/> 
-<label for="team_motto">Motto</label><br/><%= f.text_field :motto %><br/> 
-<%= submit_tag "Update" %><%= link_to 'Back', user_team_path(current_user, @team) %> 
-<% end %> 
