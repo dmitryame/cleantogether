@@ -24,7 +24,6 @@ class GeoLocationsController < ApplicationController
     if @geo_location.save      
       case return_to
         when "story" then redirect_to new_user_story_path(:user_id => current_user, :geo_location_id => @geo_location.id) 
-        when "expedition" then redirect_to new_user_expedition_path(:user_id => current_user, :geo_location_id => @geo_location.id) 
       end
     else
       flash[:notice] = "Error Creating Geo Location."        

@@ -39,21 +39,6 @@ class StoriesController < ApplicationController
   end 
 
 
-  def select_expedition
-    if params[:id] != "0" && params[:id] != nil && params[:id] != ""       
-      @expedition = Expedition.find(params[:id]) 
-      @geo_location = @expedition.geo_location
-      @marker = GMarker.new([@geo_location.lat, @geo_location.lng],:title => @geo_location.description) 
-
-      @map = Variable.new("map")
-
-      @map.control_init(:large_map => true,:map_type => true)                  
-      # @map.set_map_type_init(GMapType::G_HYBRID_MAP)                   
-      @map.center_zoom_init([@geo_location.lat,@geo_location.lng],8)                 
-      @map.overlay_init @marker             
-    end
-  end
-
 
   # def story_with_location
   #   @geo_location = GeoLocation.find(params[:geo_location_id])
@@ -74,12 +59,6 @@ class StoriesController < ApplicationController
     end
 
     init_defaults
-
-    if(@story.expedition) # force some story fields to expedition's values
-      @expedition = @story.expedition
-      @story.geo_location = @expedition.geo_location
-      @story.cleaning_at = @expedition.target_date
-    end
 
     if @story.save
       flash[:notice] = "Event was successfully created"
