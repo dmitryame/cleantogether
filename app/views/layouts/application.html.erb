@@ -13,45 +13,31 @@
 	<![endif]-->
 	
 </head>
-<body>		
-	<div id="container">
+<body>			
+	<div id="container">	
 		<div id="header">
-			<div class="headerText"><img src="/images/new/logo.png"/></div>		
-				<div class="menu">
-					<table>
-						<tr>
-							<td>
-								<div class="menuItem">
-									<%= link_to 'Home', home_path  %> 
-								</div>
-							</td>
-							<td>
-								<div class="menuItem">							      
-									<%= link_to 'My Stories', logged_in? ? user_stories_path(current_user) : user_stories_path(0)%>
-								</div>
-							</td>
-							<td>
-								<div class="menuItem">
-									<%= link_to 'My Profile', logged_in? ? user_path(current_user) : user_path(0) %>
-								</div>
-							</td>
-							<td>
-								<div class="menuItem">			
-									<a href="http://cleantogether.googlecode.com/">For Developers</a>				
-								</div>
-							</td>
-						</tr>					
-					</table>
-				</div>
-				<div id="logout" class="description">
-					<%if logged_in?%>					
-						<%= link_to "logout", logout_path %>&nbsp;<%=current_user.login%>	
-					<%else%>			
-						<%= link_to "login", new_session_path %>
-					<%end%>
-				</div>
+			<div id="headerText"><%= link_to image_tag("/images/new/logo.png"), home_path %></div>		
+			
+			<div id="logout" class="description">
+				<%if logged_in?%>					
+					<%= link_to "logout", logout_path %>&nbsp;<%=link_to current_user.login, user_path(current_user)%>	
+				<%else%>			
+					<%= link_to "login", new_session_path %>
+				<%end%>
 			</div>
+
+			<div id="menu">
+				<% if logged_in? %>
+					<div class="menuItem">							      
+						<%= link_to 'My Stories', user_stories_path(current_user) %>
+					</div>
+				<% end %>
+			</div>
+
 		</div>
+		
+		<div class="clear"></div>
+		
 		<div id="content">
 			<p style="color: green"><%= flash[:notice] %></p>
 			<% if flash[:error] %>
@@ -59,6 +45,10 @@
 			<% end %>
 			<%= yield :layout %>
 		</div>
+		
+		<div class="clear"></div>
+		
+		
 		<div id="footer">
 			<div>&nbsp;</div>
 			<div>&nbsp;</div>
@@ -66,7 +56,7 @@
 				© 2008
 			</div>
 			<div>
-				Website Uptime Monitoring By <a href="http://pingability.com">http://pingability.com</a>
+				Website Uptime Monitoring By <a href="http://basicstate.com/">http://basicstate.com/</a>
 			</div>
 			<div>
 				Report problems or Abuse to <b>webmaster <i>at</i> custommode.com</b>

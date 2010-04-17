@@ -12,16 +12,11 @@ body {
 	background-repeat: no-repeat;
 	width: 876px;
     height: 115px;
-    position: relative;
-    left: 100px;
     top: 0px;    	
 }
 
 #content {
-    position:relative;
-    left:100px;
     width: 876px;
-	
 }
 
 #footer {
@@ -31,25 +26,24 @@ body {
 	width: 876px;
     height: 115px;
 	text-align: center;
-    position: relative;
-    left: 100px;
 }
 
+
+#headerText {
+    width: 300px;
+	position: absolute;
+	top: 35px;
+	left: 30px;
+}
 
 #logout {
-	text-align: right;
-	position: relative;
-    left: 750px;
-    top: -60px;        
-    display: block;
     width: 100px;
+	position: absolute;
+	text-align: right;
+	top: 10px;
+	right: 20px;
 }
-.headerText {
-    position:relative;
-    left:15px;
-    bottom:-60px;
-    width: 300px;
-}
+
 
 #trashBags {
 	background: url(/images/new/trash_bags.png);
@@ -58,19 +52,16 @@ body {
     color: #000;
     size: +1;
     width: 12em;
-    display: block;
     margin-top: 30px;
 }
 
 #togetherCollected {
-	position: relative;
     left: 65px;
     width: 150px;    
 	text-align: right;
     white-space: nowrap;
 }
 #totalCollected {
-	position: relative;
     left: 130px;    
     top: 30px;    
     color: #bc4700;
@@ -81,7 +72,8 @@ body {
     margin-top: 20px;
     margin-bottom: -280px;
     display: block;
-    width: 500px;
+/*    width: 500px;*/
+	height:100px;
 }
 
 .steps {
@@ -89,35 +81,8 @@ body {
     color: #bc4700;
     height: 60px;
     width: 150px;
-    display: block;
+/*    display: block;*/
 }
-
-#step1 {
-	position: relative;
-    left: 300px;
-    bottom: 150px;    
-}
-#step2 {
-	position: relative;
-    left: 400px;
-    bottom: 140px;    
-}
-#step3 {
-	position: relative;
-    left: 510px;
-    bottom: 280px;    
-}
-#step4 {
-	position: relative;
-    left: 630px;
-    bottom: 230px;    
-}
-#step5 {
-	position: relative;
-    left: 700px;
-    bottom: 380px;    
-}
-
 
 .description {
 	text-align: left;
@@ -149,12 +114,11 @@ DIV.nowrap {
     white-space: nowrap;
     display: inline;    
 }
-.menu {
-	position: relative;
-    left: 360px;
-    top: 34px;    
-    display: block;
-    width: 500px;
+
+#menu {
+	position: absolute;
+	top: 83px;
+	right: 10px;
 }
 
 .menuItem {
@@ -169,20 +133,17 @@ DIV.nowrap {
 }
 .menuItem a {
 	text-decoration: none;
-    position: relative;
     color: #bc4700;
     top: 5px;
 }
 .menuItem a:visited {
 	text-decoration: none;
-    position: relative;
     color: #bc4700;
     top: 5px;
 }
 
 .menuItem a:active {
 	text-decoration: none;
-    position: relative;
     color: #bc4700;
     font-size : 15px;
 	font-weight: bold;	
@@ -196,6 +157,8 @@ DIV.nowrap {
 	text-align : left;
 	width: 876px;
 	display: block;
+	position: relative;
+    left: 100px;
 }
 #columnR {
 	float: right;

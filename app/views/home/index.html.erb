@@ -8,28 +8,21 @@
 		<%= Story.collected-%>&nbsp;lbs
 	</div>
 </div>				
+<div class="clear"></div>
 
-<div id="what-to-do">
-	<div class="steps" id="step1">
-		1. Go out to the nature -- beach, forest, mountains.
-	</div>
-	<div class="steps" id="step2">
-		2. Have fun swimming, hiking, rock climbing, picnicking, relaxing.
-	</div>
-	<div class="steps" id="step3">
-		3. On a way home, collect trash you see around and bring it back with you.
-	</div>
-	<div class="steps" id="step4">
-		4. Post your story on our web site.
-	</div>
-	<div class="steps" id="step5">
-		5. Make the world a cleaner place, spread the word, let other people know...		
-	</div>
+<div id="what-to-do" class="steps">
+		1. See the Trash
+		2. Pick it Up
+		3. Make a Record
 </div>
+
+<div class="clear"></div>
+
 <div id='add_story' class="description">
 	<%= link_to image_tag ("add.gif", :border => 0), :controller => :stories, :action => :new %>
 	<%= link_to "Post New Story", :controller => :stories, :action => :new %>
 </div>
+<div class="clear"></div>
 
 <%= render :partial => "story", :collection => @stories %>
 <%= will_paginate @stories %>
