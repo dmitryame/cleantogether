@@ -56,32 +56,42 @@ body {
 }
 
 #togetherCollected {
+	position: absolute;
     left: 65px;
     width: 150px;    
 	text-align: right;
     white-space: nowrap;
 }
 #totalCollected {
+	position: absolute;
     left: 130px;    
-    top: 30px;    
+    top: 190px;    
     color: #bc4700;
     font-size : 40px;
 }
 
 #what-to-do {
-    margin-top: 20px;
-    margin-bottom: -280px;
-    display: block;
-/*    width: 500px;*/
-	height:100px;
-}
-
-.steps {
+	position: absolute;
+	left: 350px;
+	top: 150px;
 	text-align: left;
     color: #bc4700;
-    height: 60px;
-    width: 150px;
-/*    display: block;*/
+	font-size: 25px;	
+	width: 500px;
+}
+
+#step1 {
+	position: absolute;
+}
+#step2 {
+	position: absolute;
+	top: 30px;
+	left: 140px;
+}
+#step3 {
+	position: absolute;
+	top: 60px;
+	left: 250px;
 }
 
 .description {
@@ -129,12 +139,11 @@ DIV.nowrap {
 	width: 123px;
 	height: 26px;	
     text-align: center;	
-    vertical-align: middle;
 }
 .menuItem a {
 	text-decoration: none;
     color: #bc4700;
-    top: 5px;
+/*    top: 5px;*/
 }
 .menuItem a:visited {
 	text-decoration: none;

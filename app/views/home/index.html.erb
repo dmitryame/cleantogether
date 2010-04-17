@@ -2,7 +2,7 @@
 
 <div id="trashBags">		
 	<div id="togetherCollected">
-		<font size="3">Together, we have collected</font>
+		Together, we have collected
 	</div>
 	<div id="totalCollected">
 		<%= Story.collected-%>&nbsp;lbs
@@ -10,13 +10,18 @@
 </div>				
 <div class="clear"></div>
 
-<div id="what-to-do" class="steps">
+<div id="what-to-do">
+	<div id="step1">
 		1. See the Trash
+	</div>
+	<div id="step2">
 		2. Pick it Up
+	</div>		
+	<div id="step3">		
 		3. Make a Record
+	</div>
 </div>
 
-<div class="clear"></div>
 
 <div id='add_story' class="description">
 	<%= link_to image_tag ("add.gif", :border => 0), :controller => :stories, :action => :new %>
