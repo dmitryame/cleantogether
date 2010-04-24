@@ -1,7 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
 
   map.resources :geo_locations
-  map.resources :sponsors 
   
   map.resources :users do |user|
     user.resources :stories 
