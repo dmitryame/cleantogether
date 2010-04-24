@@ -1,5 +1,9 @@
 <meta property="og:title" content="<%=h @story.blog%>"/>
 
+<%if @story.pictures.count > 0%>
+	<meta property="og:image" content="<%="#{HOST}" + url_for(:controller => "home" , :action => :picture, :id => @story.pictures[0], :thumb => "thumb")%>"/>
+<%end%>
+
 <%= GMap.header %> 
 
 <div class="story">
