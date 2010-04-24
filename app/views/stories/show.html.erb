@@ -5,6 +5,10 @@
 		<tr>
 			<td>
 				<div class="story-header">
+					
+					<span>
+						<%= render :partial => "stories/fb_like" %>					
+					</span>
 					<div class="story-controls">
 						<%=h @story.user.login%>
 					</div>
