@@ -1,0 +1,45 @@
+<%= GMap.header %> 
+
+<div class="story">
+	<table width="100%">
+		<tr>
+			<td>
+				<div class="story-header">
+					<div class="story-controls">
+						<%=h @story.user.login%>
+					</div>
+
+					<div class="description">
+						<img src="/images/new/calendar_icon.png"/><%=@story.cleaning_at.to_s(:date_time12)%>&nbsp;&nbsp;&nbsp;<%=h @story.weight%>&nbsp;lbs.
+					</div>
+					&nbsp;
+				</div>
+				<div class="story-map">	
+					<%#this will be redrawn ones the sponsor is added%>
+					<%=h @story.geo_location.name%>
+					<%
+					map = GMap.new("map_div_#{@story.id}")
+					map.control_init(:small_map => true,:map_type => true)							    
+					map.set_map_type_init(GMapType::G_HYBRID_MAP)      							
+					geo_location  = @story.geo_location
+					map.center_zoom_init([geo_location.lat,geo_location.lng],8)  	  						
+					marker = GMarker.new([geo_location.lat, geo_location.lng], :title => geo_location.name)  
+					map.overlay_init marker							
+					%>
+					<%= map.to_html %>
+					<%= map.div(:width => 320, :height => 220) %>
+				</div>
+				<label>Story:</label>					
+				<div class="story-blog"><%=h @story.blog%></div>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<div id="<%=dom_id(@story, "story_images")%>">
+					<%= render :partial => "home/story_picture", :collection => @story.pictures %>					
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
