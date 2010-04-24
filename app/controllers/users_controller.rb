@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   # end
 
 
-  auto_complete_for :name
+  # auto_complete_for :name
 
   # render new.rhtml
   def new
