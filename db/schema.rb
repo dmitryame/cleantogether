@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080717221457) do
+ActiveRecord::Schema.define(:version => 20100422163003) do
 
   create_table "db_files", :force => true do |t|
     t.binary "data", :limit => 16777215
@@ -39,6 +39,19 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
 
   add_index "expeditions_teams", ["expedition_id", "team_id"], :name => "index_expeditions_teams_on_expedition_id_and_team_id"
   add_index "expeditions_teams", ["team_id"], :name => "index_expeditions_teams_on_team_id"
+
+  create_table "facebook_users", :force => true do |t|
+    t.string   "facebook_id"
+    t.string   "name"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "link"
+    t.string   "email"
+    t.integer  "timezone"
+    t.string   "token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "geo_locations", :force => true do |t|
     t.string   "name",                                        :null => false
@@ -75,7 +88,6 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
     t.integer "width"
     t.integer "height"
     t.integer "db_file_id"
-    t.integer "user_id"
   end
 
   add_index "pictures", ["story_id"], :name => "index_pictures_on_cleaning_event_id"
@@ -102,20 +114,20 @@ ActiveRecord::Schema.define(:version => 20080717221457) do
   add_index "sponsors", ["name"], :name => "index_sponsors_on_name"
 
   create_table "stories", :force => true do |t|
-    t.integer  "user_id",                        :null => false
+    t.integer  "facebook_user_id",                :null => false
     t.text     "blog"
     t.integer  "geo_location_id"
-    t.integer  "weight",          :default => 0, :null => false
-    t.datetime "cleaning_at",                    :null => false
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.integer  "weight",           :default => 0, :null => false
+    t.datetime "cleaning_at",                     :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.integer  "expedition_id"
   end
 
   add_index "stories", ["cleaning_at"], :name => "index_cleaning_events_on_cleaning_at"
   add_index "stories", ["expedition_id"], :name => "index_cleaning_events_on_expedition_id"
+  add_index "stories", ["facebook_user_id"], :name => "index_cleaning_events_on_user_id"
   add_index "stories", ["geo_location_id"], :name => "index_cleaning_events_on_geo_location_id"
-  add_index "stories", ["user_id"], :name => "index_cleaning_events_on_user_id"
 
   create_table "teams", :force => true do |t|
     t.string   "name",       :null => false

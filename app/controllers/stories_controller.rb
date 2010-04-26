@@ -1,5 +1,4 @@
 class StoriesController < ApplicationController
-  before_filter :login_required, :except => :show
   
   # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
   auto_complete_for :geo_location, :name

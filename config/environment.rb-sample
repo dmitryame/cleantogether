@@ -11,6 +11,8 @@
 require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
+  config.gem "oauth2"
+
   # Settings in config/environments/* take precedence over those specified here
   
   # Skip frameworks you're not going to use (only works if using vendor/rails)
@@ -37,7 +39,6 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector
-  config.active_record.observers = :user_observer
 
   # Make Active Record use UTC-base instead of local time
   # config.active_record.default_timezone = :utc
@@ -83,14 +84,3 @@ HOST = 'http://localhost:3000'
 #   # The user observer goes inside the Rails::Initializer block
 # config.active_record.observers = :user_observer
 # end
-
-# Third, add your SMTP settings
-ActionMailer::Base.delivery_method = :smtp
-ActionMailer::Base.smtp_settings = {
-  :address => "mail.cleantogether.com",
-  :port => 25,
-  :domain => "mail.cleantogether.com",
-  :user_name => "carmelyne@yourrailsapp.com",
-  :password => "yourrailsapp",
-  :authentication => :login
-}

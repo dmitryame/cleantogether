@@ -27,10 +27,15 @@ ActionController::Routing::Routes.draw do |map|
   
   # map.signup '/signup', :controller => "users", :action => "new"
   # map.login '/login', :controller   => "sessions", :action => "new"
-  map.logout '/logout', :controller => "sessions", :action => "destroy"
-  map.activate '/activate/:id', :controller           => "users", :action => "activate"
-  map.forgot_password '/forgot_password', :controller => "users", :action => "forgot_password"
-  map.reset_password '/reset_password/:id', :controller   => "users", :action => "reset_password" 
+
+  # these are deprecated, from now on users can only login through FB
+  # map.logout '/logout', :controller => "sessions", :action => "destroy"
+  # map.activate '/activate/:id', :controller           => "users", :action => "activate"
+  # map.forgot_password '/forgot_password', :controller => "users", :action => "forgot_password"
+  # map.reset_password '/reset_password/:id', :controller   => "users", :action => "reset_password" 
+
+  map.auth_start '/authorize', :controller => 'authorize', :action => 'start'
+  map.auth_callback '/authorize/callback', :controller => 'authorize', :action => 'callback'
 
   # map.stories '/stories', :controller   => "users", :action => "stories"
   # map.profile '/profile', :controller => "users", :action => "profile"
