@@ -49,6 +49,7 @@ namespace :deploy do
   task :copy_prod_configuration do
     run "cp /u/config/#{application}/database.yml #{release_path}/config/"
     run "cp /u/config/#{application}/environment.rb #{release_path}/config/"
+    run "cp /u/config/#{application}/oauth.yml #{release_path}/config/"
   end
   
   after "deploy:update_code", "deploy:copy_prod_configuration"
