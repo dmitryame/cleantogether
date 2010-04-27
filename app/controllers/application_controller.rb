@@ -4,30 +4,21 @@
 #require 'rest-open-uri'
 #require 'rexml-document'
 #require 'net/http'
-require 'net/https'
+# require 'net/https'
 
 #require 'uri'
 
 class ApplicationController < ActionController::Base  
-  
-
-  filter_parameter_logging "password" 
-  
-
-  # def ssl_required?
-  #  unless RAILS_ENV == 'production'
-  #    false
-  #  else
-  #    super
-  #  end
-  # end
-
-  
-  # Pick a unique cookie name to distinguish our session data from others'
-  session :session_key => '_cleantogether_session_id'
-  
+  before_filter :init_current_user
     
+  protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
+  filter_parameter_logging "password"   
+  
+  private
+  def init_current_user
+    @current_user = FacebookUser.find(session[:user_id]) if session[:user_id]
+  end
 end
 
 ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(

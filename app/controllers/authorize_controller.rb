@@ -7,10 +7,17 @@ class AuthorizeController < ApplicationController
   end
 
   def callback
-    access_token = OAuthClient.web_server.access_token(
+    access_token = OAuthClient.web_server.get_access_token(
       params[:code], :redirect_uri => auth_callback_url
     )
-    @user = FacebookUser.create_from_fb(access_token)
+    current_user = FacebookUser.create_from_fb(access_token)    
+    session[:user_id] = current_user.id
+    redirect_to :home        
   end
 
+  def logout
+    session[:user_id] = nil
+    redirect_to :home    
+  end
+  
 end

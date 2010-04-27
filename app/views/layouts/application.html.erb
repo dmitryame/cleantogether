@@ -19,12 +19,12 @@
 			<div id="headerText"><%= link_to image_tag("/images/new/logo.png"), home_path %></div>		
 			
 			<div id="logout" class="description">
-				<%#if logged_in?%>					
-					<%#= link_to "logout", logout_path %>&nbsp;
-					<%#=link_to current_user.login, user_path(current_user)%>	
-				<%#else%>			
-					<%#= link_to "login", new_session_path %>
-				<%#end%>
+				<%if @current_user%>
+					<%= @current_user.name %>					
+					<%= link_to "logout", logout_path %>
+				<%else%>			
+					<%= link_to "Facebook&nbsp;login", auth_start_path %>
+				<%end%>
 			</div>
 
 			<div id="menu">

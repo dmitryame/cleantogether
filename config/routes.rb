@@ -29,7 +29,7 @@ ActionController::Routing::Routes.draw do |map|
   # map.login '/login', :controller   => "sessions", :action => "new"
 
   # these are deprecated, from now on users can only login through FB
-  # map.logout '/logout', :controller => "sessions", :action => "destroy"
+  map.logout '/logout', :controller => "authorize", :action => "logout"
   # map.activate '/activate/:id', :controller           => "users", :action => "activate"
   # map.forgot_password '/forgot_password', :controller => "users", :action => "forgot_password"
   # map.reset_password '/reset_password/:id', :controller   => "users", :action => "reset_password" 

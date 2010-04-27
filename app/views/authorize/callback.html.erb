@@ -1,12 +1,12 @@
 <h1>Success!</h1>
 <p>
-  Your Facebook account is now connected, <%= @user.first_name %>.
+  Your Facebook account is now connected, <%= @current_user.first_name %>.
 </p>
 <p>
   Now you can post to your feed from the console:
   <code>
     <pre>
-      user = FacebookUser.find(<%= @user.id %>)
+      user = FacebookUser.find(<%= @current_user.id %>)
       user.post('hello world!')
     </pre>
   </code>
