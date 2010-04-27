@@ -6,5 +6,4 @@ class Picture < ActiveRecord::Base
                      :processor  => "ImageScience"
   validates_as_attachment
   belongs_to :story
-  belongs_to :user
 end

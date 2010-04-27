@@ -1,6 +1,6 @@
 class Story < ActiveRecord::Base
   has_many :pictures
-  belongs_to :user
+  belongs_to :facebook_user
   belongs_to :geo_location  
   
   validates_presence_of :geo_location, :on => :create
