@@ -24,7 +24,7 @@ class StoriesController < ApplicationController
   end  
 
   def show
-    @story = User.find(params[:user_id]).stories.find(params[:id])
+    @story = FacebookUser.find(params[:facebook_user_id]).stories.find(params[:id])
   end  
 
 
