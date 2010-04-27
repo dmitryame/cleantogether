@@ -1,6 +1,6 @@
 <h1>Edit story:</h1>
 <%= error_messages_for 'story' %>
-<% form_for(:story, :url => user_story_path(current_user, @story), :html => { :method => :put }) do |f| %> 
+<% form_for(:story, :url => facebook_user_story_path(@current_user, @story), :html => { :method => :put }) do |f| %> 
 <label for="story_weight">Weight:</label><br/><%= f.text_field :weight %><br/> 
 <label for="story_cleaning_at">When:</label><br/><%= calendar_date_select_tag "story[cleaning_at]", @story.cleaning_at ? @story.cleaning_at.to_s(:date_time12):nil, :embedded => false, :time => true, :buttons => true %>
 <%= error_message_on @story, :cleaning_at -%>	
@@ -11,5 +11,5 @@
 	<%= f.text_area :blog, :rows => 25, :cols => 80 %>			
 </p>
 
-<%= submit_tag "Update" %><%= link_to 'Back', user_stories_path(current_user) %> 
+<%= submit_tag "Update" %><%= link_to 'Back', facebook_user_stories_path(@current_user) %> 
 <% end %> 

@@ -9,9 +9,9 @@
 					</span>
 					
 					<div class="story-controls">
-						<%= link_to "Edit Story", edit_user_story_path(current_user, story) %>
+						<%= link_to "Edit Story", edit_facebook_user_story_path(@current_user, story) %>
 						<%= link_to_remote image_tag ("trash.gif", :border => 0), 
-						:url => user_story_path(current_user, story), 
+						:url => facebook_user_story_path(@current_user, story), 
 						:confirm => 'Are you sure you want to delete the Story', 
 						:method => :delete %>
 					</div>

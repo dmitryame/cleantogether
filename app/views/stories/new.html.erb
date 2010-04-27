@@ -4,7 +4,7 @@
 
 
 
-<% form_for(:story, :url => user_stories_path(current_user)) do |f| %>
+<% form_for(:story, :url => facebook_user_stories_path(@current_user)) do |f| %>
 <div id="main">
 	
 	<!-- code between these comments is redundant with expeditions controller has to be rafactored into a reusable component     -->
@@ -85,6 +85,6 @@
 </div>
 
 	
-<p class="description"><%=submit_tag "Post"%><%= link_to 'back', user_stories_path(current_user)%></p>
+<p class="description"><%=submit_tag "Post"%><%= link_to 'back', facebook_user_stories_path(@current_user)%></p>
 </div>
 <%end%>

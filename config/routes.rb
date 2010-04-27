@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :geo_locations
   
-  map.resources :users do |user|
+  map.resources :facebook_users do |user|
     user.resources :stories 
   end
   map.resource  :session

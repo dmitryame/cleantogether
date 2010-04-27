@@ -6,7 +6,7 @@ class StoriesController < ApplicationController
   auto_complete_for :team, :name
 
   def index    
-    @stories = Story.paginate :page => params[:page],:per_page => 10, :conditions => ['user_id = ?', "#{current_user.id}"], :order => "created_at DESC"
+    @stories = Story.paginate :page => params[:page],:per_page => 10, :conditions => ['facebook_user_id = ?', "#{@current_user.id}"], :order => "created_at DESC"
   end
 
 
@@ -20,7 +20,7 @@ class StoriesController < ApplicationController
   end
 
   def edit
-    @story = current_user.stories.find(params[:id])
+    @story = @current_user.stories.find(params[:id])
   end  
 
   def show
@@ -29,11 +29,11 @@ class StoriesController < ApplicationController
 
 
   def update 
-    @story = current_user.stories.find(params[:id])
+    @story = @current_user.stories.find(params[:id])
     respond_to do |format| 
       if @story.update_attributes(params[:story]) 
         flash[:notice] = "Story updated"
-        format.html { redirect_to user_stories_url(current_user) } 
+        format.html { redirect_to facebook_user_stories_url(@current_user) } 
         # format.xml { render :nothing => true } 
       else 
         format.html { render :action => "edit" } 
@@ -58,7 +58,7 @@ class StoriesController < ApplicationController
   # POST /stories.xml
   def create
     @story = Story.new(params[:story])
-    @story.user = current_user
+    @story.facebook_user = @current_user
     if(@story.blog == nil || @story.blog.strip == '')
     end
 
@@ -66,7 +66,7 @@ class StoriesController < ApplicationController
 
     if @story.save
       flash[:notice] = "Event was successfully created"
-      redirect_to user_stories_url(current_user)
+      redirect_to facebook_user_stories_url(@current_user)
     else
       flash[:error] = "Oops, something went wrong, correct the errors below and resubmit..." if flash[:error] == nil
       render :action => "new"
@@ -139,25 +139,25 @@ class StoriesController < ApplicationController
     @picture.destroy
   end
 
-  def join_team    
-    @team = Team.find_by_name(params[:name])
-    if(!current_user.teams.find_by_name(@team.name))
-      current_user.teams << @team 
-      init_defaults      
-    end
-  end  
-
-  def leave_team
-    @team = Team.find(params[:id])
-    current_user.teams.delete(@team)
-    init_defaults
-  end
+  # def join_team    
+  #   @team = Team.find_by_name(params[:name])
+  #   if(!@current_user.teams.find_by_name(@team.name))
+  #     current_user.teams << @team 
+  #     init_defaults      
+  #   end
+  # end  
+  # 
+  # def leave_team
+  #   @team = Team.find(params[:id])
+  #   current_user.teams.delete(@team)
+  #   init_defaults
+  # end
 
 
   private
   def init_defaults
     @recent_geo_locations = 
-    GeoLocation.recent_geo_locations(current_user)
+    GeoLocation.recent_geo_locations(@current_user)
 
     @geo_location = GeoLocation.find(params[:geo_location_id]) if params[:geo_location_id] 
 
