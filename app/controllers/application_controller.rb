@@ -15,9 +15,18 @@ class ApplicationController < ActionController::Base
 
   filter_parameter_logging "password"   
   
+  
+  
   private
   def init_current_user
     @current_user = FacebookUser.find(session[:user_id]) if session[:user_id]
+  end  
+  
+  def authorize
+      if session[:user_id] == nil
+        session[:return_to] = request.request_uri
+        redirect_to auth_start_path
+      end
   end
 end
 

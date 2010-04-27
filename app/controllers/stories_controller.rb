@@ -1,9 +1,9 @@
 class StoriesController < ApplicationController
-  
+ before_filter :authorize, :only => :new
   # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
   auto_complete_for :geo_location, :name
   # code between these comments is redundant with expeditions controller has to be rafactored into a reusable component
-  auto_complete_for :team, :name
+  # auto_complete_for :team, :name
 
   def index    
     @stories = Story.paginate :page => params[:page],:per_page => 10, :conditions => ['facebook_user_id = ?', "#{@current_user.id}"], :order => "created_at DESC"
@@ -12,6 +12,9 @@ class StoriesController < ApplicationController
 
   # GET /stories/new
   def new
+    if @current_user == nil
+      
+    end
     @story = Story.new
     @story.cleaning_at = Date.today
 
