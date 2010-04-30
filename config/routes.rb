@@ -34,8 +34,8 @@ ActionController::Routing::Routes.draw do |map|
   # map.forgot_password '/forgot_password', :controller => "users", :action => "forgot_password"
   # map.reset_password '/reset_password/:id', :controller   => "users", :action => "reset_password" 
 
-  map.auth_start '/authorize', :controller => 'authorize', :action => 'start'
-  map.auth_callback '/authorize/callback', :controller => 'authorize', :action => 'callback'
+  map.auth_start '/authorize', :controller => 'authorize', :action => 'new_facebook'
+  map.auth_callback '/authorize/callback', :controller => 'authorize', :action => 'facebook_callback'
 
   # map.stories '/stories', :controller   => "users", :action => "stories"
   # map.profile '/profile', :controller => "users", :action => "profile"

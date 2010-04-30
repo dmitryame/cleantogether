@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100422163003) do
+ActiveRecord::Schema.define(:version => 20100429233225) do
 
   create_table "db_files", :force => true do |t|
     t.binary "data", :limit => 16777215
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(:version => 20100422163003) do
     t.string   "link"
     t.string   "email"
     t.integer  "timezone"
-    t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
