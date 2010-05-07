@@ -1,6 +1,6 @@
 class GeoLocationsController < ApplicationController
-  before_filter :login_required
-
+  before_filter :authorize
+  
   def new
   	@geo_location = GeoLocation.new
 
@@ -22,9 +22,7 @@ class GeoLocationsController < ApplicationController
     return_to = session[:return]
    
     if @geo_location.save      
-      case return_to
-        when "story" then redirect_to new_user_story_path(:user_id => @current_user, :geo_location_id => @geo_location.id) 
-      end
+        redirect_to new_facebook_user_story_path(:facebook_user_id => @current_user, :geo_location_id => @geo_location.id) 
     else
       flash[:notice] = "Error Creating Geo Location."        
 
@@ -40,7 +38,6 @@ class GeoLocationsController < ApplicationController
     	
       render :action => "new" 
    end
-    
   end
 
 
