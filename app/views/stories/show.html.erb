@@ -1,6 +1,9 @@
+<%if @story.pictures.count > 0%>
+   <img src="<%="#{HOST}" + url_for(:controller => "home" , :action => :picture, :id => @story.pictures[0], :thumb => "thumb")%>"/>
+<%end%>
+
 <%=h @story.cleaning_at.to_s(:date_time12)%>&nbsp;<%=h @story.weight%>&nbsp;lbs.&nbsp;<%=h @story.geo_location.name%>					
 </br>
 <%=h @story.blog[0..500]%> ...
 </br>
 
-<img src="<%="#{HOST}" + url_for(:controller => "home" , :action => :picture, :id => @story.pictures[0], :thumb => "thumb")%>"/>
