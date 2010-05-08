@@ -156,6 +156,10 @@ class StoriesController < ApplicationController
   #   init_defaults
   # end
 
+  def facebook
+    @story = Story.find(params[:id])
+    render :layout => 'facebook'
+  end
 
   private
   def init_defaults

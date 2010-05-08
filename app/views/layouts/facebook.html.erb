@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>CleanTogether</title>
+	<meta property="og:title" content="<%=h @story.blog[0..300]%>"/>
+
+	<%if @story.pictures.count > 0%>
+		<meta property="og:image" content="<%="#{HOST}" + url_for(:controller => "home" , :action => :picture, :id => @story.pictures[0], :thumb => "thumb")%>"/>
+	<%end%>	
+</head>
+<body>			
+	<%= yield :layout %>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<%=h @story.blog[0..400]%>
+
+</br>
+
+<img src="<%="#{HOST}" + url_for(:controller => "home" , :action => :picture, :id => @story.pictures[0], :thumb => "thumb")%>"/>

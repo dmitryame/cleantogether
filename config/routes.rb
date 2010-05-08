@@ -3,7 +3,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :geo_locations
   
   map.resources :facebook_users do |user|
-    user.resources :stories 
+    user.resources :stories, :member =>  { :facebook => :get}
   end
   map.resource  :session
   
