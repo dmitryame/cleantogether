@@ -11,17 +11,17 @@
 					
 					
 					<div class="story-controls">
-						<%=h story.facebook_user.name if story.facebook_user %>
+						<%= story.facebook_user.name if story.facebook_user %>
 					</div>
 
 					<div class="description">
-						<img src="/images/new/calendar_icon.png"/><%=@story.cleaning_at.to_s(:date_time12)%>&nbsp;&nbsp;&nbsp;<%=h @story.weight%>&nbsp;lbs.
+						<img src="/images/new/calendar_icon.png"/><%=@story.cleaning_at.to_s(:date_time12)%>&nbsp;&nbsp;&nbsp;<%= @story.weight%>&nbsp;lbs.
 					</div>
 					&nbsp;
 				</div>
 				<div class="story-map">	
 					<%#this will be redrawn ones the sponsor is added%>
-					<%=h story.geo_location.name%>
+					<%= story.geo_location.name.html_safe%>
 					<%
 					map = GMap.new("map_div_#{story.id}")
 					map.control_init(:small_map => true,:map_type => true)							    
@@ -29,13 +29,13 @@
 					geo_location  = story.geo_location
 					map.center_zoom_init([geo_location.lat,geo_location.lng],8)  	  						
 					marker = GMarker.new([geo_location.lat, geo_location.lng], :title => geo_location.name)  
-					map.overlay_init marker							
+					map.overlay_init marker
 					%>
-					<%= map.to_html %>
-					<%= map.div(:width => 320, :height => 220) %>
+					<%= map.to_html.html_safe %>
+					<%= map.div(:width => 320, :height => 220).html_safe %>
 				</div>
 				<label>Story:</label>					
-				<div class="story-blog"><%=h @story.blog%></div>
+				<div class="story-blog"><%= @story.blog%></div>
 			</td>
 		</tr>
 		<tr>

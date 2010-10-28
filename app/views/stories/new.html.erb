@@ -26,7 +26,7 @@
 								map.overlay_init marker							
 								%>								
 								<%= map.div(:width => 400, :height => 400) %>							
-								<%= map.to_html %>
+								<%= map.to_html.html_safe %>
 
 						<%= f.hidden_field :geo_location_id, :value => @geo_location.id %>
 						<%= error_message_on @story, :geo_location_id -%>

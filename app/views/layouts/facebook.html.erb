@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 	<title>CleanTogether</title>
-	<meta property="og:title" content="<%=h @story.cleaning_at.to_s(:date_time12)%> <%=h @story.weight%> lbs. <%=h @story.geo_location.name%>, <%=h @story.blog[0..500]%>..."/>
+	<meta property="og:title" content="<%= @story.cleaning_at.to_s(:date_time12)%> <%= @story.weight%> lbs. <%= @story.geo_location.name%>, <%= @story.blog[0..500]%>..."/>
 
 	<%if @story.pictures.count > 0%>
 		<meta property="og:image" content="<%="#{HOST}" + url_for(:controller => "home" , :action => :picture, :id => @story.pictures[0], :thumb => "thumb")%>"/>

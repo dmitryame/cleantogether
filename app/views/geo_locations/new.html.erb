@@ -45,7 +45,7 @@
 	<tr>
 		<td valign="top">
 			<%= @map.div(:width => 400, :height => 280) %>							
-			<%= @map.to_html %>
+			<%= @map.to_html.html_safe %>
 		</td>
 		<td valign="top" class="description">
 			<p>

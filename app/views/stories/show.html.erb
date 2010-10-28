@@ -11,17 +11,17 @@
 						<%= render :partial => "stories/fb_like" %>					
 					</span>
 					<div class="story-controls">
-						<%=h @story.facebook_user.name%>
+						<%= @story.facebook_user.name%>
 					</div>
 
 					<div class="description">
-						<img src="/images/new/calendar_icon.png"/><%=@story.cleaning_at.to_s(:date_time12)%>&nbsp;&nbsp;&nbsp;<%=h @story.weight%>&nbsp;lbs.
+						<img src="/images/new/calendar_icon.png"/><%=@story.cleaning_at.to_s(:date_time12)%>&nbsp;&nbsp;&nbsp;<%= @story.weight%>&nbsp;lbs.
 					</div>
 					&nbsp;
 				</div>
 				<div class="story-map">	
 					<%#this will be redrawn ones the sponsor is added%>
-					<%=h @story.geo_location.name%>
+					<%= @story.geo_location.name%>
 					<%
 					map = GMap.new("map_div_#{@story.id}")
 					map.control_init(:small_map => true,:map_type => true)							    
@@ -31,11 +31,11 @@
 					marker = GMarker.new([geo_location.lat, geo_location.lng], :title => geo_location.name)  
 					map.overlay_init marker							
 					%>
-					<%= map.to_html %>
+					<%= map.to_html.html_safe %>
 					<%= map.div(:width => 320, :height => 220) %>
 				</div>
 				<label>Story:</label>					
-				<div class="story-blog"><%=h @story.blog%></div>
+				<div class="story-blog"><%= @story.blog%></div>
 			</td>
 		</tr>
 		<tr>
