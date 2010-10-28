@@ -10,9 +10,9 @@
 	<%if @story.pictures.count > 0%>
 		<meta property="og:image" content="<%="#{HOST}" + url_for(:controller => "home" , :action => :picture, :id => @story.pictures[0], :thumb => "thumb")%>"/>
 	<%end%>	
-	<%= stylesheet_link_tag "default" %>
-	<%= javascript_include_tag :defaults %>
-	<%= calendar_date_select_includes "red" %>
+    <%= stylesheet_link_tag "default" %>
+    <%= javascript_include_tag :defaults %>
+    <%= (calendar_date_select_includes "red").html_safe %>
 	<!--[if lt IE 7.]>
 		<script defer type="text/javascript" src="/javascripts/pngfix.js"></script>
 	<![endif]-->

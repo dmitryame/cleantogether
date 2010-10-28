@@ -5,4 +5,3 @@ page << @map.add_overlay(@marker)
 page["geo_location_lat"].value = @lat
 page["geo_location_lng"].value = @lng
 
-
