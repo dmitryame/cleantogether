@@ -1,8 +1,6 @@
 Cleantogether::Application.routes.draw do
   resources :geo_locations
   resources :facebook_users do
-  
-  
       resources :stories
   end
 

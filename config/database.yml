@@ -15,7 +15,7 @@ development:
   adapter: mysql
   database: cleantogether_development
   username: root
-  password: plumdeveloper
+  password: 
 # added explicit encoding
   encoding: utf8
   socket: /tmp/mysql.sock
