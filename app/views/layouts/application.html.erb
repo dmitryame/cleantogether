@@ -17,7 +17,7 @@
                                 <%= @current_user.name %>
                                 <%= link_to "logout", logout_path %>
                         <%else%>
-                                <%= link_to "Facebook&nbsp;login", auth_start_path %>
+                                <%= link_to "Facebook&nbsp;login".html_safe, auth_start_path %>
                         <%end%>
                 </div>
 
