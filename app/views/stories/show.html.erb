@@ -1,5 +1,4 @@
-
-<%= GMap.header.html_safe %> 
+<%#= GMap.header.html_safe %> 
 
 <div class="story">
 	<table width="100%">
@@ -23,16 +22,16 @@
 					<%#this will be redrawn ones the sponsor is added%>
 					<%= @story.geo_location.name%>
 					<%
-					map = GMap.new("map_div_#{@story.id}")
-					map.control_init(:small_map => true,:map_type => true)							    
-					map.set_map_type_init(GMapType::G_HYBRID_MAP)      							
-					geo_location  = @story.geo_location
-					map.center_zoom_init([geo_location.lat,geo_location.lng],8)  	  						
-					marker = GMarker.new([geo_location.lat, geo_location.lng], :title => geo_location.name)  
-					map.overlay_init marker							
+					# map = GMap.new("map_div_#{@story.id}")
+					# map.control_init(:small_map => true,:map_type => true)							    
+					# map.set_map_type_init(GMapType::G_HYBRID_MAP)      							
+					# geo_location  = @story.geo_location
+					# map.center_zoom_init([geo_location.lat,geo_location.lng],8)  	  						
+					# marker = GMarker.new([geo_location.lat, geo_location.lng], :title => geo_location.name)  
+					# map.overlay_init marker							
 					%>
-					<%= map.to_html.html_safe %>
-					<%= map.div(:width => 320, :height => 220) %>
+					<%#= map.to_html.html_safe %>
+					<%#= map.div(:width => 320, :height => 220) %>
 				</div>
 				<label>Story:</label>					
 				<div class="story-blog"><%= @story.blog%></div>

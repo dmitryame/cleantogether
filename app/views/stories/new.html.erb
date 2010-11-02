@@ -1,4 +1,4 @@
-<%= GMap.header.html_safe %> 
+<%#= GMap.header.html_safe %> 
 <h1>Post New Story</h1>
 <%= error_messages_for :story %>
 
@@ -17,16 +17,16 @@
 							<%=@geo_location.name%>
 						</div>
 
-								<%map = GMap.new("map")%>
+								<%#map = GMap.new("map")%>
 								<%
-								map.control_init(:large_map => true,:map_type => true)							    
-								map.set_map_type_init(GMapType::G_HYBRID_MAP)      							
-								map.center_zoom_init([@geo_location.lat,@geo_location.lng],8)  	  						
-								marker = GMarker.new([@geo_location.lat, @geo_location.lng], :title => @geo_location.name)  
-								map.overlay_init marker							
+								# map.control_init(:large_map => true,:map_type => true)							    
+								# map.set_map_type_init(GMapType::G_HYBRID_MAP)      							
+								# map.center_zoom_init([@geo_location.lat,@geo_location.lng],8)  	  						
+								# marker = GMarker.new([@geo_location.lat, @geo_location.lng], :title => @geo_location.name)  
+								# map.overlay_init marker							
 								%>								
-								<%= map.div(:width => 400, :height => 400).html_safe %>							
-								<%= map.to_html.html_safe %>
+								<%#= map.div(:width => 400, :height => 400).html_safe %>							
+								<%#= map.to_html.html_safe %>
 
 						<%= f.hidden_field :geo_location_id, :value => @geo_location.id %>
 						<%= error_message_on @story, :geo_location_id -%>
